@@ -68,7 +68,7 @@ const Hero = () => {
                         variants={itemVariants}
                         className="text-4xl md:text-7xl font-bold mb-4 tracking-tighter uppercase italic"
                     >
-                        <span className="text-electric-cyan glow">HII, I'M ANSH PATEL</span>
+                        <span className="text-electric-cyan glow light:text-indigo-600 light:glow-none">HII, I'M ANSH PATEL</span>
                     </motion.h1>
 
                     <motion.div
@@ -105,7 +105,7 @@ const Hero = () => {
                     >
                         <motion.a
                             href="#contact"
-                            className="px-8 py-4 glass glass-hover rounded-full font-medium text-electric-cyan glow-box"
+                            className="px-8 py-4 glass glass-hover rounded-full font-medium text-electric-cyan light:text-indigo-600 glow-box light:shadow-md"
                             whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
                         >
@@ -139,7 +139,7 @@ const Hero = () => {
                                 whileTap={{ scale: 0.9 }}
                                 aria-label={label}
                             >
-                                <Icon className="w-5 h-5 text-electric-cyan" />
+                                <Icon className="w-5 h-5 text-electric-cyan light:text-indigo-600" />
                             </motion.a>
                         ))}
                     </motion.div>

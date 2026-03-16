@@ -65,7 +65,7 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, inde
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 light:from-slate-900/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
                 <div className="absolute inset-x-0 bottom-0 p-6 flex justify-between items-end">
-                    <div className="w-12 h-1 bg-electric-cyan/50 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                    <div className="w-12 h-1 bg-electric-cyan/50 light:bg-indigo-600/50 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                 </div>
             </div>
 
@@ -77,7 +77,7 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, inde
                     {tags.map((tag) => (
                         <span
                             key={tag}
-                            className="px-3 py-1 text-xs bg-electric-cyan/10 text-electric-cyan rounded-full border border-electric-cyan/20"
+                            className="px-3 py-1 text-xs bg-electric-cyan/10 light:bg-indigo-100 text-electric-cyan light:text-indigo-600 rounded-full border border-electric-cyan/20 light:border-indigo-200"
                         >
                             {tag}
                         </span>
@@ -88,7 +88,7 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, inde
                     {liveUrl && (
                         <motion.a
                             href={liveUrl}
-                            className="flex items-center gap-2 text-sm text-electric-cyan hover:text-cyan-400 transition-colors"
+                            className="flex items-center gap-2 text-sm text-electric-cyan light:text-indigo-600 hover:text-cyan-400 light:hover:text-violet-600 transition-colors"
                             whileHover={{ x: 3 }}
                             style={{ transform: 'translateZ(30px)' }}
                         >

@@ -38,7 +38,7 @@ const About = () => {
                                 alt="Coding Excellence"
                                 className="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 light:from-slate-100/60 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity" />
                         </motion.div>
 
                         {/* Interactive floating badges */}
@@ -90,8 +90,8 @@ const About = () => {
                                         whileHover={{ y: -5, scale: 1.02 }}
                                         className="p-6 glass glass-hover rounded-3xl border-white/5"
                                     >
-                                        <div className="p-2 bg-electric-cyan/10 rounded-xl w-fit mb-4">
-                                            <Icon className="w-6 h-6 text-electric-cyan" />
+                                        <div className="p-2 bg-electric-cyan/10 light:bg-indigo-100 rounded-xl w-fit mb-4">
+                                            <Icon className="w-6 h-6 text-electric-cyan light:text-indigo-600" />
                                         </div>
                                         <div className="text-3xl font-black mb-1 text-primary">{stat.value}</div>
                                         <div className="text-xs text-secondary uppercase tracking-widest">{stat.label}</div>
@@ -106,18 +106,18 @@ const About = () => {
                                 initial={{ opacity: 0, x: -20 }}
                                 className="text-2xl font-black mb-12 flex items-center gap-4 uppercase tracking-tighter"
                             >
-                                <span className="p-3 bg-electric-cyan/10 rounded-xl">
-                                    <GraduationCap className="w-6 h-6 text-electric-cyan" />
+                                <span className="p-3 bg-electric-cyan/10 light:bg-indigo-100 rounded-xl">
+                                    <GraduationCap className="w-6 h-6 text-electric-cyan light:text-indigo-600" />
                                 </span>
                                 Academic Journey
                             </motion.h3>
                             <div className="relative pl-12 space-y-16">
                                 {/* Beast Timeline Line */}
-                                <div className="absolute left-[7px] top-4 bottom-4 w-[2px] bg-white/5">
+                                <div className="absolute left-[7px] top-4 bottom-4 w-[2px] bg-white/5 light:bg-slate-200">
                                     <motion.div
                                         animate={{ height: ["0%", "100%"] }}
                                         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                                        className="w-full bg-gradient-to-b from-electric-cyan via-cyan-400 to-transparent shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+                                        className="w-full bg-gradient-to-b from-electric-cyan via-cyan-400 to-transparent shadow-[0_0_15px_rgba(34,211,238,0.5)] light:from-indigo-600 light:via-violet-600 light:shadow-[0_0_15px_rgba(79,70,229,0.3)]"
                                     />
                                 </div>
 
@@ -153,8 +153,8 @@ const About = () => {
                                         className="relative group"
                                     >
                                         {/* Glowing Pulse Dot */}
-                                        <div className="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-midnight border-2 border-electric-cyan group-hover:scale-150 transition-transform z-10 shadow-[0_0_10px_rgba(34,211,238,0.5)]">
-                                            <div className="absolute inset-0 rounded-full bg-electric-cyan animate-ping opacity-40" />
+                                        <div className="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-midnight light:bg-white border-2 border-electric-cyan light:border-indigo-600 group-hover:scale-150 transition-transform z-10 shadow-[0_0_10px_rgba(34,211,238,0.5)] light:shadow-[0_0_10px_rgba(79,70,229,0.3)]">
+                                            <div className="absolute inset-0 rounded-full bg-electric-cyan light:bg-indigo-600 animate-ping opacity-40" />
                                         </div>
 
                                         <div className="p-8 glass glass-hover rounded-[2rem] border-white/5 group-hover:border-electric-cyan/20 transition-all relative overflow-hidden">
@@ -171,7 +171,7 @@ const About = () => {
                                                     <motion.span
                                                         animate={{ scale: [1, 1.1, 1] }}
                                                         transition={{ repeat: Infinity, duration: 2 }}
-                                                        className="shrink-0 text-[10px] px-3 py-1 bg-electric-cyan/20 text-electric-cyan rounded-full font-black uppercase tracking-widest border border-electric-cyan/30"
+                                                        className="shrink-0 text-[10px] px-3 py-1 bg-electric-cyan/20 light:bg-indigo-100 text-electric-cyan light:text-indigo-600 rounded-full font-black uppercase tracking-widest border border-electric-cyan/30 light:border-indigo-200"
                                                     >
                                                         {edu.status}
                                                     </motion.span>

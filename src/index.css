@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant light (&:where(.light, .light *));
+
 @theme {
   --color-midnight: #050505;
   --color-electric-cyan: #22d3ee;
@@ -14,9 +16,11 @@
 }
 
 .light {
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --bg-section: rgba(248, 250, 252, 0.8);
+  --text-primary: #0f172a; /* Slate 900 */
+  --text-secondary: #475569; /* Slate 600 */
+  --bg-section: rgba(248, 250, 252, 0.8); /* Slate 50 */
+  --accent-primary: #4f46e5; /* Indigo 600 */
+  --accent-secondary: #7c3aed; /* Violet 600 */
 }
 
 @layer base {
@@ -36,8 +40,9 @@
     background-size: 50px 50px;
   }
 
-  .light body {
-    @apply bg-[#f8fafc] text-slate-900;
+  /* Target the body when .light is on html */
+  :root.light body {
+    @apply bg-slate-50 text-slate-900;
     background-image:
       linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
@@ -70,7 +75,7 @@
   }
 
   .light .text-gradient {
-    @apply from-cyan-600 via-blue-600 to-indigo-600;
+    @apply from-indigo-600 via-violet-600 to-purple-600;
   }
 
   /* Theme-aware utilities */
@@ -90,12 +95,43 @@
     text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
   }
 
+  .light .glow {
+    text-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+  }
+
   .glow-box {
     box-shadow: 0 0 40px rgba(34, 211, 238, 0.15);
   }
 
+  .light .glow-box {
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.1);
+  }
+
   .glow-ring {
     box-shadow: 0 0 30px rgba(34, 211, 238, 0.4), inset 0 0 10px rgba(34, 211, 238, 0.2);
+  }
+
+  .light .glow-ring {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.2), inset 0 0 8px rgba(37, 99, 235, 0.1);
+  }
+
+  /* Light mode form inputs */
+  .light input,
+  .light textarea {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+
+  .light input::placeholder,
+  .light textarea::placeholder {
+    color: #94a3b8 !important;
+  }
+
+  .light input:focus,
+  .light textarea:focus {
+    border-color: rgba(34, 211, 238, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
   }
 }
 
@@ -112,6 +148,11 @@
   transition: transform 0.15s ease-out;
 }
 
+.light .custom-cursor {
+  border-color: #4f46e5;
+  mix-blend-mode: normal;
+}
+
 .custom-cursor-follower {
   width: 8px;
   height: 8px;
@@ -121,6 +162,11 @@
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: difference;
+}
+
+.light .custom-cursor-follower {
+  background: #4f46e5;
+  mix-blend-mode: normal;
 }
 
 /* Scrollbar styling */
@@ -139,4 +185,20 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #0ea5e9;
+}
+
+.light ::-webkit-scrollbar-track,
+.light::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.light ::-webkit-scrollbar-thumb,
+.light::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 4px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover,
+.light::-webkit-scrollbar-thumb:hover {
+  background: #1d4ed8;
 }

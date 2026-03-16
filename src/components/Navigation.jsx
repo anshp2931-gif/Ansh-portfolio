@@ -56,8 +56,8 @@ const Navigation = () => {
                     whileTap={{ scale: 0.95 }}
                 >
                     <div className={`relative w-10 h-10 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center ${theme === 'light'
-                            ? 'border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)] group-hover:border-purple-600/50 group-hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] bg-white/50'
-                            : 'border-electric-cyan/30 shadow-[0_0_15px_rgba(0,255,255,0.2)] group-hover:border-purple-500/50 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] bg-black/20'
+                        ? 'border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)] group-hover:border-purple-600/50 group-hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] bg-white/50'
+                        : 'border-electric-cyan/30 shadow-[0_0_15px_rgba(0,255,255,0.2)] group-hover:border-purple-500/50 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] bg-black/20'
                         }`}>
                         <svg viewBox="0 0 100 100" className="w-full h-full group-hover:scale-110 transition-transform duration-500">
                             <defs>
@@ -66,8 +66,8 @@ const Navigation = () => {
                                     <stop offset="100%" stopColor="#A855F7" />
                                 </linearGradient>
                                 <linearGradient id="logo-gradient-light" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stopColor="#2563EB" />
-                                    <stop offset="100%" stopColor="#9333EA" />
+                                    <stop offset="0%" stopColor="#4F46E5" />
+                                    <stop offset="100%" stopColor="#7C3AED" />
                                 </linearGradient>
                             </defs>
                             <text
@@ -83,10 +83,10 @@ const Navigation = () => {
                                 AP
                             </text>
                         </svg>
-                        <div className={`absolute inset-0 bg-gradient-to-tr mix-blend-overlay ${theme === 'light' ? 'from-blue-500/10 to-purple-600/10' : 'from-electric-cyan/10 to-purple-500/10'}`}></div>
+                        <div className={`absolute inset-0 bg-gradient-to-tr mix-blend-overlay ${theme === 'light' ? 'from-indigo-500/10 to-violet-600/10' : 'from-electric-cyan/10 to-purple-500/10'}`}></div>
                     </div>
 
-                    <span className="text-xl font-semibold hidden sm:block text-white">
+                    <span className={`text-xl font-bold hidden sm:block ${theme === 'light' ? 'text-gradient' : 'text-white'}`}>
                         Ansh Patel
                     </span>
                 </motion.a>
@@ -97,7 +97,7 @@ const Navigation = () => {
                         <motion.a
                             key={item.label}
                             href={item.href}
-                            className={`text-sm font-medium transition-colors ${theme === 'light' ? 'text-gray-600 hover:text-gray-900' : 'text-gray-400 hover:text-white'}`}
+                            className={`text-sm font-medium transition-colors ${theme === 'light' ? 'text-indigo-600 hover:text-violet-600' : 'text-gray-400 hover:text-white'}`}
                             whileHover={{ y: -1 }}
                         >
                             {item.label}
@@ -107,7 +107,7 @@ const Navigation = () => {
                     {/* Theme Toggle Button */}
                     <motion.button
                         onClick={toggleTheme}
-                        className={`p-2 rounded-full glass glass-hover border transition-colors ${theme === 'light' ? 'text-blue-600 border-gray-200' : 'text-yellow-400 border-white/10'}`}
+                        className={`p-2 rounded-full glass glass-hover border transition-colors ${theme === 'light' ? 'text-indigo-600 border-slate-200 shadow-sm' : 'text-yellow-400 border-white/10'}`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                     >

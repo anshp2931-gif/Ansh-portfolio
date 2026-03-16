@@ -57,18 +57,18 @@ const Certificates = () => {
     <section
       ref={containerRef}
       id="certificates"
-      className="relative h-[300vh] bg-black"
+      className="relative h-[300vh] bg-black light:bg-slate-50"
     >
 
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
 
         {/* Title */}
         <div className="text-center mb-16">
-          <p className="text-cyan-400 tracking-[0.3em] text-sm mb-3">
+          <p className="text-cyan-400 light:text-indigo-600 tracking-[0.3em] text-sm mb-3">
             VALIDATED SKILLS
           </p>
 
-          <h2 className="text-5xl md:text-7xl font-bold text-white">
+          <h2 className="text-5xl md:text-7xl font-bold text-white light:text-slate-900">
             Certifications
           </h2>
         </div>
@@ -83,7 +83,7 @@ const Certificates = () => {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
-              className="min-w-[420px] bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+              className="min-w-[420px] bg-neutral-900 light:bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/10 light:border-slate-200 light:shadow-lg"
             >
 
               <img
@@ -94,15 +94,15 @@ const Certificates = () => {
 
               <div className="p-8">
 
-                <h3 className="text-2xl font-bold text-white mb-2">
+                <h3 className="text-2xl font-bold text-white light:text-slate-900 mb-2">
                   {cert.title}
                 </h3>
 
-                <p className="text-gray-400 mb-4">
+                <p className="text-gray-400 light:text-slate-500 mb-4">
                   {cert.issuer}
                 </p>
 
-                <p className="text-sm text-cyan-400 mb-6">
+                <p className="text-sm text-cyan-400 light:text-indigo-600 mb-6">
                   {cert.date}
                 </p>
 
@@ -111,7 +111,7 @@ const Certificates = () => {
                     href={cert.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-cyan-400 hover:text-white transition"
+                    className="flex items-center gap-2 text-cyan-400 light:text-indigo-600 hover:text-white light:hover:text-violet-600 transition"
                   >
                     Verify Certificate
                     <ExternalLink size={16} />

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
 
 const Leetcode = ({ className }) => (
     <svg
@@ -15,6 +15,10 @@ const Leetcode = ({ className }) => (
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     const socialLinks = [
         { Icon: Github, href: 'https://github.com/anshp2931-gif', label: 'GitHub' },
@@ -43,7 +47,7 @@ const Footer = () => {
                                 <a
                                     key={link}
                                     href={`#${link.toLowerCase()}`}
-                                    className="block text-secondary hover:text-electric-cyan transition-colors text-sm"
+                                    className="block text-secondary hover:text-electric-cyan light:hover:text-indigo-600 transition-colors text-sm"
                                 >
                                     {link}
                                 </a>
@@ -64,11 +68,24 @@ const Footer = () => {
                                     whileTap={{ scale: 0.9 }}
                                     aria-label={label}
                                 >
-                                    <Icon className="w-5 h-5 text-electric-cyan" />
+                                    <Icon className="w-5 h-5 text-electric-cyan light:text-indigo-600" />
                                 </motion.a>
                             ))}
                         </div>
                     </div>
+                </div>
+
+                {/* Back to Top */}
+                <div className="flex justify-center mb-6">
+                    <motion.button
+                        onClick={scrollToTop}
+                        className="group flex items-center gap-2 px-5 py-2.5 glass glass-hover rounded-full text-sm text-electric-cyan light:text-indigo-600 font-medium cursor-pointer light:shadow-sm"
+                        whileHover={{ scale: 1.05, y: -3 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <ArrowUp className="w-4 h-4 transition-transform group-hover:-translate-y-1" />
+                        Back to Top
+                    </motion.button>
                 </div>
 
                 {/* Copyright */}

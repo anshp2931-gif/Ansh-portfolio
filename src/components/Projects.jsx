@@ -74,8 +74,9 @@ const Projects = () => {
     <section
       id="projects"
       ref={containerRef}
-      className="relative h-[400vh] bg-black"
+      className="relative h-[400vh] bg-black light:bg-slate-50"
     >
+
       <div className="sticky top-0 h-screen overflow-hidden">
 
         {/* Title */}
@@ -90,13 +91,13 @@ const Projects = () => {
             MY WORK
           </p>
 
-          <h2 className="text-5xl md:text-7xl font-bold text-white mt-3">
+          <h2 className="text-5xl md:text-7xl font-bold text-white light:text-slate-900 mt-3">
             Projects
           </h2>
         </motion.div>
 
-        {/* Cards */}
-        <div className="relative w-full h-full flex items-center justify-center pt-40 perspective-[1200px]">
+        {/* Cards Container */}
+        <div className="relative w-full h-full flex items-center justify-center pt-40 [perspective:1200px]">
 
           {projects.map((project, index) => (
             <ProjectLayer
@@ -144,16 +145,19 @@ const ProjectLayer = ({ project, index, progress, total }) => {
     [25, 0, -10]
   );
 
-  const pointerEvents = useTransform(opacity, (v) => v > 0.5 ? "auto" : "none");
+  const pointerEvents = useTransform(
+    opacity,
+    (v) => (v > 0.5 ? "auto" : "none")
+  );
 
   return (
     <motion.div
       style={{ y, scale, opacity, rotateX, pointerEvents }}
-      className="absolute w-full max-w-5xl px-6"
+      className="absolute w-full px-10 md:px-20 lg:px-32"
     >
 
       {/* Project Number */}
-      <div className="mb-4 text-cyan-400 text-lg font-semibold">
+      <div className="mb-4 text-cyan-400 light:text-indigo-600 text-lg font-semibold">
         {String(index + 1).padStart(2, "0")}
       </div>
 

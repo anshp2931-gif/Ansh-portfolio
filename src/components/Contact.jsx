@@ -106,8 +106,8 @@ const Contact = () => {
                                     variants={contactItem}
                                     className="flex items-center gap-4"
                                 >
-                                    <div className="p-3 bg-electric-cyan/10 rounded-xl">
-                                        <Mail className="w-5 h-5 text-electric-cyan" />
+                                    <div className="p-3 bg-electric-cyan/10 light:bg-indigo-100 rounded-xl">
+                                        <Mail className="w-5 h-5 text-electric-cyan light:text-indigo-600" />
                                     </div>
 
                                     <div>
@@ -122,8 +122,8 @@ const Contact = () => {
                                     variants={contactItem}
                                     className="flex items-center gap-4"
                                 >
-                                    <div className="p-3 bg-electric-cyan/10 rounded-xl">
-                                        <MapPin className="w-5 h-5 text-electric-cyan" />
+                                    <div className="p-3 bg-electric-cyan/10 light:bg-indigo-100 rounded-xl">
+                                        <MapPin className="w-5 h-5 text-electric-cyan light:text-indigo-600" />
                                     </div>
 
                                     <div>
@@ -246,8 +246,8 @@ const Contact = () => {
                                 animate={isSubmitted ? { scale: [1, 1.1, 1] } : {}}
                                 transition={{ duration: 0.4 }}
                                 className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 ${isSubmitted
-                                        ? "bg-green-500/20 text-green-500"
-                                        : "bg-electric-cyan/10 hover:bg-electric-cyan/20"
+                                    ? "bg-green-500/20 text-green-500"
+                                    : "bg-electric-cyan/10 light:bg-indigo-100 hover:bg-electric-cyan/20 light:hover:bg-indigo-200"
                                     }`}
                             >
                                 {isSubmitted ? (

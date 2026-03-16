@@ -27,7 +27,7 @@ const Skills = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <p className="text-cyan-400 tracking-widest text-sm uppercase">
+          <p className="text-cyan-400 light:text-indigo-600 tracking-widest text-sm uppercase">
             My Expertise
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mt-2">
@@ -63,8 +63,8 @@ const Skills = () => {
 
                 className="flex flex-col items-center justify-center
                 w-32 h-32 rounded-2xl
-                bg-white/5 backdrop-blur
-                border border-white/10
+                bg-white/5 light:bg-white/80 backdrop-blur
+                border border-white/10 light:border-slate-200 light:shadow-sm
                 hover:border-cyan-400
                 cursor-pointer"
               >
@@ -79,7 +79,7 @@ const Skills = () => {
                 />
 
                 {/* Name */}
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-300 light:text-slate-600">
                   {skill.name}
                 </p>
 

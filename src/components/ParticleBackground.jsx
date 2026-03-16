@@ -49,9 +49,16 @@ const ParticleBackground = () => {
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            const isLight = document.documentElement.classList.contains('light');
+            const particleColor = isLight ? '79, 70, 229' : '34, 211, 238'; // Indigo 600 vs Cyan
+            const opacityMultiplier = isLight ? 0.4 : 1;
+
             particles.forEach((particle) => {
                 particle.update();
-                particle.draw();
+                ctx.fillStyle = `rgba(${particleColor}, ${particle.opacity * opacityMultiplier})`;
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fill();
             });
 
             // Draw connections
@@ -62,7 +69,7 @@ const ParticleBackground = () => {
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < 120) {
-                        ctx.strokeStyle = `rgba(34, 211, 238, ${0.15 * (1 - distance / 120)})`;
+                        ctx.strokeStyle = `rgba(${particleColor}, ${(isLight ? 0.08 : 0.15) * (1 - distance / 120)})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(a.x, a.y);

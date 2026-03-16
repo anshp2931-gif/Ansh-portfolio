@@ -21,45 +21,69 @@ const Skills = () => {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
           <p className="text-cyan-400 tracking-widest text-sm uppercase">
             My Expertise
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mt-2">
             Skills
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Scrolling Container */}
-        <div className="relative w-full overflow-hidden">
+        {/* Scroll Container */}
+        <div className="relative overflow-hidden">
 
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{
               repeat: Infinity,
-              duration: 20,
+              duration: 18,
               ease: "linear",
             }}
-            className="flex gap-8 w-max"
+            className="flex gap-10 w-max"
           >
             {[...skills, ...skills].map((skill, index) => (
-              <div
+              <motion.div
                 key={index}
+
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{
+                  scale: 1.15,
+                  rotate: 3,
+                  boxShadow: "0px 0px 25px rgba(34,211,238,0.5)"
+                }}
+
+                transition={{ duration: 0.4 }}
+
                 className="flex flex-col items-center justify-center
                 w-32 h-32 rounded-2xl
                 bg-white/5 backdrop-blur
                 border border-white/10
                 hover:border-cyan-400
-                hover:scale-110
-                transition-all duration-300"
+                cursor-pointer"
               >
-                <img
+
+                {/* Icon */}
+                <motion.img
                   src={skill.icon}
                   alt={skill.name}
                   className="w-10 h-10 mb-2"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
                 />
-                <p className="text-sm">{skill.name}</p>
-              </div>
+
+                {/* Name */}
+                <p className="text-sm text-gray-300">
+                  {skill.name}
+                </p>
+
+              </motion.div>
             ))}
           </motion.div>
 

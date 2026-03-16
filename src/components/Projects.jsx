@@ -151,7 +151,14 @@ const ProjectLayer = ({ project, index, progress, total }) => {
       style={{ y, scale, opacity, rotateX, pointerEvents }}
       className="absolute w-full max-w-5xl px-6"
     >
+
+      {/* Project Number */}
+      <div className="mb-4 text-cyan-400 text-lg font-semibold">
+        {String(index + 1).padStart(2, "0")}
+      </div>
+
       <ProjectCard {...project} index={index} />
+
     </motion.div>
   );
 };

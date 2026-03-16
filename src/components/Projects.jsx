@@ -1,79 +1,159 @@
-import { motion } from 'framer-motion';
-import ProjectCard from './ProjectCard';
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
+import ProjectCard from "./ProjectCard";
+
+const projects = [
+  {
+    title: "Adidas Website Clone",
+    description:
+      "A fully responsive e-commerce landing page for Adidas with dynamic product displays.",
+    tags: ["React JS", "Tailwind CSS", "Responsive Design"],
+    image:
+      "https://res.cloudinary.com/dwj55unqi/image/upload/v1772173191/jan-zinnbauer-CSD5oE6sxQg-unsplash_r9buvj.jpg",
+    liveUrl: "https://cg-adidas.netlify.app/",
+    githubUrl: "https://github.com/anshp2931-gif/Adidas_website",
+    ytURL: "https://youtu.be/v9rHpGji5Sk",
+  },
+  {
+    title: "Defender Website Clone",
+    description:
+      "Automobile showcase for the Land Rover Defender with immersive imagery.",
+    tags: ["HTML", "CSS", "Responsive Design"],
+    image:
+      "https://res.cloudinary.com/dwj55unqi/image/upload/v1772173082/gaku-suyama-G1qZiZa2xrE-unsplash_yv6p8f.jpg",
+    liveUrl: "https://cg-defender-clone.netlify.app/",
+    githubUrl: "https://cg-defender-clone.netlify.app/",
+    ytURL: "https://youtu.be/Wr7vTX3SSDk",
+  },
+  {
+    title: "Formour Place Lifestyle",
+    description: "Modern lifestyle brand website with sleek gallery layout.",
+    tags: ["React JS", "Tailwind CSS", "Responsive Design"],
+    image:
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop",
+    liveUrl: "https://formourplace-clone.netlify.app/",
+    githubUrl: "https://github.com/anshp2931-gif/formourplace",
+    ytURL: "https://youtu.be/fDuZ21tU7jM",
+  },
+  {
+    title: "Cars24 Clone",
+    description: "Used-car marketplace platform with search filters.",
+    tags: ["React JS", "Tailwind CSS", "Responsive Design"],
+    image:
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop",
+    liveUrl: "https://cars24-react.netlify.app/",
+    githubUrl: "https://github.com/anshp2931-gif/Cars24_website",
+    ytURL: "https://youtu.be/S-zhvbxeXv4",
+  },
+  {
+    title: "Sony Clone",
+    description: "Electronics showcase inspired by Sony.",
+    tags: ["React JS", "Tailwind CSS", "Responsive Design"],
+    image: "https://cdn-icons-png.flaticon.com/512/5969/5969288.png",
+    liveUrl: "https://sonyclone-website.netlify.app/",
+    githubUrl: "https://github.com/anshp2931-gif/Sony-clone-website",
+    ytURL: "https://youtu.be/Vry4GFfK7-s",
+  },
+];
 
 const Projects = () => {
-    const projects = [
-        {
-            title: 'Adidas Website Clone',
-            description: 'A fully responsive e-commerce landing page for Adidas, featuring a clean layout, dynamic product displays, and seamless navigation. Built with modern UI/UX principles.',
-            tags: ['React JS', 'Tailwind CSS','Responsive Design'],
-image:'https://res.cloudinary.com/dwj55unqi/image/upload/v1772173191/jan-zinnbauer-CSD5oE6sxQg-unsplash_r9buvj.jpg',            liveUrl: 'https://cg-adidas-clone.netlify.app/',
-            githubUrl: 'https://github.com/anshp2931-gif/Adidas_website',
-            ytURL: 'https://youtu.be/v9rHpGji5Sk?si=do5vwyfcu73H-7b2',
-        },
-        {
-            title: 'Defender Website Clone',
-            description: 'A high-end automobile showcase for the Land Rover Defender. Features immersive large-scale imagery, performance statistics display, and a premium brand aesthetic.',
-            tags: ['HTML', 'CSS','Responsive Design'],
-            image:'https://res.cloudinary.com/dwj55unqi/image/upload/v1772173082/gaku-suyama-G1qZiZa2xrE-unsplash_yv6p8f.jpg',
-            liveUrl: 'https://cg-defender-clone.netlify.app/',
-            githubUrl: 'https://github.com/anshp2931-gif/Defender_website',
-               ytURL: 'https://youtu.be/Wr7vTX3SSDk',
-        },
-        {
-            title: 'Formour Place Lifestyle',
-            description: 'A stylish and modern lifestyle brand website focusing on clothing and contemporary aesthetics. Features a sleek product gallery and brand storytelling layout.',
-            tags: ['React JS', 'Tailwind CSS','Responsive Design'],
-            image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop',
-            liveUrl: 'https://cg-formour-clone.netlify.app/',
-            githubUrl: 'https://github.com/anshp2931-gif/formourplace',
-               ytURL: 'https://youtu.be/fDuZ21tU7jM',
-        },
-        {
-            title: 'Cars24 Clone',
-            description: 'A comprehensive used-car marketplace platform inspired by Cars24. Features advanced search filters, vehicle inspections details, and a user-friendly buying journey.',
-            tags: ['React JS', 'Tailwind CSS','Responsive Design'],
-            image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop',
-            liveUrl: 'https://cg-cars24-clone.netlify.app/',
-            githubUrl: 'https://github.com/anshp2931-gif/Cars24_website',
-               ytURL: 'https://youtu.be/S-zhvbxeXv4',
-        },
-        {
-            title: 'Sony Clone',
-            description: 'A modern electronics showcase platform inspired by Sony, featuring advanced product categories, detailed specifications, and a smooth browsing experience for users.',
-            tags: ['React JS', 'Tailwind CSS','Responsive Design'],
-            image: 'https://cdn-icons-png.flaticon.com/512/5969/5969288.png',
-            liveUrl: 'https://sonyclone-website.netlify.app/',
-            githubUrl: 'https://github.com/anshp2931-gif/Sony-clone-website',
-               ytURL: 'https://youtu.be/Vry4GFfK7-s',
-        },
-    ];
 
-    return (
-        <section id="projects" className="min-h-screen py-20 px-4 md:px-8 relative">
-            <div className="max-w-7xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: 'spring', stiffness: 100 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-4xl md:text-6xl font-bold mb-4 text-gradient">Featured Projects</h2>
-                    <p className="text-secondary text-lg max-w-2xl mx-auto">
-                        A selection of projects showcasing expertise in full-stack development, cloud architecture, and DevOps.
-                    </p>
-                </motion.div>
+  const containerRef = useRef(null);
 
-                {/* Desktop: 3-column bento grid, Mobile: single column */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    {projects.map((project, index) => (
-                        <ProjectCard key={project.title} {...project} index={index} />
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+  });
+
+  return (
+    <section
+      id="projects"
+      ref={containerRef}
+      className="relative h-[400vh] bg-black"
+    >
+      <div className="sticky top-0 h-screen overflow-hidden">
+
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="absolute top-20 w-full text-center z-20"
+        >
+          <p className="text-cyan-400 text-sm tracking-[0.3em] uppercase">
+            MY WORK
+          </p>
+
+          <h2 className="text-5xl md:text-7xl font-bold text-white mt-3">
+            Projects
+          </h2>
+        </motion.div>
+
+        {/* Cards */}
+        <div className="relative w-full h-full flex items-center justify-center pt-40 perspective-[1200px]">
+
+          {projects.map((project, index) => (
+            <ProjectLayer
+              key={index}
+              project={project}
+              index={index}
+              progress={smoothProgress}
+              total={projects.length}
+            />
+          ))}
+
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+const ProjectLayer = ({ project, index, progress, total }) => {
+
+  const start = index / total;
+  const end = (index + 1) / total;
+
+  const y = useTransform(
+    progress,
+    [start - 0.2, start, end, end + 0.2],
+    [250, 0, -200, -400]
+  );
+
+  const scale = useTransform(
+    progress,
+    [start - 0.2, start, end],
+    [0.7, 1, 0.85]
+  );
+
+  const opacity = useTransform(
+    progress,
+    [start - 0.15, start, end - 0.05, end],
+    [0, 1, 1, 0]
+  );
+
+  const rotateX = useTransform(
+    progress,
+    [start - 0.2, start, end],
+    [25, 0, -10]
+  );
+
+  const pointerEvents = useTransform(opacity, (v) => v > 0.5 ? "auto" : "none");
+
+  return (
+    <motion.div
+      style={{ y, scale, opacity, rotateX, pointerEvents }}
+      className="absolute w-full max-w-5xl px-6"
+    >
+      <ProjectCard {...project} index={index} />
+    </motion.div>
+  );
 };
 
 export default Projects;

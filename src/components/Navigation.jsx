@@ -55,21 +55,39 @@ const Navigation = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    <div className="relative w-8 h-8 rounded-full overflow-hidden border border-electric-cyan/30 shadow-[0_0_15px_rgba(0,255,255,0.2)] group-hover:border-purple-500/50 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all duration-300">
-                        <img 
-                            src={userLogo} 
-                            alt="AP Logo" 
-                            className="w-full h-full object-contain scale-110 group-hover:scale-125 transition-transform duration-500"
-                            onError={(e) => {
-                                e.target.onerror = null; 
-                                e.target.src = 'https://via.placeholder.com/150/000000/00FFFF?text=AP'; 
-                            }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-tr from-electric-cyan/10 to-purple-500/10 mix-blend-overlay"></div>
+                    <div className={`relative w-10 h-10 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center ${theme === 'light'
+                            ? 'border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)] group-hover:border-purple-600/50 group-hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] bg-white/50'
+                            : 'border-electric-cyan/30 shadow-[0_0_15px_rgba(0,255,255,0.2)] group-hover:border-purple-500/50 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] bg-black/20'
+                        }`}>
+                        <svg viewBox="0 0 100 100" className="w-full h-full group-hover:scale-110 transition-transform duration-500">
+                            <defs>
+                                <linearGradient id="logo-gradient-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#00FFFF" />
+                                    <stop offset="100%" stopColor="#A855F7" />
+                                </linearGradient>
+                                <linearGradient id="logo-gradient-light" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#2563EB" />
+                                    <stop offset="100%" stopColor="#9333EA" />
+                                </linearGradient>
+                            </defs>
+                            <text
+                                x="50"
+                                y="72"
+                                fontSize="62"
+                                fontWeight="900"
+                                fontFamily="'Inter', system-ui, sans-serif"
+                                letterSpacing="-3px"
+                                fill={`url(#logo-gradient-${theme === 'light' ? 'light' : 'dark'})`}
+                                textAnchor="middle"
+                            >
+                                AP
+                            </text>
+                        </svg>
+                        <div className={`absolute inset-0 bg-gradient-to-tr mix-blend-overlay ${theme === 'light' ? 'from-blue-500/10 to-purple-600/10' : 'from-electric-cyan/10 to-purple-500/10'}`}></div>
                     </div>
-                    
-                    <span className={`text-xl font-bold tracking-tight hidden sm:block ${theme === 'light' ? 'text-gray-800' : 'text-gray-100'}`}>
-                        Ansh <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-cyan to-purple-500">Patel</span>
+
+                    <span className="text-xl font-semibold hidden sm:block text-white">
+                        Ansh Patel
                     </span>
                 </motion.a>
 

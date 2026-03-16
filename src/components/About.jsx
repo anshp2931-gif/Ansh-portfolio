@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { User, GraduationCap, Code2, Heart, Download } from 'lucide-react';
+import { User, GraduationCap, Code2, Heart } from 'lucide-react';
 
 const About = () => {
     const stats = [
@@ -75,22 +75,7 @@ const About = () => {
                             I am a visionary developer fueled by a passion for clean architecture and disruptive innovation. Currently pursuing my B.Tech in Computer Science, I specialize in building "Beast" level applications that push the boundaries of what's possible on the web.
                         </p>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            className="mb-12"
-                        >
-                            <motion.a
-                                href="/resume.pdf"
-                                download
-                                className="inline-flex items-center gap-3 px-8 py-4 bg-electric-cyan/10 hover:bg-electric-cyan/20 rounded-full font-bold border border-electric-cyan/30 transition-all text-primary group"
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <Download className="w-5 h-5 text-electric-cyan group-hover:animate-bounce" />
-                                Download Resume
-                            </motion.a>
-                        </motion.div>
+
 
                         <div className="grid grid-cols-2 gap-4 mb-12">
                             {stats.map((stat, index) => {

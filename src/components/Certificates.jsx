@@ -6,6 +6,7 @@ import cCert from "../assets/C.png";
 import cssCert from "../assets/CSS.png";
 import electroCert from "../assets/clg.jpeg";
 import openpoolCert from "../assets/openpool.png";
+import CppCert from "../assets/Cpp.jpg"
 
 const certificates = [
   {
@@ -23,10 +24,11 @@ const certificates = [
     link: "https://www.sololearn.com/en/certificates/CC-XIK2BWG0",
   },
   {
-    title: "ElectroSphere 2K26",
-    issuer: "Swaminarayan University",
-    date: "Jan 07, 2026",
-    image: electroCert,
+    title: "Introduction to C++",
+    issuer: "SoloLearn",
+    date: "Mar 17, 2026",
+    image: CppCert,
+    link: "https://lnkd.in/dqEQ6p7Q",
   },
   {
     title: "OpenPool",
@@ -34,6 +36,12 @@ const certificates = [
     date: "Mar 16, 2026",
     image: openpoolCert,
     link: "https://drive.google.com/file/d/1pBYZ0szwluDIJRE7GFjKhARxQPNPTByV/view",
+  },
+  {
+    title: "ElectroSphere 2K26",
+    issuer: "Swaminarayan University",
+    date: "Jan 07, 2026",
+    image: electroCert,
   },
 ];
 

@@ -144,12 +144,33 @@ const Navigation = () => {
                         <a
                             key={item.label}
                             href={item.href}
-                            className={`block transition-colors py-2 text-center ${theme === 'light' ? 'text-gray-600 hover:text-gray-900' : 'text-gray-300 hover:text-electric-cyan'}`}
+                            className={`block transition-colors py-2 text-center font-medium ${theme === 'light' ? 'text-indigo-600 hover:text-violet-600' : 'text-gray-300 hover:text-electric-cyan'}`}
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             {item.label}
                         </a>
                     ))}
+
+                    {/* Mobile Theme Toggle */}
+                    <div className="pt-4 border-t border-white/10 flex justify-center">
+                        <motion.button
+                            onClick={toggleTheme}
+                            className={`p-3 rounded-full glass glass-hover border transition-colors flex items-center justify-center gap-2 w-full ${theme === 'light' ? 'text-indigo-600 border-slate-200' : 'text-yellow-400 border-white/10'}`}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            {theme === 'dark' ? (
+                                <>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.243 17.657l.707.707M7.757 6.364l.707.707M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                    <span className="font-medium text-sm">Light Mode</span>
+                                </>
+                            ) : (
+                                <>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                                    <span className="font-medium text-sm">Dark Mode</span>
+                                </>
+                            )}
+                        </motion.button>
+                    </div>
                 </motion.div>
             )}
         </div>

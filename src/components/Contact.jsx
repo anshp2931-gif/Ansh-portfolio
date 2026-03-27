@@ -179,7 +179,7 @@ const Contact = () => {
 
                             {/* Name */}
                             <div>
-                                <label className="block text-sm font-medium mb-2">
+                                <label className="block text-sm font-medium mb-2 text-primary">
                                     Name
                                 </label>
 
@@ -190,15 +190,15 @@ const Contact = () => {
                                     onChange={handleChange}
                                     required
                                     placeholder="Your name"
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl 
-                  focus:outline-none focus:border-electric-cyan/50
-                  transition-all duration-300 focus:scale-[1.02]"
+                                    className="w-full px-4 py-3 bg-white/5 light:bg-slate-100/50 border border-white/10 light:border-slate-300 rounded-xl 
+                  focus:outline-none focus:border-electric-cyan/50 light:focus:border-indigo-500/50
+                  transition-all duration-300 focus:scale-[1.02] text-primary"
                                 />
                             </div>
 
                             {/* Email */}
                             <div>
-                                <label className="block text-sm font-medium mb-2">
+                                <label className="block text-sm font-medium mb-2 text-primary">
                                     Email
                                 </label>
 
@@ -209,15 +209,15 @@ const Contact = () => {
                                     onChange={handleChange}
                                     required
                                     placeholder="your.email@example.com"
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl 
-                  focus:outline-none focus:border-electric-cyan/50
-                  transition-all duration-300 focus:scale-[1.02]"
+                                    className="w-full px-4 py-3 bg-white/5 light:bg-slate-100/50 border border-white/10 light:border-slate-300 rounded-xl 
+                  focus:outline-none focus:border-electric-cyan/50 light:focus:border-indigo-500/50
+                  transition-all duration-300 focus:scale-[1.02] text-primary"
                                 />
                             </div>
 
                             {/* Message */}
                             <div>
-                                <label className="block text-sm font-medium mb-2">
+                                <label className="block text-sm font-medium mb-2 text-primary">
                                     Message
                                 </label>
 
@@ -228,9 +228,9 @@ const Contact = () => {
                                     onChange={handleChange}
                                     required
                                     placeholder="Tell me about your project..."
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl resize-none
-                  focus:outline-none focus:border-electric-cyan/50
-                  transition-all duration-300 focus:scale-[1.02]"
+                                    className="w-full px-4 py-3 bg-white/5 light:bg-slate-100/50 border border-white/10 light:border-slate-300 rounded-xl resize-none
+                  focus:outline-none focus:border-electric-cyan/50 light:focus:border-indigo-500/50
+                  transition-all duration-300 focus:scale-[1.02] text-primary"
                                 />
                             </div>
 

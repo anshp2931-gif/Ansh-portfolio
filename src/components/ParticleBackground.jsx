@@ -35,7 +35,7 @@ const ParticleBackground = () => {
             }
 
             draw() {
-                ctx.fillStyle = `rgba(34, 211, 238, ${this.opacity})`;
+                ctx.fillStyle = `rgba(129, 140, 248, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -50,7 +50,7 @@ const ParticleBackground = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             const isLight = document.documentElement.classList.contains('light');
-            const particleColor = isLight ? '79, 70, 229' : '34, 211, 238'; // Indigo 600 vs Cyan
+            const particleColor = isLight ? '79, 70, 229' : '129, 140, 248'; // Indigo 600 vs Indigo-400
             const opacityMultiplier = isLight ? 0.4 : 1;
 
             particles.forEach((particle) => {

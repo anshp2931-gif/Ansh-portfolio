@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, Send, AlertCircle, CheckCircle } from "lucide-react";
 import { useState } from "react";
 
 const Contact = () => {
@@ -9,27 +9,62 @@ const Contact = () => {
         message: "",
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        setIsSubmitted(true);
-
-        setTimeout(() => setIsSubmitted(false), 5000);
-
-        setFormData({
-            name: "",
-            email: "",
-            message: "",
-        });
-    };
+    const [error, setError] = useState("");
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+        setIsSubmitting(true);
+
+        try {
+            // Send email using Formspree
+            // Your Form ID from formspree.io
+            const FORM_ID = "xgoprdje";
+            
+            const response = await fetch(`https://formspree.io/f/${FORM_ID}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                }),
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+                setIsSubmitting(false);
+
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    setIsSubmitted(false);
+                    setFormData({
+                        name: "",
+                        email: "",
+                        message: "",
+                    });
+                }, 3000);
+            } else {
+                throw new Error("Failed to send - please check form configuration");
+            }
+        } catch (err) {
+            console.error("Email send error:", err);
+            setError(
+                "Failed to send message. Please check setup instructions or contact directly at anshp2931@gmail.com"
+            );
+            setIsSubmitting(false);
+        }
     };
 
     const contactItem = {
@@ -177,6 +212,33 @@ const Contact = () => {
                             className="glass rounded-2xl p-8 space-y-6 border-white/5 shadow-xl"
                         >
 
+                            {/* Error Message */}
+                            {error && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="p-4 bg-red-500/20 border border-red-500/30 rounded-xl flex items-start gap-3"
+                                >
+                                    <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+                                    <p className="text-sm text-red-200">{error}</p>
+                                </motion.div>
+                            )}
+
+                            {/* Success Message */}
+                            {isSubmitted && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="p-4 bg-green-500/20 border border-green-500/30 rounded-xl flex items-start gap-3"
+                                >
+                                    <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                                    <div className="text-sm text-green-200">
+                                        <p className="font-semibold">Message Sent Successfully!</p>
+                                        <p className="mt-1">Thank you for reaching out. I'll get back to you soon.</p>
+                                    </div>
+                                </motion.div>
+                            )}
+
                             {/* Name */}
                             <div>
                                 <label className="block text-sm font-medium mb-2 text-primary">
@@ -189,10 +251,11 @@ const Contact = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
+                                    disabled={isSubmitting || isSubmitted}
                                     placeholder="Your name"
                                     className="w-full px-4 py-3 bg-white/5 light:bg-slate-100/50 border border-white/10 light:border-slate-300 rounded-xl 
                   focus:outline-none focus:border-electric-cyan/50 light:focus:border-indigo-500/50
-                  transition-all duration-300 focus:scale-[1.02] text-primary"
+                  transition-all duration-300 focus:scale-[1.02] text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
 
@@ -208,10 +271,11 @@ const Contact = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
+                                    disabled={isSubmitting || isSubmitted}
                                     placeholder="your.email@example.com"
                                     className="w-full px-4 py-3 bg-white/5 light:bg-slate-100/50 border border-white/10 light:border-slate-300 rounded-xl 
                   focus:outline-none focus:border-electric-cyan/50 light:focus:border-indigo-500/50
-                  transition-all duration-300 focus:scale-[1.02] text-primary"
+                  transition-all duration-300 focus:scale-[1.02] text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
 
@@ -227,31 +291,44 @@ const Contact = () => {
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
+                                    disabled={isSubmitting || isSubmitted}
                                     placeholder="Tell me about your project..."
                                     className="w-full px-4 py-3 bg-white/5 light:bg-slate-100/50 border border-white/10 light:border-slate-300 rounded-xl resize-none
                   focus:outline-none focus:border-electric-cyan/50 light:focus:border-indigo-500/50
-                  transition-all duration-300 focus:scale-[1.02] text-primary"
+                  transition-all duration-300 focus:scale-[1.02] text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
 
                             {/* Submit Button */}
                             <motion.button
                                 type="submit"
-                                disabled={isSubmitted}
-                                whileHover={{
+                                disabled={isSubmitting || isSubmitted}
+                                whileHover={!isSubmitting ? {
                                     scale: 1.05,
                                     boxShadow: "0px 0px 25px rgba(0,255,255,0.4)",
-                                }}
-                                whileTap={{ scale: 0.95 }}
-                                animate={isSubmitted ? { scale: [1, 1.1, 1] } : {}}
+                                } : {}}
+                                whileTap={!isSubmitting ? { scale: 0.95 } : {}}
+                                animate={isSubmitted ? { scale: [1, 1.1, 1] } : isSubmitting ? { scale: 1.02 } : {}}
                                 transition={{ duration: 0.4 }}
-                                className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 ${isSubmitted
+                                className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all duration-300 ${isSubmitted
                                     ? "bg-green-500/20 text-green-500"
-                                    : "bg-electric-cyan/10 light:bg-indigo-100 hover:bg-electric-cyan/20 light:hover:bg-indigo-200"
+                                    : "bg-electric-cyan/10 light:bg-indigo-100 hover:bg-electric-cyan/20 light:hover:bg-indigo-200 text-electric-cyan light:text-indigo-600"
                                     }`}
                             >
-                                {isSubmitted ? (
-                                    "Message Sent!"
+                                {isSubmitting ? (
+                                    <>
+                                        <motion.div
+                                            animate={{ rotate: 360 }}
+                                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                            className="w-5 h-5 border-2 border-transparent border-t-current rounded-full"
+                                        />
+                                        Sending...
+                                    </>
+                                ) : isSubmitted ? (
+                                    <>
+                                        <Send className="w-5 h-5" />
+                                        Message Sent!
+                                    </>
                                 ) : (
                                     <>
                                         <Send className="w-5 h-5" />

@@ -11,7 +11,7 @@ import k1 from '../assets/k1.png';
 import k2 from '../assets/k2.png';
 import k3 from '../assets/k3.png';
 import k4 from '../assets/k4.jpg';
-import RR from '../assets/RR.png';
+// import RR from '../assets/RR.png'; // Temporarily commented out to fix missing image error
 
 const Hackathon = () => {
     const [isAnyHovered, setIsAnyHovered] = useState(false);
@@ -47,7 +47,7 @@ const Hackathon = () => {
             role: "Full Stack Developer (SafetyTech Project)",
             date: "January 2026",
             description: "Built an intelligent emergency response system that detects call failures and reroutes them in real time, ensuring accurate location tracking and reliable service delivery.",
-            icon: RR,
+            icon: Zap, // Fallback icon instead of RR
             color: "text-green-400",
             gallery: [],
             links: {
@@ -114,7 +114,7 @@ const Hackathon = () => {
                         <h3 className="text-2xl font-black text-primary mb-2 group-hover:text-electric-cyan transition-colors">{event.title}</h3>
                         <h4 className="text-sm text-electric-cyan font-bold uppercase tracking-widest mb-0">{event.role}</h4>
 
-                        <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${isSectionHovered ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                        <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${isSectionHovered ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[1fr] opacity-100 md:grid-rows-[0fr] md:opacity-0'}`}>
                             <div className="overflow-hidden">
                                 <p className="text-secondary leading-relaxed font-light pt-6 pb-2">
                                     {event.description}
@@ -123,7 +123,7 @@ const Hackathon = () => {
                         </div>
 
                         {event.gallery && event.gallery.length > 0 && (
-                            <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100 mb-0 group-hover:mb-6">
+                            <div className="grid grid-rows-[1fr] md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out opacity-100 md:opacity-0 md:group-hover:opacity-100 mb-6 md:mb-0 md:group-hover:mb-6">
                                 <div className="overflow-hidden">
                                     <div
                                         className="w-full h-48 rounded-xl overflow-hidden relative border border-white/10 light:border-slate-200 cursor-pointer mt-4 group/photo block"

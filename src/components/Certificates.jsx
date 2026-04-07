@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ExternalLink, Info } from "lucide-react";
 
 import cCert from "../assets/C.png";
@@ -52,12 +52,15 @@ const certificates = [
 ];
 
 const CertificateCard = ({ cert }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className="relative min-w-[420px] bg-neutral-900 light:bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/10 light:border-slate-200 light:shadow-lg cursor-pointer group"
+      onClick={() => setIsClicked(!isClicked)}
+      className="relative min-w-[85vw] md:min-w-[420px] snap-center bg-neutral-900 light:bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/10 light:border-slate-200 light:shadow-lg cursor-pointer group"
     >
-      <div className="transition-all duration-500 group-hover:scale-105">
+      <div className={`transition-all duration-500 ${isClicked ? 'scale-105' : 'group-hover:scale-105'}`}>
         <img
           src={cert.image}
           alt={cert.title}
@@ -76,7 +79,7 @@ const CertificateCard = ({ cert }) => {
         </div>
       </div>
 
-      <div className="absolute inset-0 bg-black/60 light:bg-white/60 backdrop-blur-xl p-8 flex flex-col transition-all duration-500 opacity-0 translate-y-8 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
+      <div className={`absolute inset-0 bg-black/60 light:bg-white/60 backdrop-blur-xl p-8 flex flex-col transition-all duration-500 ${isClicked ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-8 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto'}`}>
         <h3 className="text-2xl font-bold text-white light:text-slate-900 mb-6">
           {cert.title}
         </h3>
@@ -102,8 +105,16 @@ const CertificateCard = ({ cert }) => {
 };
 
 const Certificates = () => {
-
   const containerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    // Set initial value
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -121,15 +132,11 @@ const Certificates = () => {
     <section
       ref={containerRef}
       id="certificates"
-      className="relative h-[300vh] bg-black light:bg-slate-50"
+      className={isMobile ? "relative py-20 bg-black light:bg-slate-50 overflow-hidden" : "relative h-[300vh] bg-black light:bg-slate-50"}
     >
-
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-
+      <div className={isMobile ? "flex flex-col justify-center" : "sticky top-0 h-screen flex flex-col justify-center overflow-hidden"}>
         {/* Title */}
-        <div className="text-center mb-16">
-
-
+        <div className="text-center mb-12 md:mb-16">
           <h2 className="text-5xl md:text-7xl font-bold text-white light:text-slate-900">
             Certifications
           </h2>
@@ -137,18 +144,14 @@ const Certificates = () => {
 
         {/* Horizontal Scroll */}
         <motion.div
-          style={{ x }}
-          className="flex gap-12 px-20"
+          style={isMobile ? {} : { x }}
+          className={isMobile ? "flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" : "flex gap-12 px-20"}
         >
-
           {certificates.map((cert, index) => (
             <CertificateCard key={index} cert={cert} />
           ))}
-
         </motion.div>
-
       </div>
-
     </section>
   );
 };

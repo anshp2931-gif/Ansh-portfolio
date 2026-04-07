@@ -144,7 +144,7 @@ const Hero = () => {
                             { Icon: Linkedin, href: 'https://www.linkedin.com/in/ansh-patel-059b1b399/', label: 'LinkedIn' },
                             { Icon: Mail, href: 'mailto:anshp2931@gmail.com', label: 'Email' },
                             { Icon: Leetcode, href: 'https://leetcode.com/u/anshp23/', label: 'Leetcode' },
-                            { Icon: Youtube, href: 'https://www.youtube.com/@anshpatel-q4q', label: 'YouTube' },
+                            { Icon: Youtube, href: 'https://www.youtube.com/@anshpatel.23', label: 'YouTube' },
                         ].map(({ Icon, href, label }) => (
                             <motion.a
                                 key={label}

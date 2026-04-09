@@ -1,14 +1,15 @@
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { ExternalLink, Info } from "lucide-react";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { ExternalLink } from "lucide-react";
 
 import cCert from "../assets/C.png";
 import cssCert from "../assets/CSS.png";
 import electroCert from "../assets/clg.jpeg";
 import openpoolCert from "../assets/openpool.png";
-import CppCert from "../assets/Cpp.jpg"
+import CppCert from "../assets/Cpp.jpg";
+import JavaScript from "../assets/JavaScript.jpg";
 
-// Certificate data with added details for interactive display
+// Data
 const certificates = [
   {
     title: "CSS (Basic)",
@@ -16,7 +17,8 @@ const certificates = [
     date: "Dec 15, 2025",
     image: cssCert,
     link: "https://www.hackerrank.com/certificates/ec8b27b16601",
-    details: "Demonstrated strong foundational knowledge of CSS, including selectors, typography, box model layout, and basic responsive design principles.",
+    details:
+      "Demonstrated strong foundational knowledge of CSS including layout, selectors, and responsive design.",
   },
   {
     title: "Introduction to C",
@@ -24,7 +26,8 @@ const certificates = [
     date: "March 06, 2026",
     image: cCert,
     link: "https://www.sololearn.com/en/certificates/CC-XIK2BWG0",
-    details: "Mastered fundamental concepts of C programming, touching upon memory management, pointers, and essential data structures.",
+    details:
+      "Learned core C concepts like pointers and memory management.",
   },
   {
     title: "Introduction to C++",
@@ -32,68 +35,107 @@ const certificates = [
     date: "Mar 17, 2026",
     image: CppCert,
     link: "https://lnkd.in/dqEQ6p7Q",
-    details: "Explored object-oriented programming in C++, learning about classes, inheritance, polymorphism, and the Standard Template Library (STL).",
+    details:
+      "Explored OOP concepts like classes, inheritance, and STL.",
   },
   {
     title: "OpenPool",
     issuer: "OpenPool",
     date: "Mar 16, 2026",
     image: openpoolCert,
-    link: "https://drive.google.com/file/d/1pBYZ0szwluDIJRE7GFjKhARxQPNPTByV/view",
-    details: "Contributed to open source projects, gaining practical experience with collaborative development workflows and version control.",
+    link:
+      "https://drive.google.com/file/d/1pBYZ0szwluDIJRE7GFjKhARxQPNPTByV/view",
+    details:
+      "Worked on open-source projects using Git and collaboration tools.",
   },
   {
     title: "ElectroSphere 2K26",
     issuer: "Swaminarayan University",
     date: "Jan 07, 2026",
     image: electroCert,
-    details: "Participated in university-level technical symposium. Showcased core engineering concepts and collaborative teamwork.",
+    details:
+      "Participated in a technical symposium showcasing engineering ideas.",
+  },
+  {
+    title: "JavaScript",
+    issuer: "SoloLearn",
+    date: "April 07, 2026",
+    image: JavaScript,
+    details:
+      "Learned JavaScript fundamentals, DOM, and ES6+ concepts.",
   },
 ];
 
-const CertificateCard = ({ cert }) => {
-  const [isClicked, setIsClicked] = useState(false);
+// Animation Variants
+const cardVariants = {
+  hidden: { opacity: 0, y: 80 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
+
+// Card
+const CertificateCard = ({ cert, index }) => {
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      custom={index}
       whileHover={{ scale: 1.05 }}
-      onClick={() => setIsClicked(!isClicked)}
-      className="relative min-w-[85vw] md:min-w-[420px] snap-center bg-neutral-900 light:bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/10 light:border-slate-200 light:shadow-lg cursor-pointer group"
+      onClick={() => setShowDetails(!showDetails)}
+      className="relative bg-neutral-900 light:bg-white rounded-3xl overflow-hidden shadow-xl border border-white/10 light:border-slate-200 cursor-pointer group"
     >
-      <div className={`transition-all duration-500 ${isClicked ? 'scale-105' : 'group-hover:scale-105'}`}>
-        <img
-          src={cert.image}
-          alt={cert.title}
-          className="w-full h-64 object-cover"
-        />
-        <div className="p-8">
-          <h3 className="text-2xl font-bold text-white light:text-slate-900 mb-2">
-            {cert.title}
-          </h3>
-          <p className="text-gray-400 light:text-slate-500 mb-4">
-            {cert.issuer}
-          </p>
-          <p className="text-sm text-cyan-400 light:text-indigo-600 mb-6">
-            {cert.date}
-          </p>
-        </div>
-      </div>
+      <img
+        src={cert.image}
+        alt={cert.title}
+        className="w-full h-56 object-cover"
+      />
 
-      <div className={`absolute inset-0 bg-black/60 light:bg-white/60 backdrop-blur-xl p-8 flex flex-col transition-all duration-500 ${isClicked ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-8 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto'}`}>
-        <h3 className="text-2xl font-bold text-white light:text-slate-900 mb-6">
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-white light:text-slate-900">
           {cert.title}
         </h3>
-        <p className="text-gray-200 light:text-slate-800 leading-relaxed mb-8 flex-grow font-medium">
+        <p className="text-gray-400 light:text-slate-500 text-sm">
+          {cert.issuer}
+        </p>
+        <p className="text-cyan-400 light:text-indigo-600 text-xs mt-2">
+          {cert.date}
+        </p>
+      </div>
+
+      {/* Overlay */}
+      <div
+        className={`absolute inset-0 bg-black/80 light:bg-white/90 backdrop-blur-lg p-6 flex flex-col transition ${
+          showDetails
+            ? "opacity-100"
+            : "opacity-0 pointer-events-none group-hover:opacity-100"
+        }`}
+      >
+        <h3 className="text-lg font-bold text-white light:text-slate-900 mb-3">
+          {cert.title}
+        </h3>
+
+        <p className="text-gray-200 light:text-slate-800 text-sm flex-grow">
           {cert.details}
         </p>
-        
+
         {cert.link && (
           <a
             href={cert.link}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-2 text-cyan-300 light:text-indigo-700 hover:text-white light:hover:text-indigo-900 transition mt-auto font-bold"
+            className="mt-4 flex items-center gap-2 text-cyan-300 light:text-indigo-700 font-semibold"
           >
             Verify Certificate
             <ExternalLink size={16} />
@@ -104,53 +146,22 @@ const CertificateCard = ({ cert }) => {
   );
 };
 
+// Main Section
 const Certificates = () => {
-  const containerRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    // Set initial value
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const progress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-  });
-
-  const x = useTransform(progress, [0, 1], ["0%", "-60%"]);
-
   return (
-    <section
-      ref={containerRef}
-      id="certificates"
-      className={isMobile ? "relative py-20 bg-black light:bg-slate-50 overflow-hidden" : "relative h-[300vh] bg-black light:bg-slate-50"}
-    >
-      <div className={isMobile ? "flex flex-col justify-center" : "sticky top-0 h-screen flex flex-col justify-center overflow-hidden"}>
-        {/* Title */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-5xl md:text-7xl font-bold text-white light:text-slate-900">
-            Certifications
-          </h2>
-        </div>
+    <section className="py-20 bg-black light:bg-slate-50" id="certificates">
+      {/* Title */}
+      <div className="text-center mb-16">
+        <h2 className="text-5xl md:text-7xl font-bold text-white light:text-slate-900">
+          Certifications
+        </h2>
+      </div>
 
-        {/* Horizontal Scroll */}
-        <motion.div
-          style={isMobile ? {} : { x }}
-          className={isMobile ? "flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" : "flex gap-12 px-20"}
-        >
-          {certificates.map((cert, index) => (
-            <CertificateCard key={index} cert={cert} />
-          ))}
-        </motion.div>
+      {/* Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-6 md:px-20">
+        {certificates.map((cert, index) => (
+          <CertificateCard key={index} cert={cert} index={index} />
+        ))}
       </div>
     </section>
   );

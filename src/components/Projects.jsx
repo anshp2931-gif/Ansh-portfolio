@@ -21,7 +21,7 @@ const projects = [
     image:
       "https://res.cloudinary.com/dwj55unqi/image/upload/v1772173082/gaku-suyama-G1qZiZa2xrE-unsplash_yv6p8f.jpg",
     liveUrl: "https://cg-defender-clone.netlify.app/",
-    githubUrl: "https://cg-defender-clone.netlify.app/",
+    githubUrl: "https://github.com/anshp2931-gif/Defender_website",
     ytURL: "https://youtu.be/Wr7vTX3SSDk",
   },
   {

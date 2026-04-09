@@ -14,6 +14,15 @@ const projects = [
     ytURL: "https://youtu.be/v9rHpGji5Sk",
   },
   {
+    title: "Sony Clone",
+    description: "Electronics showcase inspired by Sony.",
+    tags: ["React JS", "Tailwind CSS", "Responsive Design"],
+    image: "https://cdn-icons-png.flaticon.com/512/5969/5969288.png",
+    liveUrl: "https://sonyclone-website.netlify.app/",
+    githubUrl: "https://github.com/anshp2931-gif/Sony-clone-website",
+    ytURL: "https://youtu.be/Vry4GFfK7-s",
+  },
+  {
     title: "Defender Website Clone",
     description:
       "Automobile showcase for the Land Rover Defender with immersive imagery.",
@@ -27,7 +36,7 @@ const projects = [
   {
     title: "Formour Place Lifestyle",
     description: "Modern lifestyle brand website with sleek gallery layout.",
-    tags: ["React JS", "Tailwind CSS", "Responsive Design"],
+    tags: ["HTML", "CSS", "Responsive Design"],
     image:
       "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop",
     liveUrl: "https://formourplace-clone.netlify.app/",
@@ -37,21 +46,12 @@ const projects = [
   {
     title: "Cars24 Clone",
     description: "Used-car marketplace platform with search filters.",
-    tags: ["React JS", "Tailwind CSS", "Responsive Design"],
+    tags: ["HTML", "CSS", "Responsive Design"],
     image:
       "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop",
     liveUrl: "https://cars24-react.netlify.app/",
     githubUrl: "https://github.com/anshp2931-gif/Cars24_website",
     ytURL: "https://youtu.be/S-zhvbxeXv4",
-  },
-  {
-    title: "Sony Clone",
-    description: "Electronics showcase inspired by Sony.",
-    tags: ["React JS", "Tailwind CSS", "Responsive Design"],
-    image: "https://cdn-icons-png.flaticon.com/512/5969/5969288.png",
-    liveUrl: "https://sonyclone-website.netlify.app/",
-    githubUrl: "https://github.com/anshp2931-gif/Sony-clone-website",
-    ytURL: "https://youtu.be/Vry4GFfK7-s",
   },
   {
     title: "Rare Planet Clone",

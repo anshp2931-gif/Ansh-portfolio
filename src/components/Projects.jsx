@@ -36,21 +36,21 @@ const projects = [
   {
     title: "Formour Place Lifestyle",
     description: "Modern lifestyle brand website with sleek gallery layout.",
-    tags: ["HTML", "CSS", "Responsive Design"],
+    tags: ["ReactJS", "Tailwind CSS", "Responsive Design"],
     image:
       "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop",
-    liveUrl: "https://formourplace-clone.netlify.app/",
-    githubUrl: "https://github.com/anshp2931-gif/formourplace",
+    liveUrl: "formourplace-clone.netlify.app/",
+    githubUrl: "https://github.com/anshp2931-gif/Formour-place",
     ytURL: "https://youtu.be/fDuZ21tU7jM",
   },
   {
     title: "Cars24 Clone",
     description: "Used-car marketplace platform with search filters.",
-    tags: ["HTML", "CSS", "Responsive Design"],
+    tags: ["React Js", "Tailwind CSS", "Responsive Design"],
     image:
       "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop",
-    liveUrl: "https://cars24-react.netlify.app/",
-    githubUrl: "https://github.com/anshp2931-gif/Cars24_website",
+    liveUrl: "cars24-react.netlify.app/",
+    githubUrl: "https://github.com/anshp2931-gif/car24",
     ytURL: "https://youtu.be/S-zhvbxeXv4",
   },
   {

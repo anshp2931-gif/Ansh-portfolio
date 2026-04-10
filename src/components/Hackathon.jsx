@@ -3,14 +3,11 @@ import { useState, useEffect } from 'react';
 import { Trophy, Code, Calendar, Zap, Github, ExternalLink, X } from 'lucide-react';
 import KalixLogo from '../assets/kalix.png';
 import PlantPalLogo from '../assets/Plantpal.png';
-import p1 from '../assets/p1.png';
-import p2 from '../assets/p2.png';
-import p3 from '../assets/p3.png';
-import p4 from '../assets/p4.png';
-import k1 from '../assets/k1.png';
-import k2 from '../assets/k2.png';
-import k3 from '../assets/k3.png';
+import openpool from '../assets/openpool.png'
+import clg from '../assets/clg.jpeg'
 import k4 from '../assets/k4.jpg';
+import Gu1 from '../assets/Gu1.jpeg'
+import Gu2 from '../assets/Gu2.jpeg'
 // import RR from '../assets/RR.png'; // Temporarily commented out to fix missing image error
 
 const Hackathon = () => {
@@ -23,7 +20,7 @@ const Hackathon = () => {
             description: "Developed an AI-powered platform focused on intelligent automation and user-centric solutions. Built scalable full-stack architecture and integrated advanced AI models for real-world applications.",
             icon: KalixLogo,
             color: "text-blue-400",
-            gallery: [k4, k1, k2, k3,],
+            gallery: [k4,clg],
             links: {
                 github: "https://github.com/Dev1822/Kalix",
                 live: "https://kalix-syntax-squad.vercel.app/"
@@ -36,7 +33,7 @@ const Hackathon = () => {
             description: "Created an AI-driven plant care assistant that analyzes plant conditions and provides smart recommendations for watering, sunlight, and maintenance. Built with a scalable full-stack architecture and focused on delivering an intuitive, user-friendly experience for plant lovers.",
             icon: PlantPalLogo,
             color: "text-green-400",
-            gallery: [p1, p2, p3, p4],
+            gallery: [openpool],
             links: {
                 github: "https://github.com/Dev1822/PlantPal",
                 live: "https://plant-pal-ten.vercel.app/"
@@ -49,7 +46,7 @@ const Hackathon = () => {
             description: "Built an intelligent emergency response system that detects call failures and reroutes them in real time, ensuring accurate location tracking and reliable service delivery.",
             icon: Zap, // Fallback icon instead of RR
             color: "text-green-400",
-            gallery: [],
+            gallery: [Gu1,Gu2],
             links: {
                 github: "https://github.com/PalDPathak404/RapidResQ",
                 live: "https://rapidresq-prime.vercel.app/"

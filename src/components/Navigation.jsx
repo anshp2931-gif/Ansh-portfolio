@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import userLogo from '../assets/logo.png';
 
@@ -31,14 +32,15 @@ const Navigation = () => {
     };
 
     const navItems = [
-        { label: 'About', href: '#about' },
-        { label: 'Education', href: '#education' },
-        { label: 'Skills', href: '#skills' },
-        { label: 'Projects', href: '#projects' },
-        { label: 'GitHub', href: '#github' },
-        { label: 'Hackathons', href: '#hackathons' },
-        { label: 'Certificates', href: '#certificates' },
-        { label: 'Contact', href: '#contact' },
+        { label: 'Home', href: '/' },
+        { label: 'About', href: '/about' },
+        { label: 'Education', href: '/education' },
+        { label: 'Skills', href: '/skills' },
+        { label: 'Projects', href: '/projects' },
+        { label: 'GitHub', href: '/github' },
+        { label: 'Hackathons', href: '/hackathons' },
+        { label: 'Certificates', href: '/certificates' },
+        { label: 'Contact', href: '/contact' },
     ];
 
     return (
@@ -51,13 +53,15 @@ const Navigation = () => {
                     } ${theme === 'light' ? 'bg-white/80 border-gray-200 shadow-lg' : ''}`}
             >
                 {/* Logo */}
-                <motion.a
-                    href="#"
-                    aria-label="Home — Ansh Patel Portfolio"
-                    className="group relative flex items-center justify-center gap-3"
+                <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
+                    <Link
+                        to="/"
+                        aria-label="Home — Ansh Patel Portfolio"
+                        className="group relative flex items-center justify-center gap-3"
+                    >
                     <div className={`relative w-10 h-10 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center ${theme === 'light'
                         ? 'border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)] group-hover:border-purple-600/50 group-hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] bg-white/50'
                         : 'border-electric-cyan/30 shadow-[0_0_15px_rgba(0,255,255,0.2)] group-hover:border-purple-500/50 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] bg-black/20'
@@ -92,19 +96,20 @@ const Navigation = () => {
                     <span className={`text-xl font-bold hidden sm:block ${theme === 'light' ? 'text-gradient' : 'text-white'}`}>
                         Ansh Patel
                     </span>
-                </motion.a>
+                    </Link>
+                </motion.div>
 
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-6">
                     {navItems.map((item) => (
-                        <motion.a
-                            key={item.label}
-                            href={item.href}
-                            className={`text-sm font-medium transition-colors ${theme === 'light' ? 'text-indigo-600 hover:text-violet-600' : 'text-gray-400 hover:text-white'}`}
-                            whileHover={{ y: -1 }}
-                        >
-                            {item.label}
-                        </motion.a>
+                        <motion.div key={item.label} whileHover={{ y: -1 }}>
+                            <Link
+                                to={item.href}
+                                className={`text-sm font-medium transition-colors ${theme === 'light' ? 'text-indigo-600 hover:text-violet-600' : 'text-gray-400 hover:text-white'}`}
+                            >
+                                {item.label}
+                            </Link>
+                        </motion.div>
                     ))}
 
                     
@@ -138,14 +143,14 @@ const Navigation = () => {
                     className={`md:hidden glass rounded-3xl p-6 space-y-4 pointer-events-auto max-w-sm mx-auto ${theme === 'light' ? 'bg-white shadow-xl border-gray-200' : ''}`}
                 >
                     {navItems.map((item) => (
-                        <a
+                        <Link
                             key={item.label}
-                            href={item.href}
+                            to={item.href}
                             className={`block transition-colors py-2 text-center font-medium ${theme === 'light' ? 'text-indigo-600 hover:text-violet-600' : 'text-gray-300 hover:text-electric-cyan'}`}
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             {item.label}
-                        </a>
+                        </Link>
                     ))}
 
                    

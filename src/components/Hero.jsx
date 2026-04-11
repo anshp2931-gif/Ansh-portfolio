@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, ArrowDown, Youtube } from 'lucide-react';
 
 const Leetcode = ({ className }) => (
@@ -116,22 +117,22 @@ const Hero = () => {
                         variants={itemVariants}
                         className="flex items-center justify-center gap-4 mb-12 flex-wrap"
                     >
-                        <motion.a
-                            href="#contact"
-                            className="px-8 py-4 glass glass-hover rounded-full font-medium text-electric-cyan light:text-indigo-600 glow-box light:shadow-md"
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Get In Touch
-                        </motion.a>
-                        <motion.a
-                            href="#projects"
-                            className="px-8 py-4 bg-electric-cyan/10 hover:bg-electric-cyan/20 rounded-full font-medium border border-electric-cyan/30 transition-all text-primary"
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            View Projects
-                        </motion.a>
+                        <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                            <Link
+                                to="/contact"
+                                className="block px-8 py-4 glass glass-hover rounded-full font-medium text-electric-cyan light:text-indigo-600 glow-box light:shadow-md"
+                            >
+                                Get In Touch
+                            </Link>
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
+                            <Link
+                                to="/projects"
+                                className="block px-8 py-4 bg-electric-cyan/10 hover:bg-electric-cyan/20 rounded-full font-medium border border-electric-cyan/30 transition-all text-primary"
+                            >
+                                View Projects
+                            </Link>
+                        </motion.div>
                         <motion.a
                             href="https://drive.google.com/file/d/1SoQLzjwHyQEC4gklDL8WkIcoolguDqBh/view?usp=sharing"
                             target="_blank"

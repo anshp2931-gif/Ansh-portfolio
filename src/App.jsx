@@ -1,4 +1,5 @@
 import { useEffect, lazy, Suspense } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import './index.css';
@@ -24,6 +25,20 @@ const SectionFallback = () => (
 );
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to top on route change
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    }
+  }, [location.pathname]);
+
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
 
@@ -98,39 +113,18 @@ function App() {
 
       {/* Main Content */}
       <main className="relative z-10">
-        {/* Hero is eager — it is the first thing users see */}
-        <Hero />
-
         <Suspense fallback={<SectionFallback />}>
-          <About />
-        </Suspense>
-
-        <Suspense fallback={<SectionFallback />}>
-          <Skills />
-        </Suspense>
-
-        <Suspense fallback={<SectionFallback />}>
-          <Education />
-        </Suspense>
-
-        <Suspense fallback={<SectionFallback />}>
-          <Projects />
-        </Suspense>
-
-        <Suspense fallback={<SectionFallback />}>
-          <Github />
-        </Suspense>
-
-        <Suspense fallback={<SectionFallback />}>
-          <Hackathon />
-        </Suspense>
-
-        <Suspense fallback={<SectionFallback />}>
-          <Certificates />
-        </Suspense>
-
-        <Suspense fallback={<SectionFallback />}>
-          <Contact />
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/github" element={<Github />} />
+            <Route path="/hackathons" element={<Hackathon />} />
+            <Route path="/certificates" element={<Certificates />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
         </Suspense>
       </main>
 

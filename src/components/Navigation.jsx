@@ -100,7 +100,7 @@ const Navigation = () => {
                 </motion.div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-4 lg:gap-8">
+                <div className="hidden lg:flex items-center gap-4 lg:gap-8">
                     {navItems.map((item) => (
                         <motion.div key={item.label} whileHover={{ y: -1 }}>
                             <Link
@@ -117,7 +117,7 @@ const Navigation = () => {
 
                 {/* Mobile Menu Button */}
                 <motion.button
-                    className={`md:hidden p-2 glass rounded-full ${theme === 'light' ? 'border-gray-200 text-gray-900' : ''}`}
+                    className={`lg:hidden p-2.5 glass rounded-full ${theme === 'light' ? 'border-gray-200 text-gray-900' : ''}`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     whileTap={{ scale: 0.95 }}
                     aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -140,7 +140,7 @@ const Navigation = () => {
                     aria-label="Mobile navigation"
                     initial={{ opacity: 0, y: -20, scale: 0.95 }}
                     animate={{ opacity: 1, y: 10, scale: 1 }}
-                    className={`md:hidden glass rounded-[2.5rem] p-8 space-y-2 pointer-events-auto max-w-[calc(100vw-2rem)] sm:max-w-sm mx-auto shadow-2xl ${theme === 'light' ? 'bg-white/90 border-gray-200' : 'bg-midnight/90'}`}
+                    className={`lg:hidden glass rounded-[2.5rem] p-8 space-y-2 pointer-events-auto max-w-[calc(100vw-2rem)] sm:max-w-sm mx-auto shadow-2xl ${theme === 'light' ? 'bg-white/90 border-gray-200' : 'bg-midnight/90'}`}
                 >
                     {navItems.map((item) => (
                         <Link

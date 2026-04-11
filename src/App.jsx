@@ -1,19 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Lenis from 'lenis';
-import ParticleBackground from './components/ParticleBackground';
-import CustomCursor from './components/CustomCursor';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import About from './components/About';
-import Education from './components/Education';
-import Projects from './components/Projects';
-import Github from './components/Github';
-import Hackathon from './components/Hackathon';
-import Skills from './components/Skills';
-import Certificates from './components/Certificates';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 import './index.css';
+
+// Code-split below-the-fold sections for faster initial load
+const ParticleBackground = lazy(() => import('./components/ParticleBackground'));
+const About = lazy(() => import('./components/About'));
+const Skills = lazy(() => import('./components/Skills'));
+const Education = lazy(() => import('./components/Education'));
+const Projects = lazy(() => import('./components/Projects'));
+const Github = lazy(() => import('./components/Github'));
+const Hackathon = lazy(() => import('./components/Hackathon'));
+const Certificates = lazy(() => import('./components/Certificates'));
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
+
+// Lightweight fallback — avoids layout shift while sections load
+const SectionFallback = () => (
+  <div className="py-24 flex items-center justify-center" aria-hidden="true">
+    <div className="w-8 h-8 rounded-full border-2 border-electric-cyan/30 border-t-electric-cyan animate-spin" />
+  </div>
+);
 
 function App() {
   useEffect(() => {
@@ -63,31 +72,59 @@ function App() {
 
   return (
     <div className="relative min-h-screen">
-      {/* Background Effects */}
-      <ParticleBackground />
+      {/* Background Effects — lazy so it doesn't block first paint */}
+      <Suspense fallback={null}>
+        <ParticleBackground />
+      </Suspense>
 
-      {/* Custom Cursor */}
+      {/* Custom Cursor (desktop only) */}
       <CustomCursor />
 
-      {/* Navigation */}
+      {/* Navigation — eagerly loaded for instant access */}
       <Navigation />
 
       {/* Main Content */}
       <main className="relative z-10">
-        <Hero />     
-        <About />
-  <Skills />
-        <Education />
-      
-        <Projects />
-        <Github />
-        <Hackathon />
-        <Certificates />
-        <Contact />
+        {/* Hero is eager — it is the first thing users see */}
+        <Hero />
+
+        <Suspense fallback={<SectionFallback />}>
+          <About />
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <Skills />
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <Education />
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <Projects />
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <Github />
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <Hackathon />
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <Certificates />
+        </Suspense>
+
+        <Suspense fallback={<SectionFallback />}>
+          <Contact />
+        </Suspense>
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Suspense fallback={<SectionFallback />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

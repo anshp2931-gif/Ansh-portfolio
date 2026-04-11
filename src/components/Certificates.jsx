@@ -97,7 +97,9 @@ const CertificateCard = ({ cert, index }) => {
     >
       <img
         src={cert.image}
-        alt={cert.title}
+        alt={`${cert.title} certificate`}
+        loading="lazy"
+        decoding="async"
         className="w-full h-56 object-cover"
       />
 

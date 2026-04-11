@@ -11,8 +11,10 @@ const ParticleBackground = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+        const isMobile = window.innerWidth < 768;
         const particles = [];
-        const particleCount = 80;
+        const particleCount = isMobile ? 30 : 80; // Fewer particles on mobile for better perf
+        const connectionDistance = isMobile ? 80 : 120;
 
         class Particle {
             constructor() {
@@ -68,8 +70,8 @@ const ParticleBackground = () => {
                     const dy = a.y - b.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < 120) {
-                        ctx.strokeStyle = `rgba(${particleColor}, ${(isLight ? 0.08 : 0.15) * (1 - distance / 120)})`;
+                    if (distance < connectionDistance) {
+                        ctx.strokeStyle = `rgba(${particleColor}, ${(isLight ? 0.08 : 0.15) * (1 - distance / connectionDistance)})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(a.x, a.y);
@@ -99,6 +101,8 @@ const ParticleBackground = () => {
     return (
         <canvas
             ref={canvasRef}
+            aria-hidden="true"
+            role="presentation"
             className="fixed inset-0 pointer-events-none z-0"
             style={{ background: 'transparent' }}
         />

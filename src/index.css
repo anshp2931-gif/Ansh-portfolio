@@ -215,3 +215,29 @@
 .light::-webkit-scrollbar-thumb:hover {
   background: #4338ca;
 }
+
+/* ─── Keyboard focus-visible ─────────────────────────────────────────── */
+/* Ensures keyboard users can always see where focus is (WCAG 2.4.7) */
+:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.light :focus-visible {
+  outline-color: #4f46e5;
+}
+
+/* Remove focus ring for mouse/touch users — keeps design clean */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Mobile performance hints ───────────────────────────────────────── */
+/* Use content-visibility to skip rendering off-screen sections */
+@media (max-width: 767px) {
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
+  }
+}

@@ -37,7 +37,9 @@ const About = () => {
                         >
                             <img
                                 src={profileImg}
-                                alt="Ansh Patel"
+                                alt="Ansh Patel — Full Stack Developer"
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-full object-cover rounded-2xl transition-all duration-700 scale-105 group-hover:scale-100"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-midnight/60 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity" />

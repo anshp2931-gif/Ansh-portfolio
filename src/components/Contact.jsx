@@ -241,12 +241,13 @@ const Contact = () => {
 
                             {/* Name */}
                             <div>
-                                <label className="block text-sm font-medium mb-2 text-primary">
+                                <label htmlFor="contact-name" className="block text-sm font-medium mb-2 text-primary">
                                     Name
                                 </label>
 
                                 <input
                                     type="text"
+                                    id="contact-name"
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
@@ -261,12 +262,13 @@ const Contact = () => {
 
                             {/* Email */}
                             <div>
-                                <label className="block text-sm font-medium mb-2 text-primary">
+                                <label htmlFor="contact-email" className="block text-sm font-medium mb-2 text-primary">
                                     Email
                                 </label>
 
                                 <input
                                     type="email"
+                                    id="contact-email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
@@ -281,11 +283,12 @@ const Contact = () => {
 
                             {/* Message */}
                             <div>
-                                <label className="block text-sm font-medium mb-2 text-primary">
+                                <label htmlFor="contact-message" className="block text-sm font-medium mb-2 text-primary">
                                     Message
                                 </label>
 
                                 <textarea
+                                    id="contact-message"
                                     name="message"
                                     rows="5"
                                     value={formData.message}

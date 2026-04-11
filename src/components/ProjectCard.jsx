@@ -60,7 +60,9 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, inde
             <div className="relative h-56 md:h-64 overflow-hidden bg-midnight/20 light:bg-slate-200">
                 <motion.img
                     src={image}
-                    alt={title}
+                    alt={`${title} project screenshot`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 light:from-slate-900/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
@@ -88,33 +90,42 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, inde
                     {liveUrl && (
                         <motion.a
                             href={liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${title} — Live Demo`}
                             className="flex items-center gap-2 text-sm text-electric-cyan light:text-indigo-600 hover:text-cyan-400 light:hover:text-violet-600 transition-colors"
                             whileHover={{ x: 3 }}
                             style={{ transform: 'translateZ(30px)' }}
                         >
-                            <ExternalLink className="w-4 h-4" />
+                            <ExternalLink className="w-4 h-4" aria-hidden="true" />
                             Live Demo
                         </motion.a>
                     )}
                     {githubUrl && (
                         <motion.a
                             href={githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${title} — GitHub Repository`}
                             className="flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors"
                             whileHover={{ x: 3 }}
                             style={{ transform: 'translateZ(30px)' }}
                         >
-                            <Github className="w-4 h-4" />
+                            <Github className="w-4 h-4" aria-hidden="true" />
                             GitHub
                         </motion.a>
                     )}
                     {ytURL && (
                         <motion.a
                             href={ytURL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${title} — YouTube Demo`}
                             className="flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors"
                             whileHover={{ x: 3 }}
                             style={{ transform: 'translateZ(30px)' }}
                         >
-                            <Youtube className="w-4 h-4" />
+                            <Youtube className="w-4 h-4" aria-hidden="true" />
                             Youtube
                         </motion.a>
                     )}

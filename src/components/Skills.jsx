@@ -56,6 +56,10 @@ const Skills = () => {
               <img
                 src={skill.icon}
                 alt={skill.name}
+                width="48"
+                height="48"
+                loading="lazy"
+                decoding="async"
                 className="w-12 h-12 mb-3"
               />
               <p className="text-sm text-gray-300">

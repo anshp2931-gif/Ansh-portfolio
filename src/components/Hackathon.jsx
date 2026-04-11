@@ -131,7 +131,9 @@ const Hackathon = () => {
                                             <img
                                                 key={i}
                                                 src={img}
-                                                alt={`${event.title} snapshot ${i}`}
+                                                alt={`${event.title} event photo ${i + 1}`}
+                                                loading="lazy"
+                                                decoding="async"
                                                 className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover/photo:scale-110 ${i === currentImage ? 'opacity-100' : 'opacity-0'}`}
                                             />
                                         ))}

@@ -53,6 +53,7 @@ const Navigation = () => {
                 {/* Logo */}
                 <motion.a
                     href="#"
+                    aria-label="Home — Ansh Patel Portfolio"
                     className="group relative flex items-center justify-center gap-3"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -114,11 +115,14 @@ const Navigation = () => {
                     className={`md:hidden p-2 glass rounded-full ${theme === 'light' ? 'border-gray-200 text-gray-900' : ''}`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     whileTap={{ scale: 0.95 }}
+                    aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                    aria-expanded={isMobileMenuOpen}
+                    aria-controls="mobile-nav-menu"
                 >
                     {isMobileMenuOpen ? (
-                        <X className="w-5 h-5 text-electric-cyan" />
+                        <X className="w-5 h-5 text-electric-cyan" aria-hidden="true" />
                     ) : (
-                        <Menu className="w-5 h-5 text-electric-cyan" />
+                        <Menu className="w-5 h-5 text-electric-cyan" aria-hidden="true" />
                     )}
                 </motion.button>
             </motion.nav>
@@ -126,6 +130,9 @@ const Navigation = () => {
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
                 <motion.div
+                    id="mobile-nav-menu"
+                    role="navigation"
+                    aria-label="Mobile navigation"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 10 }}
                     className={`md:hidden glass rounded-3xl p-6 space-y-4 pointer-events-auto max-w-sm mx-auto ${theme === 'light' ? 'bg-white shadow-xl border-gray-200' : ''}`}

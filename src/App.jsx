@@ -115,7 +115,19 @@ function App() {
       <main className="relative z-10">
         <Suspense fallback={<SectionFallback />}>
           <Routes>
-            <Route path="/" element={<Hero />} />
+            <Route path="/" element={
+              <>
+                <Hero />
+                <About />
+                <Skills />
+                <Education />
+                <Projects />
+                <Github />
+                <Hackathon />
+                <Certificates />
+                <Contact />
+              </>
+            } />
             <Route path="/about" element={<About />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/education" element={<Education />} />

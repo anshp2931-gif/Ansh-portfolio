@@ -118,14 +118,16 @@ function App() {
             <Route path="/" element={
               <>
                 <Hero />
-                <About />
-                <Skills />
-                <Education />
-                <Projects />
-                <Github />
-                <Hackathon />
-                <Certificates />
-                <Contact />
+                <Suspense fallback={<SectionFallback />}>
+                  <About />
+                  <Skills />
+                  <Education />
+                  <Projects />
+                  <Github />
+                  <Hackathon />
+                  <Certificates />
+                  <Contact />
+                </Suspense>
               </>
             } />
             <Route path="/about" element={<About />} />

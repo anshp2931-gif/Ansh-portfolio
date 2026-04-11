@@ -102,7 +102,7 @@ const Github = () => {
                             
                             {userData?.avatar_url ? (
                                 <div className="relative mb-8 group-hover:scale-110 transition-transform duration-500">
-                                    <div className="absolute inset-0 bg-electric-cyan rounded-full blur-2xl opacity-20 group-hover:opacity-60 transition-opacity animate-pulse" />
+                                    <div className="absolute inset-0 bg-electric-cyan rounded-full blur-2xl opacity-20 group-hover:opacity-60 transition-opacity" />
                                     <img src={userData.avatar_url} alt="GitHub Avatar" className="w-40 h-40 rounded-full border-4 border-electric-cyan/30 light:border-indigo-400/50 shadow-2xl relative z-10 object-cover" />
                                 </div>
                             ) : (

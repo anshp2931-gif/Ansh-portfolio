@@ -57,12 +57,12 @@ const Hero = () => {
             {/* Background Effects — use will-change to promote to GPU layer */}
             <div
                 className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric-cyan/10 rounded-full blur-3xl"
-                style={{ willChange: 'opacity', animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}
+                style={{ willChange: 'opacity' }}
                 aria-hidden="true"
             />
             <div
                 className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-                style={{ willChange: 'opacity', animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite 1s' }}
+                style={{ willChange: 'opacity' }}
                 aria-hidden="true"
             />
 

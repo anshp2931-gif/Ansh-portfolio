@@ -5,6 +5,9 @@ const CustomCursor = () => {
     const followerRef = useRef(null);
 
     useEffect(() => {
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) return;
+
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
         let followerX = mouseX;

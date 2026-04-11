@@ -38,8 +38,6 @@ const About = () => {
                             <img
                                 src={profileImg}
                                 alt="Ansh Patel — Full Stack Developer"
-                                loading="lazy"
-                                decoding="async"
                                 className="w-full h-full object-cover rounded-2xl transition-all duration-700 scale-105 group-hover:scale-100"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-midnight/60 via-transparent to-transparent opacity-40 group-hover:opacity-10 transition-opacity" />
@@ -48,8 +46,8 @@ const About = () => {
                         {/* Interactive floating badges */}
                         
 
-                        <div className="absolute -top-6 -right-6 w-32 h-32 bg-electric-cyan/20 blur-3xl animate-pulse" />
-                        <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 blur-3xl animate-pulse delay-700" />
+                        <div className="absolute -top-6 -right-6 w-32 h-32 bg-electric-cyan/20 blur-3xl" />
+                        <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 blur-3xl delay-700" />
                     </div>
 
                     {/* Beast Content */}

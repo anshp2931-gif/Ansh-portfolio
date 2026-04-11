@@ -56,8 +56,8 @@
 @layer utilities {
   .glass {
     background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(129, 140, 248, 0.12);
   }
 
@@ -244,16 +244,18 @@
 /* ─── Mobile performance hints ───────────────────────────────────────── */
 /* Use content-visibility to skip rendering off-screen sections */
 @media (max-width: 767px) {
-  section {
-    content-visibility: auto;
-    /* More accurate estimate prevents large layout shifts */
-    contain-intrinsic-size: 0 500px;
+  html {
+    scroll-behavior: smooth; /* Native smooth scrolling on mobile */
   }
 
+
+
   /* Disable decorative blurs on small screens — they are invisible and costly */
+  .blur-\[100px\],
   .blur-\[120px\],
-  .blur-\[150px\] {
-    display: none;
+  .blur-\[150px\],
+  .blur-3xl {
+    display: none !important;
   }
 }
 

@@ -1,49 +1,54 @@
 import { motion } from 'framer-motion';
 import { Github as GitIcon, ExternalLink, Star, GitFork, BookOpen, Activity, Terminal, GitCommit, GitPullRequest, Code2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Github = () => {
     const [userData, setUserData] = useState(null);
     const [repoData, setRepoData] = useState(null);
     const [prCount, setPrCount] = useState('15+');
     const [issueCount, setIssueCount] = useState('2+');
+    const sectionRef = useRef(null);
 
     useEffect(() => {
-        // Fetch User Stats
-        fetch('https://api.github.com/users/anshp2931-gif')
-            .then(res => res.json())
-            .then(data => setUserData(data))
-            .catch(err => console.error(err));
-            
-        // Fetch Repo Stats for a rough estimate of language/commits
-        fetch('https://api.github.com/users/anshp2931-gif/repos?sort=updated&per_page=100')
-            .then(res => res.json())
-            .then(data => {
-                if(Array.isArray(data)) {
-                    setRepoData(data);
-                }
-            })
-            .catch(err => console.error(err));
+        const section = sectionRef.current;
+        if (!section) return;
 
-        // Fetch Total PRs
-        fetch('https://api.github.com/search/issues?q=author:anshp2931-gif+type:pr')
-            .then(res => res.json())
-            .then(data => {
-                if(data.total_count !== undefined) {
-                    setPrCount(data.total_count);
-                }
-            })
-            .catch(err => console.error(err));
+        // Defer all network requests until the section scrolls into view.
+        // This prevents 4 API calls from blocking the initial page load on mobile.
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (!entries[0].isIntersecting) return;
+                observer.disconnect(); // Only fire once
 
-        // Fetch Total Issues
-        fetch('https://api.github.com/search/issues?q=author:anshp2931-gif+type:issue')
-            .then(res => res.json())
-            .then(data => {
-                if(data.total_count !== undefined) {
-                    setIssueCount(data.total_count);
-                }
-            })
-            .catch(err => console.error(err));
+                // Fetch User Stats
+                fetch('https://api.github.com/users/anshp2931-gif')
+                    .then(res => res.json())
+                    .then(data => setUserData(data))
+                    .catch(err => console.error(err));
+                    
+                // Fetch Repo Stats
+                fetch('https://api.github.com/users/anshp2931-gif/repos?sort=updated&per_page=100')
+                    .then(res => res.json())
+                    .then(data => { if (Array.isArray(data)) setRepoData(data); })
+                    .catch(err => console.error(err));
+
+                // Fetch Total PRs
+                fetch('https://api.github.com/search/issues?q=author:anshp2931-gif+type:pr')
+                    .then(res => res.json())
+                    .then(data => { if (data.total_count !== undefined) setPrCount(data.total_count); })
+                    .catch(err => console.error(err));
+
+                // Fetch Total Issues
+                fetch('https://api.github.com/search/issues?q=author:anshp2931-gif+type:issue')
+                    .then(res => res.json())
+                    .then(data => { if (data.total_count !== undefined) setIssueCount(data.total_count); })
+                    .catch(err => console.error(err));
+            },
+            { rootMargin: '200px' } // Start fetching 200px before section enters viewport
+        );
+        observer.observe(section);
+
+        return () => observer.disconnect();
     }, []);
     
     // We are generating native highly-aesthetic UI cards because standard github-readme-stats SVGs 
@@ -51,7 +56,7 @@ const Github = () => {
     // This custom React UI approach guarantees 100% uptime, zero loading delay, and perfect luxury aesthetics.
 
     return (
-        <section id="github" className="py-24 px-4 md:px-8 relative overflow-hidden">
+        <section id="github" ref={sectionRef} className="py-24 px-4 md:px-8 relative overflow-hidden">
             {/* Ambient Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-electric-cyan/5 rounded-full blur-[150px] pointer-events-none" />
             

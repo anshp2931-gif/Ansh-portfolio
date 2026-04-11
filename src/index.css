@@ -61,6 +61,14 @@
     border: 1px solid rgba(129, 140, 248, 0.12);
   }
 
+  /* Reduce blur on mobile — heavy on GPU fill rate */
+  @media (max-width: 767px) {
+    .glass {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+  }
+
   .light .glass {
     @apply bg-white/70 backdrop-blur-2xl border-slate-200 shadow-sm;
   }
@@ -238,6 +246,27 @@
 @media (max-width: 767px) {
   section {
     content-visibility: auto;
-    contain-intrinsic-size: 0 600px;
+    /* More accurate estimate prevents large layout shifts */
+    contain-intrinsic-size: 0 500px;
+  }
+
+  /* Disable decorative blurs on small screens — they are invisible and costly */
+  .blur-\[120px\],
+  .blur-\[150px\] {
+    display: none;
+  }
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────────────── */
+/* Respects OS-level "Reduce Motion" setting (WCAG 2.3.3) and helps
+   perf on low-end devices that may have the setting enabled. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

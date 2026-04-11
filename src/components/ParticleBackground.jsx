@@ -7,23 +7,30 @@ const ParticleBackground = () => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { alpha: true });
+
+        const isMobile = window.innerWidth < 768;
+
+        // On mobile, skip the canvas entirely to save CPU/GPU
+        if (isMobile) {
+            canvas.style.display = 'none';
+            return;
+        }
+
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const isMobile = window.innerWidth < 768;
-        const particles = [];
-        const particleCount = isMobile ? 30 : 80; // Fewer particles on mobile for better perf
-        const connectionDistance = isMobile ? 80 : 120;
+        const particleCount = 60;
+        const connectionDistance = 100;
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.5 + 0.2;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+                this.opacity = Math.random() * 0.4 + 0.15;
             }
 
             update() {
@@ -35,65 +42,99 @@ const ParticleBackground = () => {
                 if (this.y > canvas.height) this.y = 0;
                 if (this.y < 0) this.y = canvas.height;
             }
-
-            draw() {
-                ctx.fillStyle = `rgba(129, 140, 248, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
         }
 
+        const particles = [];
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
+
+        let animId = null;
+        let isVisible = true; // IntersectionObserver state
+        let isTabVisible = !document.hidden; // Page Visibility API state
 
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             const isLight = document.documentElement.classList.contains('light');
-            const particleColor = isLight ? '79, 70, 229' : '129, 140, 248'; // Indigo 600 vs Indigo-400
+            const particleColor = isLight ? '79, 70, 229' : '129, 140, 248';
             const opacityMultiplier = isLight ? 0.4 : 1;
 
-            particles.forEach((particle) => {
-                particle.update();
-                ctx.fillStyle = `rgba(${particleColor}, ${particle.opacity * opacityMultiplier})`;
+            particles.forEach((p) => {
+                p.update();
+                ctx.fillStyle = `rgba(${particleColor}, ${p.opacity * opacityMultiplier})`;
                 ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 ctx.fill();
             });
 
-            // Draw connections
-            particles.forEach((a, i) => {
-                particles.slice(i + 1).forEach((b) => {
+            // Connection lines
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const a = particles[i];
+                    const b = particles[j];
                     const dx = a.x - b.x;
                     const dy = a.y - b.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const distSq = dx * dx + dy * dy;
 
-                    if (distance < connectionDistance) {
-                        ctx.strokeStyle = `rgba(${particleColor}, ${(isLight ? 0.08 : 0.15) * (1 - distance / connectionDistance)})`;
+                    if (distSq < connectionDistance * connectionDistance) {
+                        const dist = Math.sqrt(distSq);
+                        ctx.strokeStyle = `rgba(${particleColor}, ${(isLight ? 0.06 : 0.12) * (1 - dist / connectionDistance)})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(a.x, a.y);
                         ctx.lineTo(b.x, b.y);
                         ctx.stroke();
                     }
-                });
-            });
+                }
+            }
 
-            requestAnimationFrame(animate);
+            animId = requestAnimationFrame(animate);
         };
 
-        animate();
+        const start = () => {
+            if (!animId && isVisible && isTabVisible) {
+                animate();
+            }
+        };
+
+        const stop = () => {
+            if (animId) {
+                cancelAnimationFrame(animId);
+                animId = null;
+            }
+        };
+
+        // Pause when canvas scrolls off-screen
+        const observer = new IntersectionObserver(
+            (entries) => {
+                isVisible = entries[0].isIntersecting;
+                isVisible ? start() : stop();
+            },
+            { threshold: 0 }
+        );
+        observer.observe(canvas);
+
+        // Pause when the tab is hidden (background tab)
+        const handleVisibility = () => {
+            isTabVisible = !document.hidden;
+            isTabVisible ? start() : stop();
+        };
+        document.addEventListener('visibilitychange', handleVisibility);
+
+        // Start initially
+        start();
 
         const handleResize = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         };
-
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', handleResize, { passive: true });
 
         return () => {
+            stop();
+            observer.disconnect();
+            document.removeEventListener('visibilitychange', handleVisibility);
             window.removeEventListener('resize', handleResize);
         };
     }, []);

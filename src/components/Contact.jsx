@@ -75,7 +75,7 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="min-h-screen py-24 px-6 flex items-center bg-section overflow-hidden"
+            className="min-h-screen py-24 px-4 xs:px-6 flex items-center bg-section overflow-hidden"
         >
             <div className="max-w-6xl mx-auto w-full">
 
@@ -87,7 +87,7 @@ const Contact = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-20"
                 >
-                    <h2 className="text-5xl md:text-6xl font-bold mb-4 text-gradient">
+                    <h2 className="text-4xl xs:text-5xl md:text-6xl font-black mb-4 text-gradient italic tracking-tighter uppercase">
                         Let's Connect
                     </h2>
 
@@ -111,7 +111,7 @@ const Contact = () => {
 
                         {/* Contact Card */}
                         <motion.div
-                            className="glass rounded-2xl p-8 border-white/5"
+                            className="glass rounded-2xl p-6 xs:p-8 border-white/5"
                             animate={{ y: [0, -8, 0] }}
                             transition={{
                                 duration: 4,
@@ -174,7 +174,7 @@ const Contact = () => {
 
                         {/* Availability Card */}
                         <motion.div
-                            className="glass rounded-2xl p-8 border-white/5"
+                            className="glass rounded-2xl p-6 xs:p-8 border-white/5"
                             animate={{ y: [0, -6, 0] }}
                             transition={{
                                 duration: 4,
@@ -209,7 +209,7 @@ const Contact = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                             viewport={{ once: true }}
-                            className="glass rounded-2xl p-8 space-y-6 border-white/5 shadow-xl"
+                            className="glass rounded-2xl p-6 xs:p-8 space-y-6 border-white/5 shadow-xl"
                         >
 
                             {/* Error Message */}

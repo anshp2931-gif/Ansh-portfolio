@@ -100,7 +100,7 @@ const Navigation = () => {
                 </motion.div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-6">
+                <div className="hidden md:flex items-center gap-4 lg:gap-8">
                     {navItems.map((item) => (
                         <motion.div key={item.label} whileHover={{ y: -1 }}>
                             <Link
@@ -138,15 +138,17 @@ const Navigation = () => {
                     id="mobile-nav-menu"
                     role="navigation"
                     aria-label="Mobile navigation"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 10 }}
-                    className={`md:hidden glass rounded-3xl p-6 space-y-4 pointer-events-auto max-w-sm mx-auto ${theme === 'light' ? 'bg-white shadow-xl border-gray-200' : ''}`}
+                    initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 10, scale: 1 }}
+                    className={`md:hidden glass rounded-[2.5rem] p-8 space-y-2 pointer-events-auto max-w-[calc(100vw-2rem)] sm:max-w-sm mx-auto shadow-2xl ${theme === 'light' ? 'bg-white/90 border-gray-200' : 'bg-midnight/90'}`}
                 >
                     {navItems.map((item) => (
                         <Link
                             key={item.label}
                             to={item.href}
-                            className={`block transition-colors py-2 text-center font-medium ${theme === 'light' ? 'text-indigo-600 hover:text-violet-600' : 'text-gray-300 hover:text-electric-cyan'}`}
+                            className={`block transition-all py-3 px-4 rounded-2xl text-center font-bold tracking-tight ${theme === 'light' 
+                                ? 'text-indigo-600 hover:bg-indigo-50 active:scale-95' 
+                                : 'text-gray-300 hover:text-electric-cyan hover:bg-white/5 active:scale-95'}`}
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             {item.label}

@@ -77,7 +77,7 @@ const Hero = () => {
                     {/* Name */}
                     <motion.h1
                         variants={itemVariants}
-                        className="text-4xl md:text-7xl font-bold mb-4 tracking-tighter uppercase italic"
+                        className="text-3xl xs:text-4xl md:text-7xl font-black mb-4 tracking-tighter uppercase italic"
                     >
                         <span className="text-electric-cyan glow light:text-indigo-600 light:glow-none">
                             HII, I'M ANSH PATEL
@@ -92,7 +92,7 @@ const Hero = () => {
                         <motion.span
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className="text-3xl md:text-5xl font-black tracking-tight text-primary block mb-12"
+                            className="text-2xl xs:text-3xl md:text-5xl font-black tracking-tight text-primary block mb-12"
                         >
                             <motion.span
                                 key={roleIndex}
@@ -148,7 +148,7 @@ const Hero = () => {
                     {/* Social Links */}
                     <motion.div
                         variants={itemVariants}
-                        className="flex items-center justify-center gap-6"
+                        className="flex items-center justify-center gap-4 sm:gap-6 flex-wrap"
                     >
                         {[
                             { Icon: Github, href: 'https://github.com/anshp2931-gif', label: 'GitHub' },

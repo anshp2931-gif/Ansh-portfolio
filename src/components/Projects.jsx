@@ -68,21 +68,30 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="bg-black light:bg-slate-50 py-20 px-6 md:px-20"
+      className="py-24 relative overflow-hidden px-4 xs:px-6 md:px-12 lg:px-20"
     >
+      {/* Background Blobs */}
+      <div
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-electric-cyan/10 rounded-full blur-[120px] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
       {/* Title */}
-      <div className="text-center mb-16">
-        <p className="text-cyan-400 text-sm tracking-[0.3em] uppercase">
+        <p className="text-electric-cyan text-sm tracking-[0.4em] uppercase font-semibold mb-2">
           MY WORK
         </p>
 
-        <h2 className="text-4xl md:text-6xl font-bold text-white light:text-slate-900 mt-3">
+        <h2 className="text-4xl xs:text-5xl md:text-7xl font-black text-gradient italic tracking-tighter uppercase">
           Projects
         </h2>
-      </div>
 
       {/* Grid */}
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 xs:gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
           <motion.div
             key={index}
@@ -97,6 +106,7 @@ const Projects = () => {
             <ProjectCard {...project} index={index} />
           </motion.div>
         ))}
+      </div>
       </div>
     </section>
   );

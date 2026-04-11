@@ -7,7 +7,8 @@
   --color-midnight: #060b18;
   --color-electric-cyan: #818cf8; /* Indigo-400: calm, premium */
 
-  --breakpoint-xs: 2px;
+  --breakpoint-xs: 380px;
+  --breakpoint-tb: 850px;
 }
 
 :root {
@@ -256,6 +257,18 @@
   .blur-\[150px\],
   .blur-3xl {
     display: none !important;
+  }
+
+  /* Force hide custom cursor on touch devices */
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none !important;
+  }
+
+  /* Responsive typography hints */
+  h1, h2, h3 {
+    word-break: break-word;
+    hyphens: auto;
   }
 }
 

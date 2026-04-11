@@ -13,10 +13,10 @@ const About = () => {
     return (
         <section id="about" className="py-24 px-4 md:px-8 relative overflow-hidden">
             {/* Beast Mode Background Text */}
-            <div className="absolute top-20 -left-10 text-[12rem] md:text-[20rem] font-black text-white/[0.02] light:text-black/[0.02] select-none pointer-events-none uppercase tracking-tighter">
+            <div className="absolute top-20 -left-10 text-[6rem] xs:text-[10rem] md:text-[16rem] lg:text-[20rem] font-black text-white/[0.02] light:text-black/[0.02] select-none pointer-events-none uppercase tracking-tighter">
                 Explore
             </div>
-            <div className="absolute bottom-20 -right-10 text-[10rem] md:text-[18rem] font-black text-electric-cyan/[0.02] select-none pointer-events-none uppercase tracking-tighter">
+            <div className="absolute bottom-20 -right-10 text-[5rem] xs:text-[8rem] md:text-[14rem] lg:text-[18rem] font-black text-electric-cyan/[0.02] select-none pointer-events-none uppercase tracking-tighter text-right">
                 Ansh
             </div>
 
@@ -63,7 +63,7 @@ const About = () => {
                             </span>
                         </motion.div>
 
-                        <h2 className="text-5xl md:text-7xl font-black mb-8 text-gradient italic tracking-tighter uppercase">
+                        <h2 className="text-4xl xs:text-5xl md:text-7xl font-black mb-8 text-gradient italic tracking-tighter uppercase">
                             About Me
                         </h2>
                         <p className="text-secondary text-lg mb-10 leading-relaxed font-light">

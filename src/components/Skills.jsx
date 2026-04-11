@@ -28,26 +28,26 @@ const Skills = () => {
 
         {/* Heading */}
         <div className="text-center mb-14">
-          <p className="text-cyan-400 uppercase tracking-widest text-sm">
+          <p className="text-electric-cyan uppercase tracking-widest text-sm font-bold">
             My Expertise
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold mt-2">
+          <h2 className="text-4xl xs:text-5xl md:text-7xl font-black mt-2 text-gradient italic tracking-tighter uppercase">
             Skills
           </h2>
         </div>
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 xs:gap-6 md:gap-8">
 
           {skills.map((skill, index) => (
             <motion.div
               key={index}
               whileHover={{
                 scale: 1.1,
-                boxShadow: "0px 0px 25px rgba(34,211,238,0.4)"
+                boxShadow: "0px 0px 25px rgba(129,140,248,0.4)"
               }}
               className="flex flex-col items-center justify-center
-              p-6 rounded-2xl
+              p-4 xs:p-6 rounded-2xl
               bg-white/5 backdrop-blur
               border border-white/10
               hover:border-cyan-400

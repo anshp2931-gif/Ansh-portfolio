@@ -91,9 +91,9 @@ const CertificateCard = ({ cert, index }) => {
       whileInView="visible"
       viewport={{ once: true }}
       custom={index}
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.02 }}
       onClick={() => setShowDetails(!showDetails)}
-      className="relative bg-neutral-900 light:bg-white rounded-3xl overflow-hidden shadow-xl border border-white/10 light:border-slate-200 cursor-pointer group"
+      className="relative glass glass-hover rounded-3xl overflow-hidden glow-box cursor-pointer group"
     >
       <img
         src={cert.image}
@@ -102,30 +102,30 @@ const CertificateCard = ({ cert, index }) => {
       />
 
       <div className="p-6">
-        <h3 className="text-xl font-bold text-white light:text-slate-900">
+        <h3 className="text-xl font-bold text-gradient mb-1">
           {cert.title}
         </h3>
-        <p className="text-gray-400 light:text-slate-500 text-sm">
+        <p className="text-secondary text-sm">
           {cert.issuer}
         </p>
-        <p className="text-cyan-400 light:text-indigo-600 text-xs mt-2">
+        <p className="text-electric-cyan text-xs mt-2 font-medium">
           {cert.date}
         </p>
       </div>
 
       {/* Overlay */}
       <div
-        className={`absolute inset-0 bg-black/80 light:bg-white/90 backdrop-blur-lg p-6 flex flex-col transition ${
+        className={`absolute inset-0 bg-midnight/90 backdrop-blur-xl p-8 flex flex-col transition-all duration-300 ${
           showDetails
-            ? "opacity-100"
-            : "opacity-0 pointer-events-none group-hover:opacity-100"
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0"
         }`}
       >
-        <h3 className="text-lg font-bold text-white light:text-slate-900 mb-3">
+        <h3 className="text-xl font-bold text-gradient mb-4">
           {cert.title}
         </h3>
 
-        <p className="text-gray-200 light:text-slate-800 text-sm flex-grow">
+        <p className="text-secondary text-sm leading-relaxed flex-grow">
           {cert.details}
         </p>
 
@@ -135,10 +135,10 @@ const CertificateCard = ({ cert, index }) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="mt-4 flex items-center gap-2 text-cyan-300 light:text-indigo-700 font-semibold"
+            className="mt-6 flex items-center justify-center gap-2 px-4 py-2 bg-electric-cyan/10 hover:bg-electric-cyan/20 border border-electric-cyan/30 rounded-xl text-electric-cyan text-sm font-semibold transition-all"
           >
             Verify Certificate
-            <ExternalLink size={16} />
+            <ExternalLink size={14} />
           </a>
         )}
       </div>
@@ -149,19 +149,36 @@ const CertificateCard = ({ cert, index }) => {
 // Main Section
 const Certificates = () => {
   return (
-    <section className="py-20 bg-black light:bg-slate-50" id="certificates">
+    <section
+      id="certificates"
+      className="py-24 relative overflow-hidden px-4 xs:px-6 md:px-12 lg:px-20"
+    >
+      {/* Background Blobs */}
+      <div
+        className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-electric-cyan/10 rounded-full blur-[120px] pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
       {/* Title */}
-      <div className="text-center mb-16">
-        <h2 className="text-5xl md:text-7xl font-bold text-white light:text-slate-900">
-          Certifications
+        <p className="text-electric-cyan text-sm tracking-[0.4em] uppercase font-semibold mb-2">
+          RECOGNITION
+        </p>
+
+        <h2 className="text-4xl xs:text-5xl md:text-7xl font-black text-gradient italic tracking-tighter uppercase">
+          Certificates
         </h2>
-      </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-6 md:px-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xs:gap-8">
         {certificates.map((cert, index) => (
           <CertificateCard key={index} cert={cert} index={index} />
         ))}
+      </div>
       </div>
     </section>
   );

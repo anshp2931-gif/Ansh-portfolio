@@ -5,7 +5,7 @@ const Education = () => {
     return (
         <section id="education" className="py-24 px-4 md:px-8 relative overflow-hidden mt-8 md:mt-12">
             {/* Background Element */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[10rem] md:text-[18rem] font-black text-white/[0.02] light:text-black/[0.02] select-none pointer-events-none uppercase tracking-tighter mix-blend-overlay">
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[6rem] xs:text-[10rem] md:text-[18rem] font-black text-white/[0.02] light:text-black/[0.02] select-none pointer-events-none uppercase tracking-tighter mix-blend-overlay">
                 ANSH
             </div>
 
@@ -24,7 +24,7 @@ const Education = () => {
                         <span className="w-12 h-[2px] bg-electric-cyan" />
                     </div>
                     
-                    <h2 className="text-5xl md:text-7xl font-black text-gradient italic tracking-tighter uppercase mb-6 flex items-center gap-4 justify-center">
+                    <h2 className="text-4xl xs:text-5xl md:text-7xl font-black text-gradient italic tracking-tighter uppercase mb-6 flex items-center gap-4 justify-center">
                         <span className="p-3 bg-electric-cyan/10 light:bg-indigo-100 rounded-2xl hidden md:flex">
                             <GraduationCap className="w-12 h-12 text-electric-cyan light:text-indigo-600" />
                         </span>
@@ -33,9 +33,9 @@ const Education = () => {
                 </motion.div>
 
                 {/* ── Timeline Track ── */}
-                <div className="relative md:ml-20 pl-8 md:pl-20 space-y-16">
+                <div className="relative md:ml-20 pl-10 md:pl-20 space-y-16">
                     {/* Beast Timeline Line */}
-                    <div className="absolute left-[7px] md:left-[15px] top-4 bottom-4 w-[2px] bg-white/5 light:bg-slate-200">
+                    <div className="absolute left-[9px] md:left-[15px] top-4 bottom-4 w-[2px] bg-white/5 light:bg-slate-200">
                         <motion.div
                             animate={{ height: ["0%", "100%"] }}
                             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -75,20 +75,20 @@ const Education = () => {
                             className="relative group"
                         >
                             {/* Glowing Pulse Dot */}
-                            <div className="absolute -left-[35px] md:-left-[71px] top-4 md:top-6 w-5 h-5 md:w-6 md:h-6 rounded-full bg-midnight light:bg-white border-2 border-electric-cyan light:border-indigo-600 group-hover:scale-150 transition-transform z-10 shadow-[0_0_10px_rgba(34,211,238,0.5)] light:shadow-[0_0_10px_rgba(79,70,229,0.3)] flex items-center justify-center">
+                            <div className="absolute -left-[38px] md:-left-[71px] top-4 md:top-6 w-5 h-5 md:w-6 md:h-6 rounded-full bg-midnight light:bg-white border-2 border-electric-cyan light:border-indigo-600 group-hover:scale-150 transition-transform z-10 shadow-[0_0_10px_rgba(34,211,238,0.5)] light:shadow-[0_0_10px_rgba(79,70,229,0.3)] flex items-center justify-center">
                                 <div className="absolute inset-0 rounded-full bg-electric-cyan light:bg-indigo-600 animate-ping opacity-40 origin-center" />
                                 <div className="w-2 h-2 rounded-full bg-electric-cyan light:bg-indigo-600" />
                             </div>
 
-                            <div className="p-8 md:p-12 glass glass-hover rounded-[2rem] border-white/5 group-hover:border-electric-cyan/20 transition-all relative overflow-hidden backdrop-blur-xl">
+                            <div className="p-6 xs:p-8 md:p-12 glass glass-hover rounded-[2rem] border-white/5 group-hover:border-electric-cyan/20 transition-all relative overflow-hidden backdrop-blur-xl">
                                 <div className="absolute top-0 right-0 p-6 md:p-8 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
                                     <GraduationCap className="w-24 h-24 md:w-40 md:h-40 text-electric-cyan" />
                                 </div>
 
                                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 relative z-10">
                                     <div>
-                                        <h4 className="font-black text-2xl md:text-3xl group-hover:text-electric-cyan transition-colors tracking-tight uppercase">{edu.title}</h4>
-                                        <p className="text-electric-cyan/80 text-sm md:text-base font-bold tracking-[0.2em] mt-2 uppercase">{edu.institution}</p>
+                                        <h4 className="font-black text-xl xs:text-2xl md:text-3xl group-hover:text-electric-cyan transition-colors tracking-tight uppercase">{edu.title}</h4>
+                                        <p className="text-electric-cyan/80 text-xs xs:text-sm md:text-base font-bold tracking-[0.2em] mt-2 uppercase">{edu.institution}</p>
                                     </div>
                                     {edu.status && (
                                         <motion.span
@@ -100,11 +100,11 @@ const Education = () => {
                                         </motion.span>
                                     )}
                                 </div>
-                                <p className="text-secondary/60 text-xs md:text-sm mb-6 font-mono font-bold uppercase tracking-widest flex items-center gap-2">
+                                <p className="text-secondary/60 text-[10px] xs:text-xs md:text-sm mb-6 font-mono font-bold uppercase tracking-widest flex items-center gap-2">
                                     <span className="w-8 h-[1px] bg-electric-cyan/50" />
                                     {edu.period}
                                 </p>
-                                <p className="text-secondary text-base md:text-lg leading-relaxed max-w-3xl font-light">{edu.desc}</p>
+                                <p className="text-secondary text-sm xs:text-base md:text-lg leading-relaxed max-w-3xl font-light">{edu.desc}</p>
                             </div>
                         </motion.div>
                     ))}

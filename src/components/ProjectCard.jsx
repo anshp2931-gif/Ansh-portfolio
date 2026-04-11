@@ -55,7 +55,7 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, inde
                 rotateY,
                 transformStyle: 'preserve-3d',
             }}
-            className="glass glass-hover rounded-2xl overflow-hidden group cursor-pointer"
+            className="glass glass-hover rounded-2xl overflow-hidden group cursor-pointer glow-box"
         >
             <div className="relative h-56 md:h-64 overflow-hidden bg-midnight/20 light:bg-slate-200">
                 <motion.img
@@ -91,7 +91,7 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, inde
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`${title} — Live Demo`}
-                            className="flex items-center gap-2 text-sm text-electric-cyan light:text-indigo-600 hover:text-cyan-400 light:hover:text-violet-600 transition-colors"
+                            className="flex items-center gap-2 text-sm text-electric-cyan light:text-indigo-600 hover:text-cyan-300 light:hover:text-violet-600 transition-colors font-semibold"
                             whileHover={{ x: 3 }}
                             style={{ transform: 'translateZ(30px)' }}
                         >

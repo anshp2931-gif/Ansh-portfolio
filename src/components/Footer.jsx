@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp, Youtube } from 'lucide-react';
 
 const Leetcode = ({ className }) => (
     <svg
@@ -25,6 +25,7 @@ const Footer = () => {
         { Icon: Linkedin, href: 'https://www.linkedin.com/in/ansh-patel-059b1b399/', label: 'LinkedIn' },
         { Icon: Mail, href: 'mailto:anshp2931@gmail.com', label: 'Email' },
         { Icon: Leetcode, href: 'https://leetcode.com/u/anshp23/', label: 'Leetcode' },
+        { Icon: Youtube, href: 'https://www.youtube.com/@anshpatel.23', label: 'YouTube' },
     ];
 
     return (

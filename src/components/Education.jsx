@@ -97,7 +97,7 @@ const Education = () => {
 
                                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 relative z-10">
                                     <div>
-                                        <h4 className="font-black text-xl xs:text-2xl md:text-3xl group-hover:text-electric-cyan transition-colors tracking-tight uppercase">{edu.title}</h4>
+                                        <h3 className="font-black text-xl xs:text-2xl md:text-3xl group-hover:text-electric-cyan transition-colors tracking-tight uppercase">{edu.title}</h3>
                                         <p className="text-electric-cyan/80 text-xs xs:text-sm md:text-base font-bold tracking-[0.2em] mt-2 uppercase">{edu.institution}</p>
                                     </div>
                                     {edu.status && (

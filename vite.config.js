@@ -10,11 +10,11 @@ export default defineConfig({
     react(),
     viteImagemin({
       plugins: {
-        // Compress PNGs: quality 65-80, significant reduction with minimal visual loss
-        png: imageminPngquant({ quality: [0.65, 0.80], speed: 1 }),
-        // Compress JPEGs: quality 75, progressive for faster perceived load
-        jpg: imageminMozjpeg({ quality: 75, progressive: true }),
-        jpeg: imageminMozjpeg({ quality: 75, progressive: true }),
+        // Compress PNGs: aggressive reduction for performance score
+        png: imageminPngquant({ quality: [0.45, 0.65], speed: 4 }),
+        // Compress JPEGs: more aggressive quality for Lighthouse green
+        jpg: imageminMozjpeg({ quality: 60, progressive: true }),
+        jpeg: imageminMozjpeg({ quality: 60, progressive: true }),
       },
     }),
   ],

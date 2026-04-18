@@ -137,16 +137,16 @@ const Preloader = ({ onComplete }) => {
 
     useEffect(() => {
         let current = 0;
-        const duration = 1400; // Accelerated for performance
-        const steps = 60;
+        const duration = 1000; // Final speed-up for performance
+        const steps = 50;
         const stepTime = duration / steps;
 
         const timer = setInterval(() => {
             current += 100 / steps;
             if (current >= 100) {
                 setProgress(100);
-                setTimeout(() => setExiting(true), 300);
-                setTimeout(onComplete, 1400); // Accelerated split
+                setTimeout(() => setExiting(true), 200);
+                setTimeout(onComplete, 1000); // Final split speed
             } else {
                 setProgress(Math.floor(current));
             }

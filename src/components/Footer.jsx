@@ -35,7 +35,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 tb:grid-cols-3 gap-10 md:gap-8 mb-12">
                     {/* Brand */}
                     <div className="sm:col-span-2 tb:col-span-1">
-                        <h3 className="text-3xl font-black text-gradient mb-3 uppercase italic tracking-tighter">Ansh Patel</h3>
+                        <h2 className="text-3xl font-black text-gradient mb-3 uppercase italic tracking-tighter">Ansh Patel</h2>
                         <p className="text-secondary text-base max-w-md font-light">
                             Building the future of the web, one line of code at a time. Focused on high-performance, accessible, and beautiful digital experiences.
                         </p>
@@ -43,7 +43,7 @@ const Footer = () => {
 
                     {/* Quick Links */}
                     <div className="flex flex-col">
-                        <h4 className="font-bold mb-5 text-primary uppercase tracking-widest text-sm text-arc">Quick Links</h4>
+                        <h3 className="font-bold mb-5 text-primary uppercase tracking-widest text-sm text-arc">Quick Links</h3>
                         <div className="grid grid-cols-2 gap-y-3 gap-x-4">
                             {[
                                 { label: 'Home', href: '/' },
@@ -66,7 +66,7 @@ const Footer = () => {
 
                     {/* Social */}
                     <div className="flex flex-col">
-                        <h4 className="font-bold mb-5 text-primary uppercase tracking-widest text-sm text-arc">Connect</h4>
+                        <h3 className="font-bold mb-5 text-primary uppercase tracking-widest text-sm text-arc">Connect</h3>
                         <div className="flex flex-wrap gap-3">
                             {socialLinks.map(({ Icon, href, label }) => (
                                 <motion.a

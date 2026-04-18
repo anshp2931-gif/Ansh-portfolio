@@ -173,7 +173,7 @@ const Certificates = () => {
                 <span className="badge-pill">Verification</span>
                 <span className="w-12 h-px bg-gradient-to-r from-plasma to-transparent" />
             </div>
-            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl font-display font-medium text-gradient uppercase tracking-tighter">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-7xl font-display font-medium text-gradient uppercase tracking-tighter">
                 Certificates
             </h2>
         </motion.div>

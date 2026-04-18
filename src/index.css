@@ -698,7 +698,7 @@
 
   body::before { display: none; }
 
-  h1,h2,h3 { word-break: break-word; hyphens: auto; }
+  h1,h2,h3 { word-break: normal; hyphens: none; }
 }
 
 /* ── Reduced motion ──────────────────────────────────────── */

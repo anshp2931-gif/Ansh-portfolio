@@ -197,7 +197,7 @@ const Hackathon = () => {
                         <span className="badge-pill border-magenta/30 text-magenta bg-magenta/10">Event History</span>
                         <span className="w-24 h-px bg-gradient-to-r from-magenta to-transparent" />
                     </div>
-                    <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl font-display font-medium text-white uppercase tracking-tighter">
+                    <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-7xl font-display font-medium text-white uppercase tracking-tighter">
                         Hackathons
                     </h2>
                 </motion.div>

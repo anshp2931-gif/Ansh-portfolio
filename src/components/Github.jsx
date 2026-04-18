@@ -85,7 +85,7 @@ const Github = () => {
                         <span className="w-12 h-[2px] bg-electric-cyan" />
                     </div>
                     
-                    <h2 className="text-5xl md:text-7xl font-black text-gradient italic tracking-tighter uppercase mb-6 flex items-center gap-4 justify-center drop-shadow-lg">
+                    <h2 className="text-2xl xs:text-3xl sm:text-5xl md:text-7xl font-black text-gradient italic tracking-tighter uppercase mb-6 flex items-center gap-4 justify-center drop-shadow-lg">
                         <span className="p-3 bg-electric-cyan/10 light:bg-indigo-100 rounded-2xl glow-box hidden md:flex">
                             <GitIcon className="w-12 h-12 text-electric-cyan light:text-indigo-600" />
                         </span>

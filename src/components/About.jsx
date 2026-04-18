@@ -193,8 +193,8 @@ const About = () => {
                             <span className="w-16 h-px bg-gradient-to-r from-plasma to-transparent" />
                         </motion.div>
 
-                        <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-display mb-10 text-shimmer uppercase tracking-tight">
-                            Engineering <br /> The Future
+                        <h2 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-display mb-10 text-shimmer uppercase tracking-tight">
+                            Engineering <br className="hidden sm:block" /> The Future
                         </h2>
 
                         <TerminalWindow />

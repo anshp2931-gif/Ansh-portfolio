@@ -93,9 +93,9 @@ const Projects = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl font-display mb-16 text-gradient uppercase tracking-tighter"
+            className="text-2xl xs:text-3xl sm:text-5xl md:text-7xl font-display mb-16 text-gradient uppercase tracking-tighter"
         >
-          Featured <br /> Projects
+          Featured <br className="hidden sm:block" /> Projects
         </motion.h2>
 
         {/* Bento Grid */}

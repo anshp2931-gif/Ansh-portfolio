@@ -93,7 +93,7 @@ const Contact = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-20"
                 >
-                    <h2 className="text-4xl xs:text-5xl md:text-6xl font-black mb-4 text-gradient italic tracking-tighter uppercase">
+                    <h2 className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black mb-4 text-gradient italic tracking-tighter uppercase">
                         Let's Connect
                     </h2>
 

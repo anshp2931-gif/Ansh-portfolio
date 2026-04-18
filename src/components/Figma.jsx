@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { seoConfig } from "../config/seoConfig";
-import flightBookingImg from "../assets/figma-flight-booking.png";
-import figmaDesign2Img from "../assets/figma-design-2.png";
-import figmaDesign3Img from "../assets/figma-design-3.png";
+import flightBookingImg from "../assets/figma-flight-booking.jpg";
+import figmaDesign2Img from "../assets/figma-design-2.jpg";
+import figmaDesign3Img from "../assets/figma-design-3.jpg";
 
 // Figma Logo SVG component
 const FigmaLogo = () => (

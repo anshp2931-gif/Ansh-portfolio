@@ -109,14 +109,14 @@ function App() {
         <meta property="og:url" content="https://anshp-portfolio.vercel.app/" />
         <meta property="og:title" content={currentMetadata.title} />
         <meta property="og:description" content={currentMetadata.description} />
-        <meta property="og:image" content="/photo.png" />
+        <meta property="og:image" content="/photo.jpg" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://anshp-portfolio.vercel.app/" />
         <meta property="twitter:title" content={currentMetadata.title} />
         <meta property="twitter:description" content={currentMetadata.description} />
-        <meta property="twitter:image" content="/photo.png" />
+        <meta property="twitter:image" content="/photo.jpg" />
       </Helmet>
 
       {showPreloader && (

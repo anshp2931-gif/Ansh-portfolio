@@ -4,7 +4,7 @@ import { seoConfig } from '../config/seoConfig';
 
 import { Code2, Heart, Terminal, Database } from 'lucide-react';
 import { useState, useEffect, memo } from 'react';
-import profileImg from '../assets/photo.png';
+import profileImg from '../assets/photo.jpg';
 
 /* ── Animated counter hook ──────────────────────────────── */
 const useCountUp = (end, duration = 2) => {

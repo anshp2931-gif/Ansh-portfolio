@@ -15,7 +15,7 @@ import About from './components/About';
 const Skills = lazy(() => import('./components/Skills'));
 const Education = lazy(() => import('./components/Education'));
 const Projects = lazy(() => import('./components/Projects'));
-// const Figma = lazy(() => import('./components/Figma'));
+const Figma = lazy(() => import('./components/Figma'));
 const Github = lazy(() => import('./components/Github'));
 const Hackathon = lazy(() => import('./components/Hackathon'));
 const Certificates = lazy(() => import('./components/Certificates'));
@@ -157,7 +157,7 @@ function App() {
                   <Skills />
                   <Education />
                   <Projects />
-                  {/* <Figma /> */}
+                  <Figma />
                   <Github />
                   <Hackathon />
                   <Certificates />
@@ -169,7 +169,7 @@ function App() {
             <Route path="/skills" element={<Skills />} />
             <Route path="/education" element={<Education />} />
             <Route path="/projects" element={<Projects />} />
-            {/* <Route path="/figma" element={<Figma />} /> */}
+            <Route path="/figma" element={<Figma />} />
             <Route path="/github" element={<Github />} />
             <Route path="/hackathons" element={<Hackathon />} />
             <Route path="/certificates" element={<Certificates />} />

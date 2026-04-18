@@ -15,31 +15,6 @@ const navItems = [
     { label: 'Contact',      href: '/contact' },
 ];
 
-/* ── Logo ─────────────────────────────────────────────────── */
-const APLogo = ({ className }) => (
-    <svg 
-        viewBox="0 0 40 40" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg" 
-        className={className}
-    >
-        <circle cx="20" cy="20" r="19" stroke="url(#logo_grad)" strokeWidth="1.5" />
-        <path 
-            d="M13 26L20 12L27 26M16 22H24" 
-            stroke="white" 
-            strokeWidth="2.5" 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-        />
-        <defs>
-            <linearGradient id="logo_grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#22d3ee" />
-                <stop offset="1" stopColor="#6366f1" />
-            </linearGradient>
-        </defs>
-    </svg>
-);
-
 const Logo = memo(() => (
     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} style={{ willChange: 'transform' }}>
         <Link to="/" aria-label="Home" className="flex items-center gap-3">
@@ -48,8 +23,13 @@ const Logo = memo(() => (
                 {/* Outer animated glow ring */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-plasma to-magenta opacity-30 blur-[6px] animate-pulse pointer-events-none" />
                 {/* Clean circle container */}
-                <div className="relative w-10 h-10 rounded-full overflow-hidden border border-plasma/40 bg-[#0b0f19] shadow-[0_0_12px_rgba(34,211,238,0.2)] flex items-center justify-center">
-                    <APLogo className="w-6 h-6" />
+                <div className="relative w-full h-full rounded-full overflow-hidden border border-plasma/40 shadow-[0_0_12px_rgba(34,211,238,0.2)]">
+                    <img 
+                        src={logoImg} 
+                        alt="Ansh Patel Logo" 
+                        loading="Lazy"
+                        className="w-full h-full object-cover bg-void"
+                    />
                 </div>
             </div>
             {/* Name text */}

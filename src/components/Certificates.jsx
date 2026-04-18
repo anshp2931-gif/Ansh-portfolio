@@ -8,6 +8,8 @@ import electroCert from "../assets/clg.jpeg";
 import openpoolCert from "../assets/openpool.png";
 import CppCert from "../assets/Cpp.jpg";
 import JavaScript from "../assets/JavaScript.jpg";
+import reactCert from "../assets/Reactbasic.png";
+
 
 // Data
 const certificates = [
@@ -48,6 +50,7 @@ const certificates = [
     issuer: "Swaminarayan University",
     date: "Jan 07, 2026",
     image: electroCert,
+    link : 'https://drive.google.com/file/d/1TdDNJ7OOHctjdA8sWaZtJyko9Hsqk5qD/view?usp=sharing',
     details: "Participated in a technical symposium showcasing engineering ideas.",
   },
   {
@@ -55,9 +58,19 @@ const certificates = [
     issuer: "SoloLearn",
     date: "April 07, 2026",
     image: JavaScript,
+    link :'https://www.sololearn.com/certificates/CC-SS4WPPYL',
     details: "Learned JavaScript fundamentals, DOM, and ES6+ concepts.",
   },
+  {
+    title: "React (Basic)",
+    issuer: "HackerRank",
+    date: "April 18, 2026",
+    image: reactCert,
+    link : 'https://www.hackerrank.com/certificates/iframe/99070d7b7062',
+    details: "Validated proficiency in React core concepts including component structure, state management, and props.",
+  },
 ];
+
 
 // Card
 const CertificateCard = ({ cert, index }) => {

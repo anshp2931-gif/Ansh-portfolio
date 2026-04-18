@@ -164,6 +164,7 @@ const About = () => {
                                 alt="Ansh Patel - Full Stack Developer"
                                 width="340"
                                 height="400"
+                                sizes="(max-width: 768px) 340px, 400px"
                                 loading="eager"
                                 fetchPriority="high"
                                 decoding="async"

@@ -137,16 +137,16 @@ const Preloader = ({ onComplete }) => {
 
     useEffect(() => {
         let current = 0;
-        const duration = 1000; // Final speed-up for performance
-        const steps = 50;
+        const duration = 600; // Aggressive speed-up for LCP
+        const steps = 40;
         const stepTime = duration / steps;
 
         const timer = setInterval(() => {
             current += 100 / steps;
             if (current >= 100) {
                 setProgress(100);
-                setTimeout(() => setExiting(true), 200);
-                setTimeout(onComplete, 1000); // Final split speed
+                setTimeout(() => setExiting(true), 100);
+                setTimeout(onComplete, 700); // Fast completion
             } else {
                 setProgress(Math.floor(current));
             }
@@ -164,14 +164,14 @@ const Preloader = ({ onComplete }) => {
             {!exiting && (
                 <motion.div
                     key="preloader-wrapper"
-                    exit={{ opacity: 1, transition: { duration: 0.8 } }} // Faster fade out
+                    exit={{ opacity: 1, transition: { duration: 0.4 } }} // Even faster fade
                     className="fixed inset-0 z-[10000] pointer-events-none"
                 >
 
                     {/* --- TOP SPLICED SCREEN HALF --- */}
                     <motion.div
                         exit={{ y: "-100vh" }}
-                        transition={{ duration: 1.0, ease: [0.76, 0, 0.24, 1] }}
+                        transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
                         className="absolute top-0 inset-x-0 h-[50vh] bg-black overflow-hidden pointer-events-auto"
                     >
                         {/* We render identical collision graphics inside both halves! */}
@@ -189,7 +189,7 @@ const Preloader = ({ onComplete }) => {
                     {/* --- BOTTOM SPLICED SCREEN HALF --- */}
                     <motion.div
                         exit={{ y: "100vh" }}
-                        transition={{ duration: 1.0, ease: [0.76, 0, 0.24, 1] }}
+                        transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
                         className="absolute bottom-0 inset-x-0 h-[50vh] bg-black overflow-hidden pointer-events-auto"
                     >
                         {/* We render identical collision graphics inside both halves! */}

@@ -128,7 +128,7 @@ const Hero = () => {
                         animate="visible"
                         variants={{
                             hidden: {},
-                            visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+                            visible: { transition: { staggerChildren: 0.05, delayChildren: 0 } },
                         }}
                         className="flex flex-col items-center text-center"
                     >

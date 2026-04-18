@@ -137,16 +137,16 @@ const Preloader = ({ onComplete }) => {
 
     useEffect(() => {
         let current = 0;
-        const duration = 600; // Aggressive speed-up for LCP
-        const steps = 40;
+        const duration = 1500; // Increased to ensure visibility on mobile
+        const steps = 60;
         const stepTime = duration / steps;
 
         const timer = setInterval(() => {
             current += 100 / steps;
             if (current >= 100) {
                 setProgress(100);
-                setTimeout(() => setExiting(true), 100);
-                setTimeout(onComplete, 700); // Fast completion
+                setTimeout(() => setExiting(true), 300);
+                setTimeout(onComplete, 1600); // Allow time for the cinematic exit
             } else {
                 setProgress(Math.floor(current));
             }
@@ -171,7 +171,7 @@ const Preloader = ({ onComplete }) => {
                     {/* --- TOP SPLICED SCREEN HALF --- */}
                     <motion.div
                         exit={{ y: "-100vh" }}
-                        transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+                        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
                         className="absolute top-0 inset-x-0 h-[50vh] bg-black overflow-hidden pointer-events-auto"
                     >
                         {/* We render identical collision graphics inside both halves! */}
@@ -189,7 +189,7 @@ const Preloader = ({ onComplete }) => {
                     {/* --- BOTTOM SPLICED SCREEN HALF --- */}
                     <motion.div
                         exit={{ y: "100vh" }}
-                        transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+                        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
                         className="absolute bottom-0 inset-x-0 h-[50vh] bg-black overflow-hidden pointer-events-auto"
                     >
                         {/* We render identical collision graphics inside both halves! */}

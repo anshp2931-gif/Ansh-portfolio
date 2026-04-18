@@ -43,8 +43,8 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                     animate={{ opacity: [0, 0.8, 0], x: [0, -30, 0], scale: [1, 1.1, 1] }}
                     transition={{ delay: impactTime, duration: 0.3, ease: "easeOut" }}
                 >
-                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[10rem] font-display font-black uppercase whitespace-nowrap">Ansh</span>
-                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[10rem] font-display font-black uppercase whitespace-nowrap">Patel</span>
+                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black uppercase whitespace-nowrap">Ansh</span>
+                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black uppercase whitespace-nowrap">Patel</span>
                 </motion.div>
 
                 {/* CYAN CHROMATIC GHOST */}
@@ -53,8 +53,8 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                     animate={{ opacity: [0, 0.8, 0], x: [0, 30, 0], scale: [1, 1.1, 1] }}
                     transition={{ delay: impactTime, duration: 0.3, ease: "easeOut" }}
                 >
-                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[10rem] font-display font-black uppercase whitespace-nowrap">Ansh</span>
-                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[10rem] font-display font-black uppercase whitespace-nowrap">Patel</span>
+                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black uppercase whitespace-nowrap">Ansh</span>
+                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black uppercase whitespace-nowrap">Patel</span>
                 </motion.div>
 
                 {/* THE ACTUAL TEXT */}
@@ -69,7 +69,7 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                             opacity: [0, 1, 1]
                         }}
                         transition={{ duration: 0.6, delay: enterDelay, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[10rem] font-display font-black tracking-tighter text-white uppercase leading-none drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] pb-1 md:pb-2 whitespace-nowrap"
+                        className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black tracking-tighter text-white uppercase leading-none drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] pb-1 md:pb-2 whitespace-nowrap"
                     >
                         Ansh
                     </motion.span>
@@ -84,7 +84,7 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                             opacity: [0, 1, 1]
                         }}
                         transition={{ duration: 0.6, delay: enterDelay, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[10rem] font-display font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-plasma to-white uppercase leading-none pb-1 md:pb-2 whitespace-nowrap"
+                        className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-plasma to-white uppercase leading-none pb-1 md:pb-2 whitespace-nowrap"
                     >
                         Patel
                     </motion.span>
@@ -96,7 +96,7 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: impactTime + 0.2, duration: 0.5, ease: "easeOut" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-[10vh] w-full max-w-xl flex flex-col gap-4 z-10"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-[12vh] lg:translate-y-[15vh] w-full max-w-xl lg:max-w-4xl flex flex-col gap-4 z-10 font-bold"
             >
                 <div className="flex justify-between items-end px-2">
                     <motion.span
@@ -108,7 +108,7 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                         Full Stack Developer
                     </motion.span>
                     <motion.span
-                        className="text-2xl md:text-3xl font-black font-mono text-white tabular-nums tracking-tighter drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                        className="text-2xl md:text-3xl lg:text-5xl font-black font-mono text-white tabular-nums tracking-tighter drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
                     >
                         {String(progress).padStart(3, '0')} <span className="text-plasma">%</span>
                     </motion.span>
@@ -137,7 +137,7 @@ const Preloader = ({ onComplete }) => {
 
     useEffect(() => {
         let current = 0;
-        const duration = 1500; // Increased to ensure visibility on mobile
+        const duration = 1000; // Snappier loading feel
         const steps = 60;
         const stepTime = duration / steps;
 
@@ -145,8 +145,8 @@ const Preloader = ({ onComplete }) => {
             current += 100 / steps;
             if (current >= 100) {
                 setProgress(100);
-                setTimeout(() => setExiting(true), 300);
-                setTimeout(onComplete, 1600); // Allow time for the cinematic exit
+                setTimeout(() => setExiting(true), 150);
+                setTimeout(onComplete, 1200); // Tighter exit timing
             } else {
                 setProgress(Math.floor(current));
             }

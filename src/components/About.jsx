@@ -160,7 +160,7 @@ const About = () => {
                             className="relative aspect-auto rounded-[2rem] p-1 glow-box z-10 bg-void mb-10 overflow-hidden will-change-transform max-w-[340px] mx-auto lg:max-w-none"
                         >
                             <img
-                                src="/photo.png"
+                                src={profileImg}
                                 alt="Ansh Patel - Full Stack Developer"
                                 width="340"
                                 height="400"

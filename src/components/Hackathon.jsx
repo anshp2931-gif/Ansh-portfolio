@@ -1,5 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { seoConfig } from '../config/seoConfig';
 import { Calendar, Github, ExternalLink, X } from 'lucide-react';
 import KalixLogo from '../assets/kalix.png';
 import PlantPalLogo from '../assets/Plantpal.png';
@@ -174,6 +176,11 @@ const HackathonCard = ({ event, index }) => {
 const Hackathon = () => {
     return (
         <section id="hackathons" className="py-24 px-4 md:px-8 relative overflow-hidden">
+            <Helmet>
+                <title>{seoConfig.hackathons.title}</title>
+                <meta name="description" content={seoConfig.hackathons.description} />
+            </Helmet>
+
             {/* Watermark */}
             <div className="absolute top-40 right-[-10%] text-[5rem] xs:text-[8rem] md:text-[14rem] font-display text-white/[0.015] select-none pointer-events-none uppercase tracking-tighter whitespace-nowrap leading-none">
                 Awards

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import { Mail, MapPin, Send, AlertCircle, CheckCircle } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+import { seoConfig } from "../config/seoConfig";
 import { useState } from "react";
 
 const Contact = () => {
@@ -79,8 +80,8 @@ const Contact = () => {
             className="min-h-screen py-24 px-4 xs:px-6 flex items-center bg-section overflow-hidden"
         >
             <Helmet>
-                <title>Contact | Ansh Patel</title>
-                <meta name="description" content="Get in touch with Ansh Patel for collaborations, project inquiries, or any technology-related discussions." />
+                <title>{seoConfig.contact.title}</title>
+                <meta name="description" content={seoConfig.contact.description} />
             </Helmet>
             <div className="max-w-6xl mx-auto w-full">
 

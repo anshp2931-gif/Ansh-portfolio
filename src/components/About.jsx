@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import { seoConfig } from '../config/seoConfig';
+
 import { Code2, Heart, Terminal, Database } from 'lucide-react';
 import { useState, useEffect, memo } from 'react';
 import profileImg from '../assets/photo.png';
@@ -133,8 +135,8 @@ const About = () => {
     return (
         <section id="about" className="py-24 px-4 md:px-8 relative overflow-hidden bg-void">
             <Helmet>
-                <title>About Me | Ansh Patel</title>
-                <meta name="description" content="Discover Ansh Patel's journey, skills, and the engineering philosophy behind his full-stack and AI projects." />
+                <title>{seoConfig.about.title}</title>
+                <meta name="description" content={seoConfig.about.description} />
             </Helmet>
         {/* Watermark */}
         <div className="absolute top-20 -left-10 text-[4rem] xs:text-[6rem] md:text-[16rem] lg:text-[20rem] font-display text-white/[0.015] select-none pointer-events-none uppercase tracking-tighter leading-none whitespace-nowrap">

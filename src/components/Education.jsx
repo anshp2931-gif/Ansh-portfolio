@@ -1,9 +1,17 @@
 import { motion } from 'framer-motion';
 import { GraduationCap } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { seoConfig } from '../config/seoConfig';
+
 
 const Education = () => {
     return (
         <section id="education" className="py-24 px-4 md:px-8 relative overflow-hidden mt-8 md:mt-12">
+            <Helmet>
+                <title>{seoConfig.education.title}</title>
+                <meta name="description" content={seoConfig.education.description} />
+            </Helmet>
+
             {/* Background Element */}
             <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[4rem] xs:text-[6rem] md:text-[18rem] font-black text-white/[0.02] light:text-black/[0.02] select-none pointer-events-none uppercase tracking-tighter mix-blend-overlay">
                 ANSH

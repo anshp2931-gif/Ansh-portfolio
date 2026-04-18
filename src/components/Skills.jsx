@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { memo } from "react";
 import { Helmet } from "react-helmet-async";
+import { seoConfig } from "../config/seoConfig";
+
 
 /* ── Skill data organised by category ─────────────────────── */
 const categories = [
@@ -161,8 +163,8 @@ MarqueeStrip.displayName = 'MarqueeStrip';
 const Skills = () => (
     <section id="skills" className="py-24 relative overflow-hidden">
         <Helmet>
-            <title>Technical Expertise | Ansh Patel</title>
-            <meta name="description" content="Explore Ansh Patel's technical toolbox, specializing in Full Stack development, AI integrations, and UI/UX design." />
+            <title>{seoConfig.skills.title}</title>
+            <meta name="description" content={seoConfig.skills.description} />
         </Helmet>
         {/* Subtle background accent blobs */}
         <div className="absolute top-1/4 left-0 w-72 h-72 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none" />

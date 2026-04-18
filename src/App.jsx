@@ -1,7 +1,8 @@
-import { useEffect, useState, useRef, lazy, Suspense } from 'react';
+import { useEffect, useState, useRef, useMemo, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ReactLenis, useLenis } from 'lenis/react';
+import { seoConfig } from './config/seoConfig';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Preloader from './components/Preloader';
@@ -45,6 +46,46 @@ function App() {
     }
   }, [location.pathname, lenis]);
 
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    // Only run scroll spy on the home page
+    if (location.pathname !== '/' || showPreloader) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px', // Adjust margin to detect section in "active" zone
+      threshold: 0,
+    };
+
+    const handleIntersect = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+    const sections = ['home', 'about', 'skills', 'education', 'projects', 'figma', 'github', 'hackathons', 'certificates', 'contact'];
+    
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [location.pathname, showPreloader]);
+
+  // Determine current metadata based on route or active scroll section
+  const currentMetadata = useMemo(() => {
+    if (location.pathname === '/') {
+      return seoConfig[activeSection] || seoConfig.home;
+    }
+    const path = location.pathname.split('/')[1];
+    return seoConfig[path] || seoConfig.home;
+  }, [location.pathname, activeSection]);
+
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
     // Custom cursor: desktop only
@@ -57,8 +98,8 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Ansh Patel | Full Stack Developer & AI Integrator</title>
-        <meta name="description" content="Portfolio of Ansh Patel, a Full Stack Developer specializing in high-performance web applications, AI integrations, and cinematic UI/UX design." />
+        <title>{currentMetadata.title}</title>
+        <meta name="description" content={currentMetadata.description} />
         <meta name="keywords" content="Ansh Patel, Full Stack Developer, AI Integrator, Portfolio, React Developer, Web Developer, UI/UX Designer" />
         <meta name="author" content="Ansh Patel" />
         <meta name="theme-color" content="#22d3ee" />
@@ -66,15 +107,15 @@ function App() {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://anshp-portfolio.vercel.app/" />
-        <meta property="og:title" content="Ansh Patel | Full Stack Developer & AI Integrator" />
-        <meta property="og:description" content="Portfolio of Ansh Patel, a Full Stack Developer specializing in high-performance web applications and cinematic UI/UX design." />
+        <meta property="og:title" content={currentMetadata.title} />
+        <meta property="og:description" content={currentMetadata.description} />
         <meta property="og:image" content="/photo.png" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://anshp-portfolio.vercel.app/" />
-        <meta property="twitter:title" content="Ansh Patel | Full Stack Developer & AI Integrator" />
-        <meta property="twitter:description" content="Portfolio of Ansh Patel, a Full Stack Developer specializing in AI and high-performance Web Apps." />
+        <meta property="twitter:title" content={currentMetadata.title} />
+        <meta property="twitter:description" content={currentMetadata.description} />
         <meta property="twitter:image" content="/photo.png" />
       </Helmet>
 

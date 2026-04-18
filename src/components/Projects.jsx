@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { seoConfig } from "../config/seoConfig";
 import ProjectCard from "./ProjectCard";
 import rareplanetImg from "../assets/Rareplanet.jpeg";
 
@@ -73,8 +74,8 @@ const Projects = () => {
       className="py-24 relative overflow-hidden px-4 md:px-8"
     >
       <Helmet>
-        <title>Featured Projects | Ansh Patel</title>
-        <meta name="description" content="A showcase of high-impact full-stack applications, AI tools, and creative digital experiences built by Ansh Patel." />
+        <title>{seoConfig.projects.title}</title>
+        <meta name="description" content={seoConfig.projects.description} />
       </Helmet>
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Title */}

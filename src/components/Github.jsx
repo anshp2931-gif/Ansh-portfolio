@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
+import { seoConfig } from '../config/seoConfig';
 import { Github as GitIcon, ExternalLink, Star, GitFork, BookOpen, Activity, Terminal, GitCommit, GitPullRequest, Code2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -57,6 +59,11 @@ const Github = () => {
 
     return (
         <section id="github" ref={sectionRef} className="py-24 px-4 md:px-8 relative overflow-hidden">
+            <Helmet>
+                <title>{seoConfig.github.title}</title>
+                <meta name="description" content={seoConfig.github.description} />
+            </Helmet>
+
             {/* Ambient Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-electric-cyan/5 rounded-full blur-[150px] pointer-events-none" />
             

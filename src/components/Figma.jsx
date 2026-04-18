@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+import { seoConfig } from "../config/seoConfig";
 
 // Placeholder data for Figma designs
 const figmaDesigns = [
@@ -65,6 +67,11 @@ const FigmaCard = ({ design, index }) => {
 const Figma = () => {
   return (
     <section id="figma" className="py-24 relative overflow-hidden px-4 md:px-8">
+      <Helmet>
+        <title>{seoConfig.figma.title}</title>
+        <meta name="description" content={seoConfig.figma.description} />
+      </Helmet>
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title */}
         <motion.div

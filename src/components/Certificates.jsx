@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { seoConfig } from "../config/seoConfig";
 import { ExternalLink } from "lucide-react";
 
 import cCert from "../assets/C.png";
@@ -151,6 +153,11 @@ const Certificates = () => {
       id="certificates"
       className="py-24 relative overflow-hidden px-4 md:px-8"
     >
+      <Helmet>
+        <title>{seoConfig.certificates.title}</title>
+        <meta name="description" content={seoConfig.certificates.description} />
+      </Helmet>
+
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

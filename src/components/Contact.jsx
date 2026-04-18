@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { Mail, MapPin, Send, AlertCircle, CheckCircle } from "lucide-react";
 import { useState } from "react";
 
@@ -77,6 +78,10 @@ const Contact = () => {
             id="contact"
             className="min-h-screen py-24 px-4 xs:px-6 flex items-center bg-section overflow-hidden"
         >
+            <Helmet>
+                <title>Contact | Ansh Patel</title>
+                <meta name="description" content="Get in touch with Ansh Patel for collaborations, project inquiries, or any technology-related discussions." />
+            </Helmet>
             <div className="max-w-6xl mx-auto w-full">
 
                 {/* Heading */}
@@ -110,14 +115,8 @@ const Contact = () => {
                     >
 
                         {/* Contact Card */}
-                        <motion.div
+                        <div
                             className="glass rounded-2xl p-6 xs:p-8 border-white/5"
-                            animate={{ y: [0, -8, 0] }}
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
                         >
                             <h3 className="text-2xl font-bold mb-6 text-primary">
                                 Get in Touch
@@ -170,18 +169,11 @@ const Contact = () => {
                                 </motion.div>
 
                             </motion.div>
-                        </motion.div>
+                        </div>
 
                         {/* Availability Card */}
-                        <motion.div
+                        <div
                             className="glass rounded-2xl p-6 xs:p-8 border-white/5"
-                            animate={{ y: [0, -6, 0] }}
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: 1,
-                            }}
                         >
                             <h3 className="text-xl font-bold mb-4 text-primary">
                                 Availability
@@ -191,7 +183,7 @@ const Contact = () => {
                                 Currently open to new opportunities and interesting projects.
                                 Response time is typically within 24 hours.
                             </p>
-                        </motion.div>
+                        </div>
 
                     </motion.div>
 

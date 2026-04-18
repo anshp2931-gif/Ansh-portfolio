@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUp, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Leetcode = ({ className }) => (
     <svg
@@ -42,34 +43,41 @@ const Footer = () => {
 
                     {/* Quick Links */}
                     <div className="flex flex-col">
-                        <h4 className="font-bold mb-5 text-primary uppercase tracking-widest text-sm text-electric-cyan">Quick Links</h4>
+                        <h4 className="font-bold mb-5 text-primary uppercase tracking-widest text-sm text-arc">Quick Links</h4>
                         <div className="grid grid-cols-2 gap-y-3 gap-x-4">
-                            {['Home', 'About', 'Skills', 'Projects', 'Education', 'Contact'].map((link) => (
-                                <a
-                                    key={link}
-                                    href={`#${link.toLowerCase()}`}
-                                    className="text-secondary hover:text-electric-cyan light:hover:text-indigo-600 transition-all text-sm font-medium hover:translate-x-1"
+                            {[
+                                { label: 'Home', href: '/' },
+                                { label: 'About', href: '/about' },
+                                { label: 'Skills', href: '/skills' },
+                                { label: 'Projects', href: '/projects' },
+                                { label: 'Education', href: '/education' },
+                                { label: 'Contact', href: '/contact' },
+                            ].map(({ label, href }) => (
+                                <Link
+                                    key={label}
+                                    to={href}
+                                    className="text-secondary hover:text-arc light:hover:text-indigo-600 transition-all text-sm font-medium hover:translate-x-1"
                                 >
-                                    {link}
-                                </a>
+                                    {label}
+                                </Link>
                             ))}
                         </div>
                     </div>
 
                     {/* Social */}
                     <div className="flex flex-col">
-                        <h4 className="font-bold mb-5 text-primary uppercase tracking-widest text-sm text-electric-cyan">Connect</h4>
+                        <h4 className="font-bold mb-5 text-primary uppercase tracking-widest text-sm text-arc">Connect</h4>
                         <div className="flex flex-wrap gap-3">
                             {socialLinks.map(({ Icon, href, label }) => (
                                 <motion.a
                                     key={label}
                                     href={href}
                                     className="p-3.5 glass glass-hover rounded-2xl border border-white/5"
-                                    whileHover={{ scale: 1.1, y: -2, backgroundColor: "rgba(129, 140, 248, 0.1)" }}
+                                    whileHover={{ scale: 1.1, y: -2, backgroundColor: "rgba(99, 102, 241, 0.1)" }}
                                     whileTap={{ scale: 0.9 }}
                                     aria-label={label}
                                 >
-                                    <Icon className="w-5 h-5 text-electric-cyan light:text-indigo-600" />
+                                    <Icon className="w-5 h-5 text-arc light:text-indigo-600" />
                                 </motion.a>
                             ))}
                         </div>
@@ -80,7 +88,7 @@ const Footer = () => {
                 <div className="flex justify-center mb-6">
                     <motion.button
                         onClick={scrollToTop}
-                        className="group flex items-center gap-2 px-5 py-2.5 glass glass-hover rounded-full text-sm text-electric-cyan light:text-indigo-600 font-medium cursor-pointer light:shadow-sm"
+                        className="group flex items-center gap-2 px-5 py-2.5 glass glass-hover rounded-full text-sm text-arc light:text-indigo-600 font-medium cursor-pointer light:shadow-sm"
                         whileHover={{ scale: 1.05, y: -3 }}
                         whileTap={{ scale: 0.95 }}
                     >
@@ -92,7 +100,7 @@ const Footer = () => {
                 {/* Copyright */}
                 <div className="pt-8 border-t border-white/10 light:border-slate-200 text-center">
                     <p className="text-secondary text-sm flex items-center justify-center gap-2">
-                        © {currentYear} Created by <span className="text-electric-cyan font-semibold">Ansh Patel</span>
+                        © {currentYear} Created by <span className="text-arc font-semibold">Ansh Patel</span>
                     </p>
                 </div>
             </div>

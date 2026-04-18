@@ -17,8 +17,7 @@ const certificates = [
     date: "Dec 15, 2025",
     image: cssCert,
     link: "https://www.hackerrank.com/certificates/ec8b27b16601",
-    details:
-      "Demonstrated strong foundational knowledge of CSS including layout, selectors, and responsive design.",
+    details: "Demonstrated strong foundational knowledge of CSS including layout, selectors, and responsive design.",
   },
   {
     title: "Introduction to C",
@@ -26,8 +25,7 @@ const certificates = [
     date: "March 06, 2026",
     image: cCert,
     link: "https://www.sololearn.com/en/certificates/CC-XIK2BWG0",
-    details:
-      "Learned core C concepts like pointers and memory management.",
+    details: "Learned core C concepts like pointers and memory management.",
   },
   {
     title: "Introduction to C++",
@@ -35,97 +33,86 @@ const certificates = [
     date: "Mar 17, 2026",
     image: CppCert,
     link: "https://lnkd.in/dqEQ6p7Q",
-    details:
-      "Explored OOP concepts like classes, inheritance, and STL.",
+    details: "Explored OOP concepts like classes, inheritance, and STL.",
   },
   {
     title: "OpenPool",
     issuer: "OpenPool",
     date: "Mar 16, 2026",
     image: openpoolCert,
-    link:
-      "https://drive.google.com/file/d/1pBYZ0szwluDIJRE7GFjKhARxQPNPTByV/view",
-    details:
-      "Worked on open-source projects using Git and collaboration tools.",
+    link: "https://drive.google.com/file/d/1pBYZ0szwluDIJRE7GFjKhARxQPNPTByV/view",
+    details: "Worked on open-source projects using Git and collaboration tools.",
   },
   {
     title: "ElectroSphere 2K26",
     issuer: "Swaminarayan University",
     date: "Jan 07, 2026",
     image: electroCert,
-    details:
-      "Participated in a technical symposium showcasing engineering ideas.",
+    details: "Participated in a technical symposium showcasing engineering ideas.",
   },
   {
     title: "JavaScript",
     issuer: "SoloLearn",
     date: "April 07, 2026",
     image: JavaScript,
-    details:
-      "Learned JavaScript fundamentals, DOM, and ES6+ concepts.",
+    details: "Learned JavaScript fundamentals, DOM, and ES6+ concepts.",
   },
 ];
-
-// Animation Variants
-const cardVariants = {
-  hidden: { opacity: 0, y: 80 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
 
 // Card
 const CertificateCard = ({ cert, index }) => {
   const [showDetails, setShowDetails] = useState(false);
 
+  // Generate slightly random rotation to look like scattered photos
+  const randomRotation = (index % 2 === 0 ? 1 : -1) * (2 + (index % 3));
+
   return (
     <motion.div
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      custom={index}
-      whileHover={{ scale: 1.02 }}
+      initial={{ opacity: 0, y: 80, rotate: 0 }}
+      whileInView={{ opacity: 1, y: 0, rotate: randomRotation }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.1, duration: 0.6, type: "spring" }}
+      whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
       onClick={() => setShowDetails(!showDetails)}
-      className="relative glass glass-hover rounded-3xl overflow-hidden glow-box cursor-pointer group"
+      className="relative card-polaroid group cursor-pointer"
+      style={{ transformOrigin: "bottom center" }}
     >
-      <img
-        src={cert.image}
-        alt={`${cert.title} certificate`}
-        className="w-full h-56 object-cover"
-      />
+      <div className="relative w-full h-56 md:h-64 overflow-hidden rounded-[2px] bg-gray-100">
+        <img
+          src={cert.image}
+          alt={`${cert.title} certificate`}
+          className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+        />
+        {/* Shine effect */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none translate-x-[-100%] group-hover:translate-x-[100%] ease-in-out" />
+      </div>
 
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gradient mb-1">
+      <div className="pt-4 text-center">
+        <h3 className="text-xl font-display font-medium text-slate-800 tracking-tight leading-tight">
           {cert.title}
         </h3>
-        <p className="text-secondary text-sm">
+        <p className="text-slate-500 text-sm font-semibold mt-1">
           {cert.issuer}
-        </p>
-        <p className="text-electric-cyan text-xs mt-2 font-medium">
-          {cert.date}
         </p>
       </div>
 
-      {/* Overlay */}
+      {/* Floating details overlay on hover/click */}
       <div
-        className={`absolute inset-0 bg-midnight/90 backdrop-blur-xl p-8 flex flex-col transition-all duration-300 ${
+        className={`absolute inset-0 bg-void/90 backdrop-blur-xl p-8 flex flex-col justify-center text-center items-center rounded overflow-hidden transition-all duration-300 ${
           showDetails
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0"
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100"
         }`}
       >
-        <h3 className="text-xl font-bold text-gradient mb-4">
+        <h3 className="text-2xl font-display font-bold text-white mb-4">
           {cert.title}
         </h3>
+        
+        <p className="text-arc font-bold tracking-widest text-sm uppercase mb-4">
+            {cert.date}
+        </p>
 
-        <p className="text-secondary text-sm leading-relaxed flex-grow">
+        <p className="text-slate-300 text-sm leading-relaxed mb-8">
           {cert.details}
         </p>
 
@@ -135,10 +122,9 @@ const CertificateCard = ({ cert, index }) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="mt-6 flex items-center justify-center gap-2 px-4 py-2 bg-electric-cyan/10 hover:bg-electric-cyan/20 border border-electric-cyan/30 rounded-xl text-electric-cyan text-sm font-semibold transition-all"
+            className="flex items-center gap-2 px-6 py-2.5 bg-white text-void rounded-full font-bold text-sm tracking-wide hover:bg-arc transition-colors"
           >
-            Verify Certificate
-            <ExternalLink size={14} />
+            Verify <ExternalLink className="w-4 h-4" />
           </a>
         )}
       </div>
@@ -146,39 +132,35 @@ const CertificateCard = ({ cert, index }) => {
   );
 };
 
-// Main Section
 const Certificates = () => {
   return (
     <section
       id="certificates"
-      className="py-24 relative overflow-hidden px-4 xs:px-6 md:px-12 lg:px-20"
+      className="py-24 relative overflow-hidden px-4 md:px-8"
     >
-      {/* Background Blobs */}
-      <div
-        className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-electric-cyan/10 rounded-full blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
+      <div className="max-w-6xl mx-auto relative z-10">
+        <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-center flex flex-col items-center justify-center mb-16"
+        >
+            <div className="flex items-center gap-4 mb-4">
+                <span className="w-12 h-px bg-gradient-to-l from-plasma to-transparent" />
+                <span className="badge-pill">Verification</span>
+                <span className="w-12 h-px bg-gradient-to-r from-plasma to-transparent" />
+            </div>
+            <h2 className="text-4xl xs:text-5xl md:text-7xl font-display font-medium text-gradient uppercase tracking-tighter">
+                Certificates
+            </h2>
+        </motion.div>
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-      {/* Title */}
-        <p className="text-electric-cyan text-sm tracking-[0.4em] uppercase font-semibold mb-2">
-          RECOGNITION
-        </p>
-
-        <h2 className="text-4xl xs:text-5xl md:text-7xl font-black text-gradient italic tracking-tighter uppercase">
-          Certificates
-        </h2>
-
-      {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xs:gap-8">
-        {certificates.map((cert, index) => (
-          <CertificateCard key={index} cert={cert} index={index} />
-        ))}
-      </div>
+        {/* Scattered Polaroid Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 px-2 md:px-6">
+            {certificates.map((cert, index) => (
+                <CertificateCard key={index} cert={cert} index={index} />
+            ))}
+        </div>
       </div>
     </section>
   );

@@ -1,82 +1,68 @@
 import { useEffect, useRef } from 'react';
 
 const CustomCursor = () => {
-    const cursorRef = useRef(null);
+    const dotRef      = useRef(null);
     const followerRef = useRef(null);
 
     useEffect(() => {
-        const isMobile = window.innerWidth < 768;
-        if (isMobile) return;
+        if (window.innerWidth < 768) return;
 
-        let mouseX = window.innerWidth / 2;
+        let mouseX = window.innerWidth  / 2;
         let mouseY = window.innerHeight / 2;
-        let followerX = mouseX;
-        let followerY = mouseY;
-        let isHovering = false;
-        let animationFrameId;
+        let fx = mouseX, fy = mouseY;
+        let hovering = false;
+        let rafId;
 
-        const updateCursor = (e) => {
+        // Update dot immediately on move (no lag)
+        const onMove = (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-            
-            if (cursorRef.current) {
-                cursorRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${isHovering ? 1.5 : 1})`;
+            if (dotRef.current) {
+                dotRef.current.style.transform =
+                    `translate3d(${mouseX}px,${mouseY}px,0) translate(-50%,-50%) scale(${hovering ? 1.5 : 1})`;
             }
         };
 
-        const updateFollower = () => {
-            followerX += (mouseX - followerX) * 0.15;
-            followerY += (mouseY - followerY) * 0.15;
+        // Use 'mouseover' → 'mousemove' with delegation is heavy; use pointerover instead (fires less)
+        const onPointerOver = (e) => {
+            const el = e.target;
+            const isLink = el.tagName === 'A' || el.tagName === 'BUTTON'
+                || el.closest('a') || el.closest('button');
+            if (hovering !== isLink) {
+                hovering = isLink;
+                if (dotRef.current) {
+                    dotRef.current.style.transform =
+                        `translate3d(${mouseX}px,${mouseY}px,0) translate(-50%,-50%) scale(${hovering ? 1.5 : 1})`;
+                }
+            }
+        };
 
+        // Lerpd follower — runs in its own RAF loop
+        const animateFollower = () => {
+            fx += (mouseX - fx) * 0.12;
+            fy += (mouseY - fy) * 0.12;
             if (followerRef.current) {
-                followerRef.current.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%)`;
+                followerRef.current.style.transform =
+                    `translate3d(${fx}px,${fy}px,0) translate(-50%,-50%)`;
             }
-
-            animationFrameId = requestAnimationFrame(updateFollower);
+            rafId = requestAnimationFrame(animateFollower);
         };
 
-        const handleMouseOver = (e) => {
-            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
-                isHovering = true;
-            } else {
-                isHovering = false;
-            }
-            if (cursorRef.current) {
-                cursorRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${isHovering ? 1.5 : 1})`;
-            }
-        };
-
-        window.addEventListener('mousemove', updateCursor);
-        window.addEventListener('mouseover', handleMouseOver);
-        
-        // Start animation loop
-        updateFollower();
+        window.addEventListener('mousemove',   onMove,        { passive: true });
+        window.addEventListener('pointerover', onPointerOver, { passive: true });
+        rafId = requestAnimationFrame(animateFollower);
 
         return () => {
-            window.removeEventListener('mousemove', updateCursor);
-            window.removeEventListener('mouseover', handleMouseOver);
-            cancelAnimationFrame(animationFrameId);
+            window.removeEventListener('mousemove',   onMove);
+            window.removeEventListener('pointerover', onPointerOver);
+            cancelAnimationFrame(rafId);
         };
     }, []);
 
     return (
         <>
-            <div
-                ref={cursorRef}
-                className="custom-cursor hidden md:block"
-                style={{
-                    left: 0,
-                    top: 0,
-                }}
-            />
-            <div
-                ref={followerRef}
-                className="custom-cursor-follower hidden md:block"
-                style={{
-                    left: 0,
-                    top: 0,
-                }}
-            />
+            <div ref={dotRef}      className="custom-cursor hidden md:block"          style={{ left: 0, top: 0 }} />
+            <div ref={followerRef} className="custom-cursor-follower hidden md:block" style={{ left: 0, top: 0 }} />
         </>
     );
 };

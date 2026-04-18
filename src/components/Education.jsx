@@ -5,7 +5,7 @@ const Education = () => {
     return (
         <section id="education" className="py-24 px-4 md:px-8 relative overflow-hidden mt-8 md:mt-12">
             {/* Background Element */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[6rem] xs:text-[10rem] md:text-[18rem] font-black text-white/[0.02] light:text-black/[0.02] select-none pointer-events-none uppercase tracking-tighter mix-blend-overlay">
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[4rem] xs:text-[6rem] md:text-[18rem] font-black text-white/[0.02] light:text-black/[0.02] select-none pointer-events-none uppercase tracking-tighter mix-blend-overlay">
                 ANSH
             </div>
 
@@ -37,9 +37,11 @@ const Education = () => {
                     {/* Beast Timeline Line */}
                     <div className="absolute left-[9px] md:left-[15px] top-4 bottom-4 w-[2px] bg-white/5 light:bg-slate-200">
                         <motion.div
-                            animate={{ height: ["0%", "100%"] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                            className="w-full bg-gradient-to-b from-electric-cyan via-cyan-400 to-transparent shadow-[0_0_15px_rgba(34,211,238,0.5)] light:from-indigo-600 light:via-violet-600 light:shadow-[0_0_15px_rgba(79,70,229,0.3)] origin-top"
+                            initial={{ scaleY: 0 }}
+                            whileInView={{ scaleY: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5, ease: 'easeOut' }}
+                            className="w-full h-full bg-gradient-to-b from-electric-cyan via-cyan-400 to-transparent shadow-[0_0_15px_rgba(34,211,238,0.5)] light:from-indigo-600 light:via-violet-600 light:shadow-[0_0_15px_rgba(79,70,229,0.3)] origin-top"
                         />
                     </div>
 
@@ -91,13 +93,11 @@ const Education = () => {
                                         <p className="text-electric-cyan/80 text-xs xs:text-sm md:text-base font-bold tracking-[0.2em] mt-2 uppercase">{edu.institution}</p>
                                     </div>
                                     {edu.status && (
-                                        <motion.span
-                                            animate={{ scale: [1, 1.05, 1] }}
-                                            transition={{ repeat: Infinity, duration: 2 }}
+                                        <span
                                             className="shrink-0 text-[10px] md:text-xs px-4 py-2 bg-electric-cyan/10 light:bg-indigo-100 text-electric-cyan light:text-indigo-600 rounded-full font-black uppercase tracking-widest border border-electric-cyan/30 light:border-indigo-200 shadow-[0_0_10px_rgba(34,211,238,0.2)]"
                                         >
                                             {edu.status}
-                                        </motion.span>
+                                        </span>
                                     )}
                                 </div>
                                 <p className="text-secondary/60 text-[10px] xs:text-xs md:text-sm mb-6 font-mono font-bold uppercase tracking-widest flex items-center gap-2">

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Ansh Patel — Full Stack Developer &amp; UI/UX Designer from Gandhinagar, Gujarat. Building scalable web apps with React, Node.js, and modern AI integration." />
-    <meta name="theme-color" content="#060b18" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <!-- Favicon -->
@@ -15,23 +15,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!--
-      Load font asynchronously (non-render-blocking) with font-display=swap so
-      text is visible immediately using a fallback while Inter downloads.
-    -->
+    <!-- Preload Hero image for instant LCP -->
+    <link rel="preload" as="image" href="/src/assets/photo.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/src/assets/logo.png" fetchpriority="high" />
+
+    <!-- Inter + Syne — render-blocking for no FOUT visual lag -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Syne:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
     />
-    <!-- Noscript fallback for browsers without JS -->
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
 
     <title>Ansh Patel — Full Stack Developer &amp; UI/UX Designer</title>
   </head>

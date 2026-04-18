@@ -1,164 +1,174 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, memo } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import userLogo from '../assets/logo.png';
+import logoImg from '../assets/logo.png';
 
+const navItems = [
+    { label: 'Home',         href: '/' },
+    { label: 'About',        href: '/about' },
+    { label: 'Education',    href: '/education' },
+    { label: 'Skills',       href: '/skills' },
+    { label: 'Projects',     href: '/projects' },
+    { label: 'Hackathons',   href: '/hackathons' },
+    { label: 'Certificates', href: '/certificates' },
+    { label: 'Contact',      href: '/contact' },
+];
+
+/* ── Logo ─────────────────────────────────────────────────── */
+const Logo = memo(() => (
+    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} style={{ willChange: 'transform' }}>
+        <Link to="/" aria-label="Home" className="flex items-center gap-3">
+            {/* Glowing ring + logo image */}
+            <div className="relative w-10 h-10 shrink-0">
+                {/* Outer animated glow ring */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-plasma to-magenta opacity-40 blur-[6px] animate-pulse pointer-events-none" />
+                {/* Clean circle container */}
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border border-plasma/40 bg-[#0b0f19] shadow-[0_0_12px_rgba(34,211,238,0.3)] flex items-center justify-center">
+                    <img
+                        src={logoImg}
+                        alt="Ansh Patel logo"
+                        loading="eager"
+                        decoding="async"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+            {/* Name text */}
+            <span className="hidden sm:block font-display font-bold text-lg tracking-tight text-white hover:text-plasma transition-colors duration-300">
+                Ansh Patel
+            </span>
+        </Link>
+    </motion.div>
+));
+Logo.displayName = 'Logo';
+
+/* ── Nav link ─────────────────────────────────────────────── */
+const NavLink = memo(({ label, href, active }) => (
+    <Link
+        to={href}
+        className={`relative px-3.5 py-2 text-sm font-bold rounded-full transition-colors duration-300 ${
+            active ? 'text-void' : 'text-slate-400 hover:text-white'
+        }`}
+    >
+        {active && (
+            <motion.div
+                layoutId="nav-pill"
+                className="absolute inset-0 bg-gradient-to-r from-plasma to-arc rounded-full shadow-[0_0_18px_rgba(34,211,238,0.45)]"
+                style={{ zIndex: -1 }}
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+            />
+        )}
+        <span className="relative z-10">{label}</span>
+    </Link>
+));
+NavLink.displayName = 'NavLink';
+
+/* ── Navigation ───────────────────────────────────────────── */
 const Navigation = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+    const [scrolled,   setScrolled]   = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const handle = () => setScrolled(window.scrollY > 30);
+        window.addEventListener('scroll', handle, { passive: true });
+        return () => window.removeEventListener('scroll', handle);
     }, []);
 
-    useEffect(() => {
-        if (theme === 'light') {
-            document.documentElement.classList.add('light');
-        } else {
-            document.documentElement.classList.remove('light');
-        }
-        localStorage.setItem('theme', theme);
-    }, [theme]);
-
-    const toggleTheme = () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
-    };
-
-    const navItems = [
-        { label: 'Home', href: '/' },
-        { label: 'About', href: '/about' },
-        { label: 'Education', href: '/education' },
-        { label: 'Skills', href: '/skills' },
-        { label: 'Projects', href: '/projects' },
-        { label: 'GitHub', href: '/github' },
-        { label: 'Hackathons', href: '/hackathons' },
-        { label: 'Certificates', href: '/certificates' },
-        { label: 'Contact', href: '/contact' },
-    ];
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    useEffect(() => { setMobileOpen(false); }, [location.pathname]);
 
     return (
-        <div className="fixed top-6 left-0 right-0 z-50 px-4 md:px-8 pointer-events-none">
-            <motion.nav
-                initial={{ y: -100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-                className={`max-w-5xl mx-auto glass rounded-full px-6 py-3 flex items-center justify-between pointer-events-auto transition-all duration-300 ${isScrolled ? 'bg-midnight/80 border-white/20 dark:bg-midnight/80' : ''
-                    } ${theme === 'light' ? 'bg-white/80 border-gray-200 shadow-lg' : ''}`}
-            >
-                {/* Logo */}
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+        <>
+            {/* ── Desktop floating pill ──────────────────────────── */}
+            <div className="fixed top-6 left-0 right-0 z-50 px-4 md:px-8 pointer-events-none">
+                <motion.nav
+                    initial={{ y: -80, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ type: 'spring', stiffness: 120, damping: 20, delay: 0.1 }}
+                    style={{ willChange: 'transform' }}
+                    className="mx-auto max-w-7xl pointer-events-auto"
                 >
-                    <Link
-                        to="/"
-                        aria-label="Home — Ansh Patel Portfolio"
-                        className="group relative flex items-center justify-center gap-3"
-                    >
-                    <div className={`relative w-10 h-10 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center ${theme === 'light'
-                        ? 'border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.2)] group-hover:border-purple-600/50 group-hover:shadow-[0_0_20px_rgba(147,51,234,0.4)] bg-white/50'
-                        : 'border-electric-cyan/30 shadow-[0_0_15px_rgba(0,255,255,0.2)] group-hover:border-purple-500/50 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] bg-black/20'
+                    {/* Gradient border wrapper */}
+                    <div className={`relative rounded-full transition-all duration-500 ${
+                        scrolled ? 'p-px bg-gradient-to-r from-plasma/40 via-magenta/20 to-arc/40 shadow-[0_16px_48px_rgba(0,0,0,0.55)]' : ''
+                    }`}>
+                        <div className={`flex items-center justify-between rounded-full px-4 sm:px-6 py-3 transition-all duration-500 ${
+                            scrolled ? 'bg-[#080c14]/85 backdrop-blur-2xl' : 'bg-transparent'
                         }`}>
-                        <svg viewBox="0 0 100 100" className="w-full h-full group-hover:scale-110 transition-transform duration-500">
-                            <defs>
-                                <linearGradient id="logo-gradient-dark" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stopColor="#818cf8" />
-                                    <stop offset="100%" stopColor="#A855F7" />
-                                </linearGradient>
-                                <linearGradient id="logo-gradient-light" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stopColor="#4F46E5" />
-                                    <stop offset="100%" stopColor="#7C3AED" />
-                                </linearGradient>
-                            </defs>
-                            <text
-                                x="50"
-                                y="72"
-                                fontSize="62"
-                                fontWeight="900"
-                                fontFamily="'Inter', system-ui, sans-serif"
-                                letterSpacing="-3px"
-                                fill={`url(#logo-gradient-${theme === 'light' ? 'light' : 'dark'})`}
-                                textAnchor="middle"
-                            >
-                                AP
-                            </text>
-                        </svg>
-                        <div className={`absolute inset-0 bg-gradient-to-tr mix-blend-overlay ${theme === 'light' ? 'from-indigo-500/10 to-violet-600/10' : 'from-electric-cyan/10 to-purple-500/10'}`}></div>
+                            <Logo />
+
+                            {/* Desktop links */}
+                            <div className="hidden lg:flex items-center gap-1">
+                                {navItems.map(({ label, href }) => (
+                                    <NavLink
+                                        key={label}
+                                        label={label}
+                                        href={href}
+                                        active={location.pathname === href}
+                                    />
+                                ))}
+                            </div>
+
+                            {/* Mobile hamburger */}
+                            <div className="lg:hidden">
+                                <motion.button
+                                    onClick={() => setMobileOpen(o => !o)}
+                                    whileTap={{ scale: 0.9 }}
+                                    aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                                    className="p-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-plasma/30 transition-all duration-300"
+                                >
+                                    <AnimatePresence mode="wait" initial={false}>
+                                        {mobileOpen
+                                            ? <motion.span key="x"    initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}><X    className="w-5 h-5 text-plasma" /></motion.span>
+                                            : <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }}  animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}><Menu className="w-5 h-5 text-plasma" /></motion.span>
+                                        }
+                                    </AnimatePresence>
+                                </motion.button>
+                            </div>
+                        </div>
                     </div>
+                </motion.nav>
+            </div>
 
-                    <span className={`text-xl font-bold hidden sm:block ${theme === 'light' ? 'text-gradient' : 'text-white'}`}>
-                        Ansh Patel
-                    </span>
-                    </Link>
-                </motion.div>
-
-                {/* Desktop Navigation */}
-                <div className="hidden lg:flex items-center gap-4 lg:gap-8">
-                    {navItems.map((item) => (
-                        <motion.div key={item.label} whileHover={{ y: -1 }}>
-                            <Link
-                                to={item.href}
-                                className={`text-sm font-medium transition-colors ${theme === 'light' ? 'text-indigo-600 hover:text-violet-600' : 'text-gray-400 hover:text-white'}`}
-                            >
-                                {item.label}
-                            </Link>
-                        </motion.div>
-                    ))}
-
-                    
-                </div>
-
-                {/* Mobile Menu Button */}
-                <motion.button
-                    className={`lg:hidden p-2.5 glass rounded-full ${theme === 'light' ? 'border-gray-200 text-gray-900' : ''}`}
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    whileTap={{ scale: 0.95 }}
-                    aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-                    aria-expanded={isMobileMenuOpen}
-                    aria-controls="mobile-nav-menu"
-                >
-                    {isMobileMenuOpen ? (
-                        <X className="w-5 h-5 text-electric-cyan" aria-hidden="true" />
-                    ) : (
-                        <Menu className="w-5 h-5 text-electric-cyan" aria-hidden="true" />
-                    )}
-                </motion.button>
-            </motion.nav>
-
-            {/* Mobile Menu */}
-            {isMobileMenuOpen && (
-                <motion.div
-                    id="mobile-nav-menu"
-                    role="navigation"
-                    aria-label="Mobile navigation"
-                    initial={{ opacity: 0, y: -20, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 10, scale: 1 }}
-                    className={`lg:hidden glass rounded-[2.5rem] p-8 space-y-2 pointer-events-auto max-w-[calc(100vw-2rem)] sm:max-w-sm mx-auto shadow-2xl ${theme === 'light' ? 'bg-white/90 border-gray-200' : 'bg-midnight/90'}`}
-                >
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.label}
-                            to={item.href}
-                            className={`block transition-all py-3 px-4 rounded-2xl text-center font-bold tracking-tight ${theme === 'light' 
-                                ? 'text-indigo-600 hover:bg-indigo-50 active:scale-95' 
-                                : 'text-gray-300 hover:text-electric-cyan hover:bg-white/5 active:scale-95'}`}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
-
-                   
-                </motion.div>
-            )}
-        </div>
+            {/* ── Mobile dropdown ────────────────────────────────── */}
+            <AnimatePresence>
+                {mobileOpen && (
+                    <motion.div
+                        key="mobile-menu"
+                        initial={{ opacity: 0, y: -12, scale: 0.96 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -12, scale: 0.96 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                        className="fixed top-24 left-4 right-4 lg:hidden z-40"
+                    >
+                        {/* Gradient border wrapper */}
+                        <div className="p-px rounded-[2rem] bg-gradient-to-b from-plasma/30 via-magenta/10 to-transparent shadow-2xl">
+                            <div className="bg-[#080c14]/90 backdrop-blur-2xl rounded-[calc(2rem-1px)] p-3 flex flex-col gap-1">
+                                {navItems.map(({ label, href }) => {
+                                    const active = location.pathname === href;
+                                    return (
+                                        <Link
+                                            key={label}
+                                            to={href}
+                                            onClick={() => setMobileOpen(false)}
+                                            className={`px-5 py-3.5 rounded-2xl text-center font-bold text-[15px] tracking-wide transition-all duration-200 ${
+                                                active
+                                                    ? 'bg-gradient-to-r from-plasma to-arc text-void shadow-[0_0_20px_rgba(34,211,238,0.3)]'
+                                                    : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                                            }`}
+                                        >
+                                            {label}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     );
 };
 

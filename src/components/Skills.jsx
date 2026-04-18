@@ -87,6 +87,8 @@ const SkillRow = memo(({ skill, color, delay }) => (
             <img
                 src={skill.icon}
                 alt={skill.name}
+                width="28"
+                height="28"
                 loading="lazy"
                 className={`w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-110 ${skill.invert ? 'invert' : ''}`}
             />
@@ -150,7 +152,7 @@ const MarqueeStrip = memo(() => (
         <div className="flex whitespace-nowrap gap-8 items-center" style={{ animation: 'marquee-left 28s linear infinite' }}>
             {[...allSkills, ...allSkills, ...allSkills].map((s, i) => (
                 <div key={i} className="flex items-center gap-2.5 shrink-0 opacity-40 hover:opacity-100 transition-opacity duration-300">
-                    <img src={s.icon} alt={s.name} loading="lazy" className="w-5 h-5 object-contain" />
+                    <img src={s.icon} alt={s.name} width="20" height="20" loading="lazy" className="w-5 h-5 object-contain" />
                     <span className="text-sm font-semibold text-white/60 font-mono tracking-widest uppercase">{s.name}</span>
                 </div>
             ))}

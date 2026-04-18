@@ -16,14 +16,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Preload Hero image for instant LCP -->
-    <link rel="preload" as="image" href="/src/assets/photo.png" fetchpriority="high" />
-    <link rel="preload" as="image" href="/src/assets/logo.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/photo.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/logo.png" fetchpriority="high" />
 
-    <!-- Inter + Syne — render-blocking for no FOUT visual lag -->
+    <!-- Critical CSS & Fonts — using display=swap to avoid rendering block -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Syne:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" />
+    </noscript>
 
     <title>Ansh Patel — Full Stack Developer &amp; UI/UX Designer</title>
   </head>

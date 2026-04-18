@@ -96,6 +96,9 @@ const CertificateCard = ({ cert, index }) => {
         <img
           src={cert.image}
           alt={`${cert.title} certificate`}
+          width="400"
+          height="300"
+          loading="lazy"
           className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
         />
         {/* Shine effect */}

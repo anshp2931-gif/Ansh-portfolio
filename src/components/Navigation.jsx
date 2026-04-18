@@ -26,8 +26,10 @@ const Logo = memo(() => (
                 {/* Clean circle container */}
                 <div className="relative w-10 h-10 rounded-full overflow-hidden border border-plasma/40 bg-[#0b0f19] shadow-[0_0_12px_rgba(34,211,238,0.3)] flex items-center justify-center">
                     <img
-                        src={logoImg}
+                        src="/logo.png"
                         alt="Ansh Patel logo"
+                        width="40"
+                        height="40"
                         loading="eager"
                         decoding="async"
                         className="w-full h-full object-cover"

@@ -38,6 +38,9 @@ const FigmaCard = ({ design, index }) => {
         <img 
           src={design.image} 
           alt={design.title} 
+          width="600"
+          height="400"
+          loading="lazy"
           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />

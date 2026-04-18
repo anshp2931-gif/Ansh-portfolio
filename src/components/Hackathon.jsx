@@ -74,7 +74,7 @@ const HackathonCard = ({ event, index }) => {
                     <div className="shrink-0 flex flex-col items-start gap-4 w-full md:w-64">
                         <div className={`p-4 rounded-2xl bg-white/5 border border-white/10`}>
                             {event.icon ? (
-                                <img src={event.icon} alt={event.title} className="w-12 h-12 object-contain filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500" />
+                                <img src={event.icon} alt={event.title} width="48" height="48" className="w-12 h-12 object-contain filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500" />
                             ) : (
                                 <div className={`w-12 h-12 flex flex-col items-center justify-center font-display font-black text-2xl bg-gradient-to-br ${event.colorClass} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-500`}>
                                     RR
@@ -106,7 +106,7 @@ const HackathonCard = ({ event, index }) => {
                                         onClick={() => { setCurrentImage(i); setIsLightboxOpen(true); }}
                                         className="h-24 w-40 shrink-0 rounded-lg overflow-hidden cursor-pointer relative group/thumb snap-start border border-white/10"
                                     >
-                                        <img src={img} alt="thumbnail" className="w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-110" />
+                                        <img src={img} alt="thumbnail" width="100" height="100" className="w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-110" />
                                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover/thumb:opacity-100 flex items-center justify-center transition-opacity">
                                             <span className="text-[10px] font-bold text-white tracking-widest uppercase">Expand</span>
                                         </div>

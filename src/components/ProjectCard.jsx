@@ -44,6 +44,8 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, ytUR
                 <img
                     src={image}
                     alt={`${title} project`}
+                    width="600"
+                    height="400"
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-70 group-hover:opacity-90"
                 />

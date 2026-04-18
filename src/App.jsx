@@ -15,7 +15,7 @@ import About from './components/About';
 const Skills = lazy(() => import('./components/Skills'));
 const Education = lazy(() => import('./components/Education'));
 const Projects = lazy(() => import('./components/Projects'));
-const Figma = lazy(() => import('./components/Figma'));
+// const Figma = lazy(() => import('./components/Figma'));
 const Github = lazy(() => import('./components/Github'));
 const Hackathon = lazy(() => import('./components/Hackathon'));
 const Certificates = lazy(() => import('./components/Certificates'));
@@ -123,11 +123,12 @@ function App() {
         <Preloader onComplete={() => setShowPreloader(false)} />
       )}
       <ReactLenis root options={{ 
-      lerp: 0.05, 
-      duration: 1.2, 
-      smoothWheel: true, 
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      lerp: 0.12,
+      duration: 1.0,
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.0,
+      infinite: false,
     }}>
     <div className="relative min-h-screen">
       {/* Background Effects — lazy so it doesn't block first paint */}
@@ -156,7 +157,7 @@ function App() {
                   <Skills />
                   <Education />
                   <Projects />
-                  <Figma />
+                  {/* <Figma /> */}
                   <Github />
                   <Hackathon />
                   <Certificates />
@@ -168,7 +169,7 @@ function App() {
             <Route path="/skills" element={<Skills />} />
             <Route path="/education" element={<Education />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/figma" element={<Figma />} />
+            {/* <Route path="/figma" element={<Figma />} /> */}
             <Route path="/github" element={<Github />} />
             <Route path="/hackathons" element={<Hackathon />} />
             <Route path="/certificates" element={<Certificates />} />

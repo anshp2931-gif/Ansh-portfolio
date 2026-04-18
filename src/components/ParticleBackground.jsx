@@ -22,8 +22,8 @@ const ParticleBackground = () => {
         window.addEventListener('mouseout',  onLeave, { passive: true });
 
         // Fewer particles = less work per frame
-        const COUNT = 30;
-        const RADIUS = 120;
+        const COUNT = 20;
+        const RADIUS = 100;
         const isLight = () => document.documentElement.classList.contains('light');
 
         const stars = Array.from({ length: COUNT }, () => {
@@ -31,26 +31,33 @@ const ParticleBackground = () => {
             const by = Math.random() * canvas.height;
             return {
                 x: bx, y: by, bx, by,
-                size:        Math.random() < 0.9 ? Math.random() * 1.2 + 0.2 : Math.random() * 2 + 1,
-                baseOpacity: Math.random() * 0.45 + 0.1,
+                size:        Math.random() < 0.9 ? Math.random() * 1.0 + 0.2 : Math.random() * 1.5 + 0.8,
+                baseOpacity: Math.random() * 0.35 + 0.08,
                 opacity:     0,
-                pulseSpeed:  Math.random() * 0.015 + 0.004,
+                pulseSpeed:  Math.random() * 0.01 + 0.003,
                 phase:       Math.random() * Math.PI * 2,
-                vx:          (Math.random() - 0.5) * 0.15,
-                vy:          (Math.random() - 0.5) * 0.15,
+                vx:          (Math.random() - 0.5) * 0.1,
+                vy:          (Math.random() - 0.5) * 0.1,
             };
         });
 
         let animId = null;
         let hidden = false;
+        let lastTime = 0;
+        const TARGET_FPS = 30;
+        const FRAME_MS = 1000 / TARGET_FPS;
 
         // Pause animation when tab is not visible
         const onVisibility = () => { hidden = document.hidden; };
         document.addEventListener('visibilitychange', onVisibility);
 
-        const animate = () => {
+        const animate = (timestamp) => {
             animId = requestAnimationFrame(animate);
             if (hidden) return;
+
+            // Throttle to TARGET_FPS to save CPU
+            if (timestamp - lastTime < FRAME_MS) return;
+            lastTime = timestamp;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const color = isLight() ? '79,70,229' : '255,255,255';
@@ -58,7 +65,7 @@ const ParticleBackground = () => {
             for (const s of stars) {
                 // Pulse
                 s.phase   += s.pulseSpeed;
-                s.opacity  = Math.max(0, s.baseOpacity + Math.sin(s.phase) * 0.15);
+                s.opacity  = Math.max(0, s.baseOpacity + Math.sin(s.phase) * 0.12);
 
                 // Drift
                 s.bx += s.vx;
@@ -75,14 +82,14 @@ const ParticleBackground = () => {
                 const r2  = RADIUS * RADIUS;
                 let tx = s.bx, ty = s.by;
                 if (d2 < r2 && d2 > 0) {
-                    const d    = Math.sqrt(d2);       // sqrt only when needed
+                    const d    = Math.sqrt(d2);
                     const force = (RADIUS - d) / RADIUS;
-                    tx -= (dx / d) * force * 40;
-                    ty -= (dy / d) * force * 40;
+                    tx -= (dx / d) * force * 30;
+                    ty -= (dy / d) * force * 30;
                 }
 
-                s.x += (tx - s.x) * 0.08;
-                s.y += (ty - s.y) * 0.08;
+                s.x += (tx - s.x) * 0.06;
+                s.y += (ty - s.y) * 0.06;
 
                 ctx.fillStyle = `rgba(${color},${s.opacity})`;
                 ctx.beginPath();
@@ -91,7 +98,7 @@ const ParticleBackground = () => {
             }
         };
 
-        animate();
+        animate(0);
 
         const onResize = () => {
             canvas.width  = window.innerWidth;

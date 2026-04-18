@@ -90,7 +90,10 @@
       radial-gradient(ellipse 60% 40% at 80% 110%, rgba(124, 58, 237, 0.05) 0%, transparent 60%);
   }
 
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto; contain: none; }
+
+  /* Tell browser to composite the scroll on GPU */
+  body { will-change: scroll-position; }
 
   section {
     scroll-margin-top: 6rem;
@@ -244,10 +247,10 @@
   /* ── Glass ──────────────────────────────────── */
   .glass {
     background: rgba(255, 255, 255, 0.035);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.07);
-    will-change: transform, opacity;
+    will-change: auto;
     transform: translateZ(0);
   }
 
@@ -605,7 +608,7 @@
   inset: -3px;
   border-radius: 50%;
   background: conic-gradient(from 0deg, #71717a, #ffffff, #a1a1aa, #ffffff, #71717a);
-  animation: spin-slow 6s linear infinite;
+  /* Removed spin animation — was burning GPU with two conic gradients always animating */
   z-index: -1;
 }
 
@@ -616,8 +619,7 @@
   border-radius: 50%;
   background: conic-gradient(from 180deg, #22d3ee, #0ea5e9, #38bdf8, #67e8f9, #22d3ee);
   filter: blur(12px);
-  opacity: 0.6;
-  animation: spin-slow 6s linear infinite reverse;
+  opacity: 0.5;
   z-index: -2;
 }
 
@@ -666,17 +668,35 @@
 @media (max-width: 767px) {
   html { scroll-behavior: smooth; }
 
-  .blur-\[100px\], .blur-\[120px\], .blur-\[150px\], .blur-3xl { display: none !important; }
+  /* Kill all heavy blur effects on mobile */
+  .blur-\[100px\], .blur-\[120px\], .blur-\[150px\], .blur-3xl, .blur-\[60px\], .blur-\[80px\] { display: none !important; }
 
   .custom-cursor, .custom-cursor-follower { display: none !important; }
 
-  .glass, .card-cosmic, .nav-shell { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  /* Remove all backdrop-filter on mobile — massive GPU savings */
+  .glass, .card-cosmic, .nav-shell, .badge-pill, .btn-plasma, .btn-outline {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Disable all CSS animations on mobile */
+  .marquee-left, .marquee-right, .float-slow, .float-fast, .text-shimmer {
+    animation: none !important;
+  }
+
+  /* Disable photo-ring animations on mobile */
+  .photo-ring::before, .photo-ring::after {
+    animation: none !important;
+  }
+
+  /* Disable ping animations */
+  .animate-ping { animation: none !important; }
 
   .hero-shell { border-radius: 1.5rem; padding: 1.25rem; }
 
-  .hero-orb { filter: blur(50px); opacity: 0.18; }
+  .hero-orb { filter: blur(30px); opacity: 0.1; }
 
-  body::before { display: none; } /* skip grain on mobile to save GPU */
+  body::before { display: none; }
 
   h1,h2,h3 { word-break: break-word; hyphens: auto; }
 }

@@ -138,66 +138,67 @@ const About = () => {
                 <title>{seoConfig.about.title}</title>
                 <meta name="description" content={seoConfig.about.description} />
             </Helmet>
-        {/* Watermark */}
-        <div className="absolute top-20 -left-10 text-[4rem] xs:text-[6rem] md:text-[16rem] lg:text-[20rem] font-display text-white/[0.015] select-none pointer-events-none uppercase tracking-tighter leading-none whitespace-nowrap">
-            Explore
-        </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start"
-            >
-                {/* LEFT: Photo + Stats */}
-                <div className="w-full lg:w-5/12">
-                    <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-                        className="relative aspect-auto rounded-[2rem] p-1 glow-box z-10 bg-void mb-10 overflow-hidden will-change-transform max-w-[340px] mx-auto lg:max-w-none"
-                    >
-                        <img
-                            src={profileImg}
-                            alt="Ansh Patel - Full Stack Developer"
-                            loading="eager"
-                            fetchPriority="high"
-                            decoding="async"
-                            className="w-full rounded-[1.8rem] object-cover transition-[filter] duration-700"
-                        />
-                        <div className="absolute inset-0 rounded-[1.8rem] border border-white/10 pointer-events-none" />
-                    </motion.div>
+            {/* Watermark */}
+            <div className="absolute top-20 -left-10 text-[4rem] xs:text-[6rem] md:text-[16rem] lg:text-[20rem] font-display text-white/[0.015] select-none pointer-events-none uppercase tracking-tighter leading-none whitespace-nowrap">
+                Explore
+            </div>
 
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <StatCard label="Coding Yrs" value={1}  icon={Code2}     delay={0.1} />
-                        <StatCard label="Projects"   value={6}  icon={Database}  delay={0.2} />
-                        <StatCard label="Hackathons" value={3}  icon={Terminal}  delay={0.3} />
-                        <StatCard label="Focus"      value="User Exp" icon={Heart} delay={0.4} />
+            <div className="max-w-7xl mx-auto relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start"
+                >
+                    {/* LEFT: Photo + Stats */}
+                    <div className="w-full lg:w-5/12">
+                        <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+                            className="relative aspect-auto rounded-[2rem] p-1 glow-box z-10 bg-void mb-10 overflow-hidden will-change-transform max-w-[340px] mx-auto lg:max-w-none"
+                        >
+                            <img
+                                src={profileImg}
+                                alt="Ansh Patel - Full Stack Developer"
+                                loading="eager"
+                                fetchPriority="high"
+                                decoding="async"
+                                className="w-full rounded-[1.8rem] object-cover transition-[filter] duration-700"
+                            />
+                            <div className="absolute inset-0 rounded-[1.8rem] border border-white/10 pointer-events-none" />
+                        </motion.div>
+
+                        {/* Stats Grid */}
+                        <div className="grid grid-cols-2 gap-4">
+                            <StatCard label="Coding Yrs" value={1}  icon={Code2}     delay={0.1} />
+                            <StatCard label="Projects"   value={6}  icon={Database}  delay={0.2} />
+                            <StatCard label="Hackathons" value={3}  icon={Terminal}  delay={0.3} />
+                            <StatCard label="Focus"      value="User Exp" icon={Heart} delay={0.4} />
+                        </div>
                     </div>
-                </div>
 
-                {/* RIGHT: Heading + Terminal */}
-                <div className="w-full lg:w-7/12 flex flex-col justify-start">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="flex items-center gap-4 mb-6"
-                    >
-                        <span className="w-16 h-px bg-gradient-to-r from-plasma to-transparent" />
-                    </motion.div>
+                    {/* RIGHT: Heading + Terminal */}
+                    <div className="w-full lg:w-7/12 flex flex-col justify-start">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="flex items-center gap-4 mb-6"
+                        >
+                            <span className="w-16 h-px bg-gradient-to-r from-plasma to-transparent" />
+                        </motion.div>
 
-                    <h2 className="text-4xl xs:text-5xl md:text-6xl font-display mb-10 text-shimmer uppercase tracking-tight">
-                        Engineering <br /> The Future
-                    </h2>
+                        <h2 className="text-4xl xs:text-5xl md:text-6xl font-display mb-10 text-shimmer uppercase tracking-tight">
+                            Engineering <br /> The Future
+                        </h2>
 
-                    <TerminalWindow />
-                </div>
-            </motion.div>
-        </div>
-    </section>
+                        <TerminalWindow />
+                    </div>
+                </motion.div>
+            </div>
+        </section>
     );
 };
 

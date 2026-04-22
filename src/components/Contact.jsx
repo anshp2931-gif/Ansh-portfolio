@@ -141,8 +141,8 @@ const Contact = () => {
                                     variants={contactItem}
                                     className="flex items-center gap-4"
                                 >
-                                    <div className="p-3 bg-electric-cyan/10 light:bg-indigo-100 rounded-xl">
-                                        <Mail className="w-5 h-5 text-electric-cyan light:text-indigo-600" />
+                                    <div className="p-3 bg-amber-500/10 light:bg-amber-100 rounded-xl">
+                                        <Mail className="w-5 h-5 text-amber-500 light:text-amber-600" />
                                     </div>
 
                                     <div>
@@ -157,8 +157,8 @@ const Contact = () => {
                                     variants={contactItem}
                                     className="flex items-center gap-4"
                                 >
-                                    <div className="p-3 bg-electric-cyan/10 light:bg-indigo-100 rounded-xl">
-                                        <MapPin className="w-5 h-5 text-electric-cyan light:text-indigo-600" />
+                                    <div className="p-3 bg-amber-500/10 light:bg-amber-100 rounded-xl">
+                                        <MapPin className="w-5 h-5 text-amber-500 light:text-amber-600" />
                                     </div>
 
                                     <div>
@@ -248,7 +248,7 @@ const Contact = () => {
                                     disabled={isSubmitting || isSubmitted}
                                     placeholder="Your name"
                                     className="w-full px-4 py-3 bg-white/5 light:bg-slate-100/50 border border-white/10 light:border-slate-300 rounded-xl 
-                  focus:outline-none focus:border-electric-cyan/50 light:focus:border-indigo-500/50
+                  focus:outline-none focus:border-amber-500/50 light:focus:border-amber-500/50
                   transition-all duration-300 focus:scale-[1.02] text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
@@ -269,7 +269,7 @@ const Contact = () => {
                                     disabled={isSubmitting || isSubmitted}
                                     placeholder="your.email@example.com"
                                     className="w-full px-4 py-3 bg-white/5 light:bg-slate-100/50 border border-white/10 light:border-slate-300 rounded-xl 
-                  focus:outline-none focus:border-electric-cyan/50 light:focus:border-indigo-500/50
+                  focus:outline-none focus:border-amber-500/50 light:focus:border-amber-500/50
                   transition-all duration-300 focus:scale-[1.02] text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
@@ -290,7 +290,7 @@ const Contact = () => {
                                     disabled={isSubmitting || isSubmitted}
                                     placeholder="Tell me about your project..."
                                     className="w-full px-4 py-3 bg-white/5 light:bg-slate-100/50 border border-white/10 light:border-slate-300 rounded-xl resize-none
-                  focus:outline-none focus:border-electric-cyan/50 light:focus:border-indigo-500/50
+                  focus:outline-none focus:border-amber-500/50 light:focus:border-amber-500/50
                   transition-all duration-300 focus:scale-[1.02] text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
@@ -301,14 +301,14 @@ const Contact = () => {
                                 disabled={isSubmitting || isSubmitted}
                                 whileHover={!isSubmitting ? {
                                     scale: 1.05,
-                                    boxShadow: "0px 0px 25px rgba(0,255,255,0.4)",
+                                    boxShadow: "0px 0px 25px rgba(245,158,11,0.4)",
                                 } : {}}
                                 whileTap={!isSubmitting ? { scale: 0.95 } : {}}
                                 animate={isSubmitted ? { scale: [1, 1.1, 1] } : isSubmitting ? { scale: 1.02 } : {}}
                                 transition={{ duration: 0.4 }}
                                 className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all duration-300 ${isSubmitted
                                     ? "bg-green-500/20 text-green-500"
-                                    : "bg-electric-cyan/10 light:bg-indigo-100 hover:bg-electric-cyan/20 light:hover:bg-indigo-200 text-electric-cyan light:text-indigo-600"
+                                    : "bg-amber-500/10 light:bg-amber-100 hover:bg-amber-500/20 light:hover:bg-amber-200 text-amber-500 light:text-amber-600"
                                     }`}
                             >
                                 {isSubmitting ? (

@@ -126,7 +126,7 @@ const CertificateCard = ({ cert, index }) => {
           {cert.title}
         </h3>
         
-        <p className="text-arc font-bold tracking-widest text-sm uppercase mb-4">
+        <p className="text-amber-500 font-bold tracking-widest text-sm uppercase mb-4">
             {cert.date}
         </p>
 
@@ -140,7 +140,7 @@ const CertificateCard = ({ cert, index }) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-2 px-6 py-2.5 bg-white text-void rounded-full font-bold text-sm tracking-wide hover:bg-arc transition-colors"
+            className="flex items-center gap-2 px-6 py-2.5 bg-white text-void rounded-full font-bold text-sm tracking-wide hover:bg-amber-500 transition-colors"
           >
             Verify <ExternalLink className="w-4 h-4" />
           </a>

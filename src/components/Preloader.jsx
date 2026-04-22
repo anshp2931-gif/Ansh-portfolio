@@ -23,7 +23,7 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                 initial={{ opacity: 0, scale: 0, borderWidth: "60px" }}
                 animate={{ opacity: [0, 0.6, 0], scale: [0, 3, 6], borderWidth: ["60px", "5px", "0px"] }}
                 transition={{ delay: impactTime, duration: 1.2, ease: "easeOut" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vh] h-[40vh] rounded-full border-plasma shadow-[0_0_50px_rgba(34,211,238,1)] z-0 mix-blend-screen pointer-events-none"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vh] h-[40vh] rounded-full border-plasma shadow-[0_0_50px_rgba(245,158,11,1)] z-0 mix-blend-screen pointer-events-none"
             />
 
             {/* Deep Screen Glow post-impact */}
@@ -41,20 +41,20 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                 <motion.div className="absolute flex flex-nowrap gap-3 sm:gap-4 md:gap-8 justify-center w-full text-red-600 mix-blend-screen blur-[2px] z-0"
                     initial={{ opacity: 0, x: 0 }}
                     animate={{ opacity: [0, 0.8, 0], x: [0, -30, 0], scale: [1, 1.1, 1] }}
-                    transition={{ delay: impactTime, duration: 0.3, ease: "easeOut" }}
+                    transition={{ delay: impactTime, duration: 0.4, ease: "easeOut" }}
                 >
-                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black uppercase whitespace-nowrap">Ansh</span>
-                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black uppercase whitespace-nowrap">Patel</span>
+                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[9rem] font-display font-black uppercase whitespace-nowrap">Ansh</span>
+                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[9rem] font-display font-black uppercase whitespace-nowrap">Patel</span>
                 </motion.div>
 
-                {/* CYAN CHROMATIC GHOST */}
-                <motion.div className="absolute flex flex-nowrap gap-3 sm:gap-4 md:gap-8 justify-center w-full text-cyan-400 mix-blend-screen blur-[2px] z-0"
+                {/* GOLD CHROMATIC GHOST */}
+                <motion.div className="absolute flex flex-nowrap gap-3 sm:gap-4 md:gap-8 justify-center w-full text-amber-500 mix-blend-screen blur-[2px] z-0"
                     initial={{ opacity: 0, x: 0 }}
                     animate={{ opacity: [0, 0.8, 0], x: [0, 30, 0], scale: [1, 1.1, 1] }}
-                    transition={{ delay: impactTime, duration: 0.3, ease: "easeOut" }}
+                    transition={{ delay: impactTime, duration: 0.4, ease: "easeOut" }}
                 >
-                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black uppercase whitespace-nowrap">Ansh</span>
-                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black uppercase whitespace-nowrap">Patel</span>
+                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[9rem] font-display font-black uppercase whitespace-nowrap">Ansh</span>
+                    <span className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[9rem] font-display font-black uppercase whitespace-nowrap">Patel</span>
                 </motion.div>
 
                 {/* THE ACTUAL TEXT */}
@@ -68,8 +68,8 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                             filter: ["blur(20px)", "blur(0px)", "blur(0px)"],
                             opacity: [0, 1, 1]
                         }}
-                        transition={{ duration: 0.6, delay: enterDelay, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black tracking-tighter text-white uppercase leading-none drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] pb-1 md:pb-2 whitespace-nowrap"
+                        transition={{ duration: 0.8, delay: enterDelay, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[9rem] font-display font-black tracking-tighter text-white uppercase leading-none drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] pb-1 md:pb-2 whitespace-nowrap"
                     >
                         Ansh
                     </motion.span>
@@ -83,8 +83,8 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                             filter: ["blur(20px)", "blur(0px)", "blur(0px)"],
                             opacity: [0, 1, 1]
                         }}
-                        transition={{ duration: 0.6, delay: enterDelay, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[14rem] font-display font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-plasma to-white uppercase leading-none pb-1 md:pb-2 whitespace-nowrap"
+                        transition={{ duration: 0.8, delay: enterDelay, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] xl:text-[9rem] font-display font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-plasma to-white uppercase leading-none pb-1 md:pb-2 whitespace-nowrap"
                     >
                         Patel
                     </motion.span>
@@ -117,11 +117,11 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
                 {/* Sci-Fi Center-Split Loading Bar */}
                 <div className="relative w-full h-[2px] bg-white/5 overflow-hidden flex justify-center">
                     <motion.div
-                        className="absolute right-1/2 h-full bg-gradient-to-l from-white via-plasma to-transparent shadow-[0_0_15px_rgba(34,211,238,1)]"
+                        className="absolute right-1/2 h-full bg-gradient-to-l from-white via-plasma to-transparent shadow-[0_0_15px_rgba(245,158,11,1)]"
                         style={{ width: `${progress}%` }}
                     />
                     <motion.div
-                        className="absolute left-1/2 h-full bg-gradient-to-r from-white via-arc to-transparent shadow-[0_0_15px_rgba(34,211,238,1)]"
+                        className="absolute left-1/2 h-full bg-gradient-to-r from-white via-arc to-transparent shadow-[0_0_15px_rgba(245,158,11,1)]"
                         style={{ width: `${progress}%` }}
                     />
                 </div>
@@ -171,7 +171,7 @@ const Preloader = ({ onComplete }) => {
                     {/* --- TOP SPLICED SCREEN HALF --- */}
                     <motion.div
                         exit={{ y: "-100vh" }}
-                        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+                        transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
                         className="absolute top-0 inset-x-0 h-[50vh] bg-black overflow-hidden pointer-events-auto"
                     >
                         {/* We render identical collision graphics inside both halves! */}
@@ -179,9 +179,9 @@ const Preloader = ({ onComplete }) => {
 
                         {/* Plasma Cut Edge - ignites on slice */}
                         <motion.div
-                            className="absolute bottom-0 inset-x-0 h-[3px] bg-cyan-400"
-                            initial={{ opacity: 0, boxShadow: "0 0 0px 0px rgba(34,211,238,0)" }}
-                            exit={{ opacity: [0, 1, 0], boxShadow: ["0 0 0px 0px #22d3ee", "0 0 100px 30px #22d3ee", "0 0 0px 0px #22d3ee"] }}
+                            className="absolute bottom-0 inset-x-0 h-[3px] bg-amber-400"
+                            initial={{ opacity: 0, boxShadow: "0 0 0px 0px rgba(245,158,11,0)" }}
+                            exit={{ opacity: [0, 1, 0], boxShadow: ["0 0 0px 0px #f59e0b", "0 0 100px 30px #f59e0b", "0 0 0px 0px #f59e0b"] }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
                         />
                     </motion.div>
@@ -189,7 +189,7 @@ const Preloader = ({ onComplete }) => {
                     {/* --- BOTTOM SPLICED SCREEN HALF --- */}
                     <motion.div
                         exit={{ y: "100vh" }}
-                        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+                        transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
                         className="absolute bottom-0 inset-x-0 h-[50vh] bg-black overflow-hidden pointer-events-auto"
                     >
                         {/* We render identical collision graphics inside both halves! */}
@@ -197,9 +197,9 @@ const Preloader = ({ onComplete }) => {
 
                         {/* Plasma Cut Edge - ignites on slice */}
                         <motion.div
-                            className="absolute top-0 inset-x-0 h-[3px] bg-cyan-400"
-                            initial={{ opacity: 0, boxShadow: "0 0 0px 0px rgba(34,211,238,0)" }}
-                            exit={{ opacity: [0, 1, 0], boxShadow: ["0 0 0px 0px #22d3ee", "0 0 100px 30px #22d3ee", "0 0 0px 0px #22d3ee"] }}
+                            className="absolute top-0 inset-x-0 h-[3px] bg-amber-400"
+                            initial={{ opacity: 0, boxShadow: "0 0 0px 0px rgba(245,158,11,0)" }}
+                            exit={{ opacity: [0, 1, 0], boxShadow: ["0 0 0px 0px #f59e0b", "0 0 100px 30px #f59e0b", "0 0 0px 0px #f59e0b"] }}
                             transition={{ duration: 1.2, ease: "easeOut" }}
                         />
                     </motion.div>

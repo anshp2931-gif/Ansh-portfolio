@@ -8,9 +8,9 @@ import { seoConfig } from "../config/seoConfig";
 const categories = [
     {
         title: "Frontend",
-        color: "from-cyan-400 to-blue-500",
-        glow: "rgba(34,211,238,0.15)",
-        border: "rgba(34,211,238,0.2)",
+        color: "from-amber-400 to-orange-500",
+        glow: "rgba(245,158,11,0.15)",
+        border: "rgba(245,158,11,0.2)",
         skills: [
             { name: "React.js",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",           level: 90 },
             { name: "JavaScript",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",  level: 85 },
@@ -22,9 +22,9 @@ const categories = [
     },
     {
         title: "Backend",
-        color: "from-violet-400 to-purple-600",
-        glow: "rgba(139,92,246,0.15)",
-        border: "rgba(139,92,246,0.2)",
+        color: "from-yellow-500 to-amber-700",
+        glow: "rgba(217,119,6,0.15)",
+        border: "rgba(217,119,6,0.2)",
         skills: [
             { name: "Node.js",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",             level: 80 },
             { name: "Express",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",           level: 78, invert: true },
@@ -35,13 +35,16 @@ const categories = [
     },
     {
         title: "Tools & Design",
-        color: "from-emerald-400 to-teal-500",
-        glow: "rgba(52,211,153,0.15)",
-        border: "rgba(52,211,153,0.2)",
+        color: "from-zinc-400 to-zinc-200",
+        glow: "rgba(255,255,255,0.05)",
+        border: "rgba(255,255,255,0.1)",
         skills: [
-            { name: "Git",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",                      level: 85 },
-            { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",               level: 85, invert: true },
-            { name: "Figma",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",                 level: 80 },
+            { name: "Git",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+            { name: "GitHub",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", invert: true },
+            { name: "Figma",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+            { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" },
+            { name: "Vercel",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg", invert: true },
+            { name: "Netlify", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" },
         ],
     },
 ];
@@ -58,21 +61,12 @@ const allSkills = [
     { name: "Git",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
     { name: "C++",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
     { name: "HTML5",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+    { name: "Postman",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" },
+    { name: "Vercel",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" },
+    { name: "Netlify",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" },
 ];
 
-/* ── Proficiency bar ──────────────────────────────────────── */
-const Bar = memo(({ level, color }) => (
-    <div className="w-full h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-        <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: `${level}%` }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className={`h-full rounded-full bg-gradient-to-r ${color}`}
-        />
-    </div>
-));
-Bar.displayName = 'Bar';
+
 
 /* ── Single skill row ─────────────────────────────────────── */
 const SkillRow = memo(({ skill, color, delay }) => (
@@ -94,11 +88,9 @@ const SkillRow = memo(({ skill, color, delay }) => (
             />
         </div>
         <div className="flex-1 min-w-0">
-            <div className="flex justify-between items-center mb-1.5">
+            <div className="flex items-center">
                 <span className="text-sm font-semibold text-white/80 group-hover:text-white transition-colors">{skill.name}</span>
-                <span className={`text-xs font-bold bg-gradient-to-r ${color} bg-clip-text text-transparent`}>{skill.level}%</span>
             </div>
-            <Bar level={skill.level} color={color} />
         </div>
     </motion.div>
 ));
@@ -169,8 +161,8 @@ const Skills = () => (
             <meta name="description" content={seoConfig.skills.description} />
         </Helmet>
         {/* Subtle background accent blobs */}
-        <div className="absolute top-1/4 left-0 w-72 h-72 bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-violet-500/5 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute top-1/4 left-0 w-72 h-72 bg-amber-500/5 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-orange-500/5 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 md:px-10 relative z-10">
 

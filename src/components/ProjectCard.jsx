@@ -31,10 +31,10 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, ytUR
                 ${featured ? 'md:col-span-2' : 'col-span-1'}
             `}
         >
-            {/* Background Parallax Text - Neon Cyan Aesthetic */}
+            {/* Background Parallax Text - Titanium Luxury Aesthetic */}
             <motion.div 
                 style={{ x: textX }}
-                className="absolute top-1/4 left-0 z-0 text-[6rem] md:text-[8rem] font-black text-cyan-400/5 whitespace-nowrap pointer-events-none select-none uppercase tracking-tighter mix-blend-screen"
+                className="absolute top-1/4 left-0 z-0 text-[6rem] md:text-[8rem] font-black text-amber-400/5 whitespace-nowrap pointer-events-none select-none uppercase tracking-tighter mix-blend-screen"
             >
                 {title} — {title} — {title}
             </motion.div>
@@ -61,7 +61,7 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, ytUR
                         {tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="px-2.5 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-cyan-950/40 text-cyan-300 rounded-md backdrop-blur-md border border-cyan-400/20"
+                                className="px-2.5 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-amber-950/40 text-amber-300 rounded-md backdrop-blur-md border border-amber-400/20"
                             >
                                 {tag}
                             </span>
@@ -83,7 +83,7 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, ytUR
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={`${title} — Live Demo`}
-                                className="flex items-center gap-1.5 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+                                className="flex items-center gap-1.5 text-sm font-bold text-amber-400 hover:text-amber-300 transition-colors"
                             >
                                 <ExternalLink className="w-4 h-4" /> Live
                             </a>
@@ -105,7 +105,7 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, ytUR
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={`${title} — YouTube Demo`}
-                                className="flex items-center gap-1.5 text-sm font-bold text-cyan-600 hover:text-cyan-400 transition-colors"
+                                className="flex items-center gap-1.5 text-sm font-bold text-amber-600 hover:text-amber-400 transition-colors"
                             >
                                 <Youtube className="w-4 h-4" /> Video
                             </a>
@@ -114,8 +114,8 @@ const ProjectCard = ({ title, description, tags, image, liveUrl, githubUrl, ytUR
                 </div>
             </div>
             
-            {/* Glowing border effect on hover - Neon Cyan */}
-            <div className="absolute inset-0 pointer-events-none rounded-[1.5rem] border border-transparent group-hover:border-cyan-400/40 transition-colors duration-500 mix-blend-overlay shadow-[inset_0_0_20px_rgba(34,211,238,0)] group-hover:shadow-[inset_0_0_20px_rgba(34,211,238,0.2)]" />
+            {/* Glowing border effect on hover - Titanium Luxury */}
+            <div className="absolute inset-0 pointer-events-none rounded-[1.5rem] border border-transparent group-hover:border-amber-400/40 transition-colors duration-500 mix-blend-overlay shadow-[inset_0_0_20px_rgba(245,158,11,0)] group-hover:shadow-[inset_0_0_20px_rgba(245,158,11,0.2)]" />
         </motion.div>
     );
 };

@@ -631,7 +631,7 @@
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 999999;
   mix-blend-mode: difference;
   transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
 }
@@ -643,7 +643,7 @@
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 999999;
   mix-blend-mode: difference;
 }
 
@@ -709,4 +709,34 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ══════════════════════════════════════════════════════════
+   Hackathon Winner Modal — keyframe animations
+══════════════════════════════════════════════════════════ */
+
+/* Sweeping gradient along the top border */
+@keyframes hwBorderSweep {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Light-sweep shine across main image on load */
+@keyframes hwImageSweep {
+  0%   { background-position: -100% 0; opacity: 0; }
+  15%  { opacity: 1; }
+  80%  { opacity: 0.85; }
+  100% { background-position: 260% 0; opacity: 0; }
+}
+
+/* Pulsing glow on active thumbnail */
+@keyframes hwThumbGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(245,158,11,0.3), inset 0 0 0 1px rgba(251,191,36,0.2); }
+  50%       { box-shadow: 0 0 20px rgba(245,158,11,0.65), inset 0 0 0 1px rgba(251,191,36,0.45); }
+}
+
+/* CTA button hover shine sweep */
+@keyframes hwCtaShine {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 220% 0; }
 }

@@ -6,6 +6,7 @@ import { seoConfig } from './config/seoConfig';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Preloader from './components/Preloader';
+import HackathonWinnerModal, { useHackathonWinnerModal } from './components/HackathonWinnerModal';
 import './index.css';
 
 // Code-split below-the-fold sections for faster initial load
@@ -33,6 +34,8 @@ function App() {
   const location = useLocation();
   const lenis = useLenis();
   const [showPreloader, setShowPreloader] = useState(true);
+  const [preloaderExiting, setPreloaderExiting] = useState(false);
+  const { isOpen: isModalOpen, close: closeModal } = useHackathonWinnerModal(preloaderExiting);
 
   useEffect(() => {
     // Scroll to top on route change
@@ -120,8 +123,12 @@ function App() {
       </Helmet>
 
       {showPreloader && (
-        <Preloader onComplete={() => setShowPreloader(false)} />
+        <Preloader
+          onStartExit={() => setPreloaderExiting(true)}
+          onComplete={() => setShowPreloader(false)}
+        />
       )}
+      <HackathonWinnerModal isOpen={isModalOpen} onClose={closeModal} />
       <ReactLenis root options={{ 
       lerp: 0.12,
       duration: 1.0,

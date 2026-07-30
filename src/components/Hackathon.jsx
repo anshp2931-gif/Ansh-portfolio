@@ -5,11 +5,10 @@ import { seoConfig } from '../config/seoConfig';
 import { Calendar, Github, ExternalLink, X } from 'lucide-react';
 import KalixLogo from '../assets/kalix.png';
 import PlantPalLogo from '../assets/Plantpal.png';
-import openpool from '../assets/openpool.png'
-import clg from '../assets/clg.jpeg'
-import k4 from '../assets/k4.jpg';
-import Gu1 from '../assets/Gu1.jpeg'
-import Gu2 from '../assets/Gu2.jpeg'
+import openpool from '../assets/openpool.png';
+import codinggita from '../assets/codinggita.jpg';
+import group from '../assets/group.jpg';
+import thirdprice from '../assets/thirdprice.jpg';
 
 const hackathons = [
     {
@@ -19,7 +18,7 @@ const hackathons = [
         description: "Developed an AI-powered platform focused on intelligent automation and user-centric solutions. Built scalable full-stack architecture and integrated advanced AI models for real-world applications.",
         icon: KalixLogo,
         colorClass: "from-blue-500 to-cyan-400",
-        gallery: [k4, clg],
+        gallery: [codinggita, group, thirdprice],
         links: {
             github: "https://github.com/Dev1822/Kalix",
             live: "https://kalix-syntax-squad.vercel.app/"
@@ -45,7 +44,7 @@ const hackathons = [
         description: "Built an intelligent emergency response system that detects call failures and reroutes them in real time, ensuring accurate location tracking and reliable service delivery.",
         icon: null, // text fallback handled below
         colorClass: "from-rose-500 to-orange-400",
-        gallery: [Gu1, Gu2],
+        gallery: [codinggita, group, thirdprice],
         links: {
             github: "https://github.com/PalDPathak404/RapidResQ",
             live: "https://rapidresq-prime.vercel.app/"

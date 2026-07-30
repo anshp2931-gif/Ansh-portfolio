@@ -26,8 +26,11 @@ const CustomCursor = () => {
         // Use 'mouseover' → 'mousemove' with delegation is heavy; use pointerover instead (fires less)
         const onPointerOver = (e) => {
             const el = e.target;
+            if (!el) return;
             const isLink = el.tagName === 'A' || el.tagName === 'BUTTON'
-                || el.closest('a') || el.closest('button');
+                || el.closest('a') || el.closest('button')
+                || el.closest('[role="button"]')
+                || window.getComputedStyle(el).cursor === 'pointer';
             if (hovering !== isLink) {
                 hovering = isLink;
                 if (dotRef.current) {

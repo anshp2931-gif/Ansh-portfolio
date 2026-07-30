@@ -131,7 +131,7 @@ const CinematicContent = ({ align, progress, enterDelay, impactTime }) => {
     );
 };
 
-const Preloader = ({ onComplete }) => {
+const Preloader = ({ onComplete, onStartExit }) => {
     const [progress, setProgress] = useState(0);
     const [exiting, setExiting] = useState(false);
 
@@ -145,15 +145,18 @@ const Preloader = ({ onComplete }) => {
             current += 100 / steps;
             if (current >= 100) {
                 setProgress(100);
-                setTimeout(() => setExiting(true), 150);
-                setTimeout(onComplete, 1200); // Tighter exit timing
+                setTimeout(() => {
+                    setExiting(true);
+                    if (onStartExit) onStartExit();
+                }, 150);
+                setTimeout(onComplete, 1200); // Unmount preloader when curtains finish
             } else {
                 setProgress(Math.floor(current));
             }
         }, stepTime);
 
         return () => clearInterval(timer);
-    }, [onComplete]);
+    }, [onComplete, onStartExit]);
 
     // Precise Cinematic Timings for original kinetic collision
     const enterDelay = 0.3;

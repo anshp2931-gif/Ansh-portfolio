@@ -112,14 +112,14 @@ function App() {
         <meta property="og:url" content="https://anshp-portfolio.vercel.app/" />
         <meta property="og:title" content={currentMetadata.title} />
         <meta property="og:description" content={currentMetadata.description} />
-        <meta property="og:image" content="/photo.jpg" />
+        <meta property="og:image" content="/ansh.png" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://anshp-portfolio.vercel.app/" />
         <meta property="twitter:title" content={currentMetadata.title} />
         <meta property="twitter:description" content={currentMetadata.description} />
-        <meta property="twitter:image" content="/photo.jpg" />
+        <meta property="twitter:image" content="/ansh.png" />
       </Helmet>
 
       {showPreloader && (
@@ -138,54 +138,88 @@ function App() {
       infinite: false,
     }}>
     <div className="relative min-h-screen">
-      {/* Background Effects — lazy so it doesn't block first paint */}
+      {/* Background Interactive Layer */}
       <Suspense fallback={null}>
         <ParticleBackground />
       </Suspense>
 
-      {/* Custom Cursor (desktop only, lazy-loaded) */}
+      {/* Custom Cursor */}
       <Suspense fallback={null}>
         <CustomCursor />
       </Suspense>
 
+      <Navigation activeSection={activeSection} />
 
-      {/* Navigation — eagerly loaded for instant access */}
-      <Navigation />
-
-      {/* Main Content */}
-      <main className="relative z-10">
-        <Suspense fallback={<SectionFallback />}>
-          <Routes>
-            <Route path="/" element={
-              <>
-                <Hero />
+      <main id="main-content">
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
+              <Suspense fallback={<SectionFallback />}>
                 <About />
-                <Suspense fallback={<SectionFallback />}>
-                  <Skills />
-                  <Education />
-                  <Projects />
-                  <Figma />
-                  <Github />
-                  <Hackathon />
-                  <Certificates />
-                  <Contact />
-                </Suspense>
-              </>
-            } />
-            <Route path="/about" element={<About />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/figma" element={<Figma />} />
-            <Route path="/github" element={<Github />} />
-            <Route path="/hackathons" element={<Hackathon />} />
-            <Route path="/certificates" element={<Certificates />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </Suspense>
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Skills />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Education />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Projects />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Figma />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Github />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Hackathon />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Certificates />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Contact />
+              </Suspense>
+            </>
+          } />
+          {/* Fallback route - redirects to home */}
+          <Route path="*" element={
+            <>
+              <Hero />
+              <Suspense fallback={<SectionFallback />}>
+                <About />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Skills />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Education />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Projects />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Figma />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Github />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Hackathon />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Certificates />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <Contact />
+              </Suspense>
+            </>
+          } />
+        </Routes>
       </main>
 
-      {/* Footer */}
       <Suspense fallback={<SectionFallback />}>
         <Footer />
       </Suspense>

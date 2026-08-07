@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Trophy, MapPin, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Award, MapPin, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import codinggita from '../assets/codinggita.jpg';
 import group from '../assets/group.jpg';
 import thirdprice from '../assets/thirdprice.jpg';
@@ -16,37 +16,14 @@ const HACKATHONS = [
     event: 'CodingGita HackSprint \'26',
     location: 'Gujarat, India',
     year: '2026',
-    place: '🥉 3rd Place',
+    placeTitle: '3rd Place',
     placeSub: 'Team Syntax Squad · Multiplayer Horror Game Project',
     desc: 'Built Tales Beyond the Tomb — a real-time Multiplayer Horror Game Lobby that delivers an immersive pre-game experience where players can connect, communicate, and prepare together before entering the game. Developed using React.js, Tailwind CSS, Framer Motion, Node.js, Express.js, MongoDB, Socket.io, and LiveKit (WebRTC) for live synchronization and seamless voice/video communication. The project secured 3rd place through strong teamwork, innovative real-time features, and an engaging multiplayer experience.',
     images: [thirdprice, group, codinggita],
   },
 ];
 
-/* ── Circular countdown ring ─────────────────────────────── */
-function CountdownRing({ seconds }) {
-  const r = 26;
-  const circ = 2 * Math.PI * r;
-  const dash = circ * (seconds / TOTAL_SECONDS);
-  return (
-    <div style={{ position: 'relative', width: 60, height: 60, flexShrink: 0 }}>
-      <svg width="60" height="60" style={{ transform: 'rotate(-90deg)' }}>
-        <circle cx="30" cy="30" r={r} fill="none" stroke="rgba(245,158,11,0.12)" strokeWidth="3.5" />
-        <circle
-          cx="30" cy="30" r={r} fill="none"
-          stroke="#f59e0b" strokeWidth="3.5" strokeLinecap="round"
-          strokeDasharray={`${dash} ${circ}`}
-          style={{ transition: 'stroke-dasharray 1s linear' }}
-        />
-      </svg>
-      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Trophy size={18} color="#f59e0b" />
-      </div>
-    </div>
-  );
-}
-
-/* ── Main Modal ──────────────────────────────────────────── */
+/* ── Main Showcase Modal ─────────────────────────────────── */
 export default function HackathonWinnerModal({ isOpen, onClose }) {
   const [tab, setTab] = useState(0);
   const [imgIdx, setImgIdx] = useState(0);
@@ -58,20 +35,28 @@ export default function HackathonWinnerModal({ isOpen, onClose }) {
   const cancelledRef = useRef(false);
   const confettiFired = useRef(false);
 
-  const hack = HACKATHONS[tab];
+  const hack = HACKATHONS[tab] || HACKATHONS[0];
 
-  /* confetti */
+  /* Single 2-color confetti burst on open */
   useEffect(() => {
     if (!isOpen || confettiFired.current) return;
     confettiFired.current = true;
     import('canvas-confetti').then(({ default: confetti }) => {
-      const opts = { particleCount: 70, spread: 110, colors: ['#f59e0b','#fbbf24','#d97706','#fff','#fcd34d'], ticks: 200, gravity: 0.85, zIndex: 20000 };
-      confetti({ ...opts, origin: { x: 0.3, y: 0.5 } });
-      setTimeout(() => confetti({ ...opts, particleCount: 50, origin: { x: 0.7, y: 0.5 } }), 180);
+      confetti({
+        particleCount: 50,
+        spread: 65,
+        startVelocity: 28,
+        colors: ['#f59e0b', '#ffffff'],
+        ticks: 75,
+        gravity: 1.25,
+        origin: { x: 0.72, y: 0.42 },
+        zIndex: 20000,
+        disableForReducedMotion: true,
+      });
     }).catch(() => {});
   }, [isOpen]);
 
-  /* countdown */
+  /* Countdown timer */
   useEffect(() => {
     if (!isOpen) return;
     cancelledRef.current = false;
@@ -83,7 +68,7 @@ export default function HackathonWinnerModal({ isOpen, onClose }) {
     return () => clearInterval(timerRef.current);
   }, [isOpen]);
 
-  /* auto-close when hits 0 */
+  /* Auto-close when countdown hits 0 */
   useEffect(() => {
     if (isOpen && seconds <= 0 && !cancelledRef.current) {
       clearInterval(timerRef.current);
@@ -91,7 +76,7 @@ export default function HackathonWinnerModal({ isOpen, onClose }) {
     }
   }, [seconds, isOpen, onClose]);
 
-  /* shine per tab */
+  /* Shine effect reset per tab */
   useEffect(() => {
     setShineDone(false);
     setImgIdx(0);
@@ -101,7 +86,7 @@ export default function HackathonWinnerModal({ isOpen, onClose }) {
 
   const handleClose = useCallback(() => {
     cancelledRef.current = true;
-    clearInterval(timerRef.current);
+    if (timerRef.current) clearInterval(timerRef.current);
     onClose();
   }, [onClose]);
 
@@ -127,13 +112,7 @@ export default function HackathonWinnerModal({ isOpen, onClose }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={handleClose}
-          style={{
-            position: 'fixed', inset: 0, zIndex: 19999,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '12px',
-            background: 'rgba(0,0,0,0.87)',
-            backdropFilter: 'blur(12px)',
-          }}
+          className="fixed inset-0 z-[19999] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md"
         >
           <motion.div
             key="hw-modal"
@@ -142,285 +121,243 @@ export default function HackathonWinnerModal({ isOpen, onClose }) {
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
             onClick={e => e.stopPropagation()}
-            style={{
-              position: 'relative',
-              width: '100%',
-              maxWidth: 960,
-              maxHeight: '94vh',
-              overflow: 'hidden',
-              borderRadius: 18,
-              background: '#030712',
-              border: '1px solid rgba(245,158,11,0.18)',
-              boxShadow: '0 0 80px rgba(245,158,11,0.07), 0 40px 100px rgba(0,0,0,0.9)',
-              display: 'flex',
-              flexDirection: 'column',
-            }}
+            className="relative w-full max-w-5xl max-h-[92vh] overflow-hidden rounded-2xl bg-[#030712] border border-amber-500/20 shadow-[0_0_80px_rgba(245,158,11,0.07),0_40px_100px_rgba(0,0,0,0.9)] flex flex-col"
           >
-            {/* animated top border */}
-            <div style={{
-              position: 'absolute', top: 0, left: 0, right: 0, height: 2, zIndex: 20,
-              background: 'linear-gradient(90deg, transparent, #f59e0b, #fbbf24, #d97706, transparent)',
-              backgroundSize: '200% 100%',
-              animation: 'hwBorderSweep 2.8s linear infinite',
-            }} />
+            {/* Top accent line */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] z-20 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-80" />
 
-            {/* X close */}
+            {/* X Close button */}
             <button
+              id="hw-modal-close"
               onClick={handleClose}
-              style={{
-                position: 'absolute', top: 14, right: 14, zIndex: 30,
-                width: 32, height: 32, borderRadius: '50%',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.1)',
-                color: '#94a3b8', cursor: 'pointer',
-                transition: 'all 0.2s',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.background='rgba(245,158,11,0.15)'; e.currentTarget.style.color='#fff'; }}
-              onMouseLeave={e => { e.currentTarget.style.background='rgba(255,255,255,0.06)'; e.currentTarget.style.color='#94a3b8'; }}
+              aria-label="Close modal"
+              className="absolute top-3.5 right-3.5 z-30 w-8 h-8 rounded-full flex items-center justify-center bg-white/5 hover:bg-amber-500/15 border border-white/10 hover:border-amber-500/40 text-slate-400 hover:text-white transition-all duration-200 cursor-pointer"
             >
-              <X size={15} />
+              <X className="w-4 h-4" />
             </button>
 
-            {/* ── BODY: split on md, stacked on mobile ── */}
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              flex: 1,
-              overflow: 'hidden',
-            }} className="hw-body">
+            {/* ── BODY: Split on md, stacked on mobile ── */}
+            <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
 
-              {/* LEFT — image panel */}
-              <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', background: 'rgba(0,0,0,0.35)', minHeight: 220 }} className="hw-left">
-                {/* main image */}
+              {/* LEFT — Image Carousel */}
+              <div className="relative flex flex-col bg-black/40 md:w-[50%] shrink-0 min-h-[220px] sm:min-h-[280px] md:min-h-0">
+                {/* Main image area */}
                 <div
                   ref={imgAreaRef}
                   onMouseMove={onMouseMove}
                   onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-                  style={{ flex: 1, position: 'relative', overflow: 'hidden', perspective: 900, minHeight: 220 }}
+                  className="flex-1 relative overflow-hidden cursor-grab active:cursor-grabbing"
+                  style={{ perspective: 900 }}
                 >
                   <motion.div
                     animate={{ rotateX: tilt.x, rotateY: tilt.y }}
                     transition={{ type: 'spring', stiffness: 180, damping: 22 }}
-                    style={{ width: '100%', height: '100%', position: 'absolute', inset: 0, transformStyle: 'preserve-3d' }}
+                    className="w-full h-full absolute inset-0"
+                    style={{ transformStyle: 'preserve-3d' }}
                   >
                     <AnimatePresence mode="wait">
                       <motion.img
                         key={`${tab}-${imgIdx}`}
                         src={hack.images[imgIdx]}
-                        alt=""
-                        initial={{ opacity: 0, scale: 1.05 }}
+                        alt={`${hack.event} photo ${imgIdx + 1}`}
+                        initial={{ opacity: 0, scale: 1.04 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.97 }}
-                        transition={{ duration: 0.4 }}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, display: 'block' }}
+                        transition={{ duration: 0.35 }}
+                        className="w-full h-full object-cover absolute inset-0 select-none"
                         draggable={false}
                       />
                     </AnimatePresence>
-                    {/* light sweep */}
+
+                    {/* Light-sweep shine */}
                     {!shineDone && (
-                      <div key={`shine-${tab}`} style={{
-                        position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none',
-                        background: 'linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.22) 50%, transparent 80%)',
-                        backgroundSize: '250% 100%',
-                        animation: 'hwImageSweep 1.1s ease-out forwards',
-                      }} />
+                      <div
+                        key={`shine-${tab}`}
+                        className="absolute inset-0 z-10 pointer-events-none"
+                        style={{
+                          background: 'linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.2) 50%, transparent 80%)',
+                          backgroundSize: '250% 100%',
+                          animation: 'hwImageSweep 1.1s ease-out forwards',
+                        }}
+                      />
                     )}
                   </motion.div>
 
-                  {/* counter */}
-                  <div style={{
-                    position: 'absolute', bottom: 10, left: 10, zIndex: 10,
-                    padding: '3px 10px', borderRadius: 20, fontSize: 11,
-                    fontFamily: 'monospace', fontWeight: 700, letterSpacing: '0.12em',
-                    color: '#fbbf24', background: 'rgba(3,7,18,0.75)',
-                    border: '1px solid rgba(245,158,11,0.25)',
-                  }}>
+                  {/* Counter overlay */}
+                  <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded-full text-[11px] font-mono font-bold tracking-widest text-amber-400 bg-[#030712]/80 border border-amber-500/25">
                     {imgIdx + 1} / {hack.images.length}
                   </div>
 
-                  {/* arrows */}
-                  {hack.images.length > 1 && <>
-                    <button onClick={prev} style={arrowStyle('left')}>
-                      <ChevronLeft size={14} />
-                    </button>
-                    <button onClick={next} style={arrowStyle('right')}>
-                      <ChevronRight size={14} />
-                    </button>
-                  </>}
+                  {/* Restyled navigation arrows */}
+                  {hack.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={prev}
+                        aria-label="Previous photo"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-xl bg-black/60 hover:bg-amber-500/10 border border-amber-500/20 hover:border-amber-500/50 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-200 hover:shadow-[0_0_12px_rgba(245,158,11,0.3)] cursor-pointer"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={next}
+                        aria-label="Next photo"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-xl bg-black/60 hover:bg-amber-500/10 border border-amber-500/20 hover:border-amber-500/50 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-200 hover:shadow-[0_0_12px_rgba(245,158,11,0.3)] cursor-pointer"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
 
-                  {/* bottom fade */}
-                  <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 60, pointerEvents: 'none', background: 'linear-gradient(to top, #030712, transparent)' }} />
+                  {/* Bottom gradient fade */}
+                  <div className="absolute bottom-0 left-0 right-0 h-14 pointer-events-none bg-gradient-to-t from-[#030712] to-transparent z-10" />
                 </div>
 
-                {/* thumbnail strip */}
-                <div style={{ display: 'flex', gap: 8, padding: '10px 12px', background: 'rgba(0,0,0,0.3)', overflowX: 'auto', flexShrink: 0 }}>
+                {/* Thumbnails strip */}
+                <div className="flex gap-2 p-3 bg-black/30 overflow-x-auto shrink-0 border-t border-white/5">
                   {hack.images.map((img, i) => (
-                    <button key={i} onClick={() => setImgIdx(i)} style={{
-                      flexShrink: 0, width: 60, height: 42, borderRadius: 8, overflow: 'hidden',
-                      border: `1.5px solid ${i === imgIdx ? '#f59e0b' : 'rgba(255,255,255,0.08)'}`,
-                      boxShadow: i === imgIdx ? '0 0 12px rgba(245,158,11,0.4)' : 'none',
-                      cursor: 'pointer', position: 'relative', padding: 0, background: 'none',
-                      animation: i === imgIdx ? 'hwThumbGlow 2s ease-in-out infinite' : 'none',
-                    }}>
-                      <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: i === imgIdx ? 1 : 0.5 }} draggable={false} />
+                    <button
+                      key={i}
+                      onClick={() => setImgIdx(i)}
+                      className={`relative shrink-0 w-16 h-11 rounded-lg overflow-hidden transition-all duration-200 cursor-pointer ${
+                        i === imgIdx
+                          ? 'border-2 border-amber-500 opacity-100'
+                          : 'border border-white/10 opacity-60 hover:opacity-100'
+                      }`}
+                    >
+                      <img
+                        src={img}
+                        alt=""
+                        className="w-full h-full object-cover"
+                        draggable={false}
+                      />
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* RIGHT — content panel */}
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '22px 20px 20px', overflowY: 'auto' }} className="hw-right">
+              {/* RIGHT — Content Panel */}
+              <div className="flex-1 flex flex-col p-5 sm:p-7 overflow-y-auto">
 
-                {/* tab switcher */}
-                <div style={{
-                  display: 'flex', gap: 4, padding: 4, borderRadius: 12, marginBottom: 18, flexShrink: 0,
-                  background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)',
-                }}>
-                  {HACKATHONS.map((h, i) => (
-                    <button
-                      key={h.id}
-                      onClick={() => setTab(i)}
-                      style={{
-                        flex: 1, padding: '8px 6px', borderRadius: 8, fontSize: 11, fontWeight: 700,
-                        letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer',
-                        background: tab === i ? 'rgba(245,158,11,0.08)' : 'transparent',
-                        color: tab === i ? '#f59e0b' : '#475569',
-                        border: 'none', position: 'relative', transition: 'all 0.2s',
-                      }}
-                    >
-                      {h.tab}
-                      {tab === i && (
-                        <motion.div
-                          layoutId="hw-tab-underline"
-                          style={{
-                            position: 'absolute', bottom: 2, left: 8, right: 8, height: 2, borderRadius: 2,
-                            background: 'linear-gradient(90deg, #f59e0b, #fbbf24)',
-                          }}
-                          transition={{ type: 'spring', stiffness: 320, damping: 30 }}
-                        />
-                      )}
-                    </button>
-                  ))}
-                </div>
+                {/* Tab Switcher */}
+                {HACKATHONS.length > 1 && (
+                  <div className="flex gap-1 p-1 rounded-xl mb-6 bg-white/[0.03] border border-white/5 shrink-0">
+                    {HACKATHONS.map((h, i) => (
+                      <button
+                        key={h.id}
+                        onClick={() => setTab(i)}
+                        className={`relative flex-1 py-2 px-3 text-[11px] font-bold tracking-wider uppercase rounded-lg transition-all duration-200 cursor-pointer ${
+                          tab === i ? 'text-amber-400 bg-amber-500/10' : 'text-slate-400 hover:text-slate-200'
+                        }`}
+                      >
+                        {h.tab}
+                        {tab === i && (
+                          <motion.div
+                            layoutId="hw-tab-underline"
+                            className="absolute bottom-0.5 left-2 right-2 h-[2px] rounded-full bg-amber-400"
+                            transition={{ type: 'spring', stiffness: 320, damping: 30 }}
+                          />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
-                {/* animated content */}
+                {/* Animated content block */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={tab}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.25 }}
-                    style={{ display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}
+                    className="flex flex-col flex-1"
                   >
-                    {/* badge */}
-                    <span style={{
-                      alignSelf: 'flex-start', fontSize: 10, fontWeight: 700, letterSpacing: '0.16em',
-                      textTransform: 'uppercase', padding: '6px 12px', borderRadius: 20,
-                      color: '#f59e0b', border: '1px solid rgba(245,158,11,0.35)', background: 'rgba(245,158,11,0.06)',
-                    }}>
-                      {hack.badge}
-                    </span>
+                    {/* Status badge pill */}
+                    <div className="mb-4">
+                      <span className="inline-block text-[10px] font-bold tracking-[0.16em] uppercase px-3 py-1.5 rounded-full text-amber-400 border border-amber-500/35 bg-amber-500/10">
+                        {hack.badge}
+                      </span>
+                    </div>
 
-                    {/* university */}
-                    <div>
-                      <h2 style={{ fontSize: 'clamp(17px, 2.5vw, 22px)', fontWeight: 900, color: '#f8fafc', margin: 0, lineHeight: 1.2 }}>
-                        {hack.university}
-                      </h2>
-                      <p style={{ fontSize: 13, fontWeight: 600, color: 'rgba(245,158,11,0.8)', margin: '4px 0 0' }}>
+                    {/* Title & Subtitle */}
+                    <div className="mb-3">
+                      <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight">
                         {hack.event}
-                      </p>
-                    </div>
+                      </h2>
 
-                    {/* location */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11, fontFamily: 'monospace', color: '#475569', letterSpacing: '0.08em' }}>
-                      <MapPin size={12} color="#334155" />
-                      {hack.location} · {hack.year}
-                    </div>
-
-                    {/* divider */}
-                    <div style={{ height: 1, background: 'linear-gradient(90deg, rgba(245,158,11,0.25), transparent)' }} />
-
-                    {/* achievement */}
-                    <div>
-                      <div style={{ fontSize: 'clamp(22px, 4vw, 30px)', fontWeight: 900, color: '#f8fafc' }}>{hack.place}</div>
-                      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,158,11,0.65)', marginTop: 2 }}>{hack.placeSub}</div>
-                    </div>
-
-                    {/* description */}
-                    <p style={{ fontSize: 13, lineHeight: 1.65, color: '#64748b', margin: 0 }}>{hack.desc}</p>
-
-                    <div style={{ flex: 1, minHeight: 8 }} />
-
-                    {/* CTA */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flexShrink: 0 }}>
-                      <button
-                        onClick={handleClose}
-                        className="hw-cta-btn"
-                        style={{
-                          width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                          padding: '13px 18px', borderRadius: 12, fontWeight: 900, fontSize: 13,
-                          letterSpacing: '0.06em', cursor: 'pointer', border: 'none', position: 'relative', overflow: 'hidden',
-                          background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-                          color: '#030712',
-                          boxShadow: '0 0 28px rgba(245,158,11,0.22), 0 4px 16px rgba(0,0,0,0.4)',
-                          transition: 'box-shadow 0.3s',
-                        }}
-                        onMouseEnter={e => e.currentTarget.style.boxShadow='0 0 44px rgba(245,158,11,0.45), 0 4px 20px rgba(0,0,0,0.5)'}
-                        onMouseLeave={e => e.currentTarget.style.boxShadow='0 0 28px rgba(245,158,11,0.22), 0 4px 16px rgba(0,0,0,0.4)'}
-                      >
-                        <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <ArrowRight size={16} />
-                          CONTINUE TO PORTFOLIO
+                      <div className="flex items-center gap-2 mt-1.5">
+                        <Award className="w-5 h-5 text-amber-400 shrink-0 stroke-[2.2]" />
+                        <span className="text-base sm:text-lg font-bold text-amber-400 tracking-wide">
+                          {hack.placeTitle}
                         </span>
-                        <span style={{ fontSize: 12, fontFamily: 'monospace', padding: '2px 8px', borderRadius: 6, background: 'rgba(3,7,18,0.25)' }}>
-                          {seconds}s
+                        <span className="text-slate-500 font-mono text-xs">•</span>
+                        <span className="text-xs sm:text-sm font-semibold text-slate-300">
+                          {hack.placeSub}
                         </span>
-                      </button>
+                      </div>
 
-                      {/* ring + label */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <CountdownRing seconds={Math.max(0, seconds)} />
-                        <div>
-                          <div style={{ fontSize: 11, fontFamily: 'monospace', color: '#475569' }}>Auto-close in</div>
-                          <div style={{ fontSize: 18, fontWeight: 900, fontFamily: 'monospace', color: '#f59e0b' }}>{Math.max(0, seconds)}s</div>
-                        </div>
+                      <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 tracking-wider mt-2">
+                        <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                        {hack.location} · {hack.year}
                       </div>
                     </div>
+
+                    {/* Divider */}
+                    <div className="h-px w-full bg-gradient-to-r from-amber-500/25 via-amber-500/10 to-transparent my-3" />
+
+                    {/* Description */}
+                    <p className="text-sm text-slate-400 leading-relaxed max-w-[60ch] mb-6">
+                      {hack.desc}
+                    </p>
+
+                    <div className="flex-1 min-h-[12px]" />
+
+                    {/* CTA Button */}
+                    <div className="shrink-0 mt-auto pt-2">
+                      <button
+                        id="hw-cta-continue"
+                        onClick={handleClose}
+                        className="group w-full flex items-center justify-between px-5 py-3.5 rounded-xl font-bold text-xs sm:text-sm tracking-wider uppercase bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-[0_0_25px_rgba(245,158,11,0.22)] hover:shadow-[0_0_35px_rgba(245,158,11,0.4)] transition-all duration-300 cursor-pointer relative overflow-hidden"
+                      >
+                        <span className="flex items-center gap-2 font-black">
+                          <ArrowRight className="w-4 h-4" />
+                          CONTINUE TO PORTFOLIO
+                        </span>
+
+                        <div className="flex items-center gap-2 pl-3 border-l border-slate-950/20">
+                          <div className="relative w-6 h-6 shrink-0">
+                            <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                              <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(3,7,18,0.2)" strokeWidth="3" />
+                              <circle
+                                cx="18" cy="18" r="14" fill="none"
+                                stroke="#030712" strokeWidth="3" strokeLinecap="round"
+                                strokeDasharray={`${(2 * Math.PI * 14) * (seconds / TOTAL_SECONDS)} ${2 * Math.PI * 14}`}
+                                style={{ transition: 'stroke-dasharray 1s linear' }}
+                              />
+                            </svg>
+                            <span className="absolute inset-0 flex items-center justify-center text-[10px] font-mono font-bold text-slate-950">
+                              {seconds}
+                            </span>
+                          </div>
+                          <span className="text-[11px] font-mono font-bold text-slate-950">auto-close</span>
+                        </div>
+                      </button>
+                    </div>
+
                   </motion.div>
                 </AnimatePresence>
+
               </div>
+
             </div>
           </motion.div>
-
-          {/* Responsive CSS */}
-          <style>{`
-            .hw-body { flex-direction: column !important; }
-            .hw-left { min-height: 200px; }
-            @media (min-width: 640px) {
-              .hw-body { flex-direction: row !important; }
-              .hw-left { width: 50% !important; min-height: unset !important; }
-              .hw-right { overflow-y: auto; }
-            }
-          `}</style>
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
 
-/* arrow button style */
-function arrowStyle(side) {
-  return {
-    position: 'absolute', [side]: 10, top: '50%', transform: 'translateY(-50%)', zIndex: 10,
-    width: 28, height: 28, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)',
-    background: 'rgba(0,0,0,0.55)', color: '#fff', cursor: 'pointer',
-    display: 'flex', alignItems: 'center', justifyContent: 'center',
-  };
-}
-
-/* ── Hook: fires instantly once preloader is done (session-gated) ─── */
+/* ── Hook: handles auto-show per session ─── */
 export function useHackathonWinnerModal(preloaderDone) {
   const [isOpen, setIsOpen] = useState(false);
   const fired = useRef(false);
@@ -429,11 +366,13 @@ export function useHackathonWinnerModal(preloaderDone) {
     if (!preloaderDone || fired.current) return;
     if (sessionStorage.getItem('hwModal_shown')) return;
     fired.current = true;
-    // fire right away — no artificial delay
     setIsOpen(true);
     sessionStorage.setItem('hwModal_shown', '1');
   }, [preloaderDone]);
 
-  const close = useCallback(() => setIsOpen(false), []);
+  const close = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
   return { isOpen, close };
 }

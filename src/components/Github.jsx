@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { seoConfig } from '../config/seoConfig';
 import { Github as GitIcon, ExternalLink, Star, GitFork, BookOpen, Activity, Terminal, GitCommit, GitPullRequest, Code2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import profileImg from '../assets/ansh.png';
 
 const Github = () => {
     const [userData, setUserData] = useState(null);
@@ -16,46 +17,37 @@ const Github = () => {
         if (!section) return;
 
         // Defer all network requests until the section scrolls into view.
-        // This prevents 4 API calls from blocking the initial page load on mobile.
         const observer = new IntersectionObserver(
             (entries) => {
                 if (!entries[0].isIntersecting) return;
-                observer.disconnect(); // Only fire once
+                observer.disconnect();
 
-                // Fetch User Stats
                 fetch('https://api.github.com/users/anshp2931-gif')
                     .then(res => res.json())
                     .then(data => setUserData(data))
                     .catch(err => console.error(err));
                     
-                // Fetch Repo Stats
                 fetch('https://api.github.com/users/anshp2931-gif/repos?sort=updated&per_page=100')
                     .then(res => res.json())
                     .then(data => { if (Array.isArray(data)) setRepoData(data); })
                     .catch(err => console.error(err));
 
-                // Fetch Total PRs
                 fetch('https://api.github.com/search/issues?q=author:anshp2931-gif+type:pr')
                     .then(res => res.json())
                     .then(data => { if (data.total_count !== undefined) setPrCount(data.total_count); })
                     .catch(err => console.error(err));
 
-                // Fetch Total Issues
                 fetch('https://api.github.com/search/issues?q=author:anshp2931-gif+type:issue')
                     .then(res => res.json())
                     .then(data => { if (data.total_count !== undefined) setIssueCount(data.total_count); })
                     .catch(err => console.error(err));
             },
-            { rootMargin: '200px' } // Start fetching 200px before section enters viewport
+            { rootMargin: '200px' }
         );
         observer.observe(section);
 
         return () => observer.disconnect();
     }, []);
-    
-    // We are generating native highly-aesthetic UI cards because standard github-readme-stats SVGs 
-    // constantly return 503 Service Unavailable errors due to global Vercel rate limits.
-    // This custom React UI approach guarantees 100% uptime, zero loading delay, and perfect luxury aesthetics.
 
     return (
         <section id="github" ref={sectionRef} className="py-24 px-4 md:px-8 relative overflow-hidden">
@@ -107,14 +99,10 @@ const Github = () => {
                         <div className="absolute inset-0 bg-gradient-to-b from-electric-cyan/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-duration-500" />
                         <div className="bg-[#060b18]/80 light:bg-slate-50/80 backdrop-blur-xl rounded-[1.8rem] p-8 h-full flex flex-col items-center justify-center border border-white/5 light:border-slate-200 relative z-10">
                             
-                            {userData?.avatar_url ? (
-                                <div className="relative mb-8 group-hover:scale-110 transition-transform duration-500">
-                                    <div className="absolute inset-0 bg-electric-cyan rounded-full blur-2xl opacity-20 group-hover:opacity-60 transition-opacity" />
-                                    <img src={userData.avatar_url} alt="GitHub Avatar" width="160" height="160" className="w-40 h-40 rounded-full border-4 border-electric-cyan/30 light:border-indigo-400/50 shadow-2xl relative z-10 object-cover" />
-                                </div>
-                            ) : (
-                                <div className="w-40 h-40 rounded-full bg-electric-cyan/10 animate-pulse mb-8" />
-                            )}
+                            <div className="relative mb-8 group-hover:scale-110 transition-transform duration-500">
+                                <div className="absolute inset-0 bg-electric-cyan rounded-full blur-2xl opacity-20 group-hover:opacity-60 transition-opacity" />
+                                <img src={profileImg} alt="Ansh Patel" width="160" height="160" className="w-40 h-40 rounded-full border-4 border-electric-cyan/30 light:border-indigo-400/50 shadow-2xl relative z-10 object-cover" />
+                            </div>
                             
                             <h3 className="text-3xl font-black text-primary tracking-tight mb-2 text-center">
                                 {userData?.name || 'Ansh Patel'}

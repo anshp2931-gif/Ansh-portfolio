@@ -16,6 +16,7 @@ import About from './components/About';
 const Skills = lazy(() => import('./components/Skills'));
 const Education = lazy(() => import('./components/Education'));
 const Projects = lazy(() => import('./components/Projects'));
+const FullStackProjects = lazy(() => import('./components/FullStackProjects'));
 const Figma = lazy(() => import('./components/Figma'));
 const Github = lazy(() => import('./components/Github'));
 const Hackathon = lazy(() => import('./components/Hackathon'));
@@ -38,22 +39,41 @@ function App() {
   const { isOpen: isModalOpen, close: closeModal } = useHackathonWinnerModal(preloaderExiting);
 
   useEffect(() => {
-    // Scroll to top on route change
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant'
-    });
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    }
-  }, [location.pathname, lenis]);
+    if (showPreloader) return;
+
+    const path = location.pathname.replace(/^\//, '');
+    const targetId = path === '' ? 'home' : path;
+
+    const scrollToTarget = () => {
+      if (targetId === 'home') {
+        if (lenis) {
+          lenis.scrollTo(0, { immediate: false, duration: 1.0 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        setActiveSection('home');
+      } else {
+        const el = document.getElementById(targetId);
+        if (el) {
+          if (lenis) {
+            lenis.scrollTo(el, { offset: -60, immediate: false, duration: 1.0 });
+          } else {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+          setActiveSection(targetId);
+        }
+      }
+    };
+
+    // Give DOM a small moment to mount / lazy load
+    const timer = setTimeout(scrollToTarget, 60);
+    return () => clearTimeout(timer);
+  }, [location.pathname, showPreloader, lenis]);
 
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    // Only run scroll spy on the home page
-    if (location.pathname !== '/' || showPreloader) return;
+    if (showPreloader) return;
 
     const observerOptions = {
       root: null,
@@ -70,7 +90,7 @@ function App() {
     };
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
-    const sections = ['home', 'about', 'skills', 'education', 'projects', 'figma', 'github', 'hackathons', 'certificates', 'contact'];
+    const sections = ['home', 'about', 'skills', 'education', 'projects', 'fullstack', 'figma', 'github', 'hackathons', 'certificates', 'contact'];
     
     sections.forEach((id) => {
       const el = document.getElementById(id);
@@ -78,7 +98,7 @@ function App() {
     });
 
     return () => observer.disconnect();
-  }, [location.pathname, showPreloader]);
+  }, [showPreloader]);
 
   // Determine current metadata based on route or active scroll section
   const currentMetadata = useMemo(() => {
@@ -168,6 +188,9 @@ function App() {
                 <Projects />
               </Suspense>
               <Suspense fallback={<SectionFallback />}>
+                <FullStackProjects />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
                 <Figma />
               </Suspense>
               <Suspense fallback={<SectionFallback />}>
@@ -199,6 +222,9 @@ function App() {
               </Suspense>
               <Suspense fallback={<SectionFallback />}>
                 <Projects />
+              </Suspense>
+              <Suspense fallback={<SectionFallback />}>
+                <FullStackProjects />
               </Suspense>
               <Suspense fallback={<SectionFallback />}>
                 <Figma />

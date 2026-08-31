@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUp, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLenis } from 'lenis/react';
 
 const Leetcode = ({ className }) => (
     <svg
@@ -16,9 +17,14 @@ const Leetcode = ({ className }) => (
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
+    const lenis = useLenis();
 
     const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (lenis) {
+            lenis.scrollTo(0, { duration: 1.0 });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     };
 
     const socialLinks = [

@@ -19,6 +19,10 @@ export const seoConfig = {
         title: "Featured Projects | Ansh Patel",
         description: "A showcase of high-performance web applications, AI integrations, and cinematic UI designs by Ansh Patel."
     },
+    fullstack: {
+        title: "Full Stack Projects | Ansh Patel",
+        description: "Explore end-to-end full stack web applications, REST APIs, and database architectures by Ansh Patel."
+    },
     figma: {
         title: "UI/UX Designs | Ansh Patel",
         description: "Portfolio of UI/UX designs and high-fidelity prototypes created by Ansh Patel in Figma."

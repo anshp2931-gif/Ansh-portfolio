@@ -9,16 +9,34 @@ import openpool from '../assets/openpool.png';
 import codinggita from '../assets/codinggita.jpg';
 import group from '../assets/group.jpg';
 import thirdprice from '../assets/thirdprice.jpg';
+import k4 from '../assets/k4.jpg'
+import Gu1 from '../assets/Gu1.jpeg'
+import Gu2 from '../assets/Gu2.jpeg'
+import clg from '../assets/clg.jpeg'
 
 const hackathons = [
     {
+        title: "HackSprint",
+        role: "CodingGita",
+        date: "June 2026",
+        initials: "HS",
+        description: "An immersive, real-time multiplayer horror mystery game. Players join haunted lobbies, communicate via live voice chat, explore chilling environments, uncover AI-generated clues, and vote to accuse the suspect hiding among them.",
+    
+        colorClass: "from-blue-500 to-cyan-400",
+        gallery: [codinggita,thirdprice,group],
+        links: {
+            github: "https://github.com/anshp2931-gif/syntaxsquad",
+            live: "https://tales-beyond-the-tomb-syntax-squad.vercel.app/"
+        }
+    },
+    {
         title: "Kalix AI",
-        role: "AI Product Developer",
+        role: "Swaminarayan University",
         date: "Jan 2026",
         description: "Developed an AI-powered platform focused on intelligent automation and user-centric solutions. Built scalable full-stack architecture and integrated advanced AI models for real-world applications.",
         icon: KalixLogo,
         colorClass: "from-blue-500 to-cyan-400",
-        gallery: [codinggita, group, thirdprice],
+        gallery: [k4,clg],
         links: {
             github: "https://github.com/Dev1822/Kalix",
             live: "https://kalix-syntax-squad.vercel.app/"
@@ -26,7 +44,7 @@ const hackathons = [
     },
     {
         title: "Plant Pal",
-        role: "Full Stack & AI Developer",
+        role: "",
         date: "Jan 2026",
         description: "Created an AI-driven plant care assistant that analyzes plant conditions and provides smart recommendations for watering, sunlight, and maintenance. Built with a scalable full-stack architecture.",
         icon: PlantPalLogo,
@@ -39,12 +57,13 @@ const hackathons = [
     },
     {
         title: "RapidResQ",
-        role: "Full Stack Developer",
+        role: "Gandhinagar University",
         date: "Jan 2026",
+        initials: "RR",
         description: "Built an intelligent emergency response system that detects call failures and reroutes them in real time, ensuring accurate location tracking and reliable service delivery.",
-        icon: null, // text fallback handled below
+        icon: null,
         colorClass: "from-rose-500 to-orange-400",
-        gallery: [codinggita, group, thirdprice],
+        gallery: [Gu1 , Gu2],
         links: {
             github: "https://github.com/PalDPathak404/RapidResQ",
             live: "https://rapidresq-prime.vercel.app/"
@@ -75,8 +94,8 @@ const HackathonCard = ({ event, index }) => {
                             {event.icon ? (
                                 <img src={event.icon} alt={event.title} width="48" height="48" className="w-12 h-12 object-contain filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500" />
                             ) : (
-                                <div className={`w-12 h-12 flex flex-col items-center justify-center font-display font-black text-2xl bg-gradient-to-br ${event.colorClass} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-500`}>
-                                    RR
+                                <div className={`w-12 h-12 flex flex-col items-center justify-center font-display font-black text-2xl tracking-wider bg-gradient-to-br ${event.colorClass} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-500`}>
+                                    {event.initials || 'HS'}
                                 </div>
                             )}
                         </div>

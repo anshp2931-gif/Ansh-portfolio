@@ -1,6 +1,7 @@
 import React, { useEffect, useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useLenis } from 'lenis/react';
 import { Github, Linkedin, Mail, ArrowDown, Youtube } from 'lucide-react';
 
 /* ── LeetCode SVG icon ────────────────────────────────────── */
@@ -85,6 +86,7 @@ const Stat = ({ value, label }) => (
    HERO
 ══════════════════════════════════════════════════════════ */
 const Hero = () => {
+    const lenis = useLenis();
     const socials = [
         { Icon: Github,   href: 'https://github.com/anshp2931-gif',                     label: 'GitHub' },
         { Icon: Linkedin, href: 'https://www.linkedin.com/in/ansh-patel-059b1b399/',    label: 'LinkedIn' },
@@ -178,14 +180,38 @@ const Hero = () => {
                             className="flex flex-wrap items-center gap-3 mb-8 justify-center"
                         >
                             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                                <Link to="/contact" className="btn-plasma">Get In Touch</Link>
+                                <Link
+                                    to="/contact"
+                                    onClick={() => {
+                                        const el = document.getElementById('contact');
+                                        if (el) {
+                                            if (lenis) lenis.scrollTo(el, { offset: -60, duration: 1.0 });
+                                            else el.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
+                                    className="btn-plasma"
+                                >
+                                    Get In Touch
+                                </Link>
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-                                <Link to="/projects" className="btn-outline">View Projects</Link>
+                                <Link
+                                    to="/projects"
+                                    onClick={() => {
+                                        const el = document.getElementById('projects');
+                                        if (el) {
+                                            if (lenis) lenis.scrollTo(el, { offset: -60, duration: 1.0 });
+                                            else el.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
+                                    className="btn-outline"
+                                >
+                                    View Projects
+                                </Link>
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
                                 <a
-                                    href="https://drive.google.com/file/d/1sNpHV28f3TWAEj-nXqdBQMvMSGv63vA4/view?usp=sharing"
+                                    href="https://drive.google.com/file/d/1Bfx1FGKSZ4_r5c3B28ntVoY3y2s4gdTn/view?usp=sharing"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn-outline"

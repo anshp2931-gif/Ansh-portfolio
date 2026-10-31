@@ -3,23 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Ansh Patel — Full Stack Developer &amp; UI/UX Designer from Gandhinagar, Gujarat. Building scalable web apps with React, Node.js, and modern AI integration." />
+
+    <!-- Primary SEO -->
+    <title>Ansh Patel | Full Stack Developer &amp; AI Integrator — Portfolio</title>
+    <meta name="title" content="Ansh Patel | Full Stack Developer &amp; AI Integrator — Portfolio" />
+    <meta name="description" content="Ansh Patel — Full Stack Developer, AI Integrator &amp; UI/UX Designer from Gandhinagar, Gujarat. 3x Hackathon Winner. B.Tech CSE at Swami Narayan University. React, Node.js, AI." />
+    <meta name="keywords" content="Ansh Patel, Ansh Patel portfolio, Ansh Patel developer, Full Stack Developer, AI Integrator, React Developer, Web Developer Gujarat, Gandhinagar developer, Swami Narayan University, hackathon winner, UI UX designer" />
+    <meta name="author" content="Ansh Patel" />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#030712" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./src/assets/logo.png" />
+    <!-- Canonical URL (very important for Google) -->
+    <link rel="canonical" href="https://ansh-patel-portfolio.vercel.app/" />
 
-    <!-- Preconnect to critical third-party origins first -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ansh-patel-portfolio.vercel.app/" />
+    <meta property="og:title" content="Ansh Patel | Full Stack Developer &amp; AI Integrator" />
+    <meta property="og:description" content="Portfolio of Ansh Patel — Full Stack Developer, 3x Hackathon Winner, AI Integrator from Gandhinagar, Gujarat." />
+    <meta property="og:image" content="https://ansh-patel-portfolio.vercel.app/ansh.png" />
+    <meta property="og:site_name" content="Ansh Patel Portfolio" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://ansh-patel-portfolio.vercel.app/" />
+    <meta name="twitter:title" content="Ansh Patel | Full Stack Developer &amp; AI Integrator" />
+    <meta name="twitter:description" content="Portfolio of Ansh Patel — Full Stack Developer, 3x Hackathon Winner, AI Integrator from Gandhinagar, Gujarat." />
+    <meta name="twitter:image" content="https://ansh-patel-portfolio.vercel.app/ansh.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Preconnect to critical third-party origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Preload Hero image for instant LCP -->
-    <link rel="preload" as="image" href="/photo.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/ansh.png" fetchpriority="high" />
 
-    <!-- Critical CSS & Fonts — using display=swap to avoid rendering block -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap"
@@ -30,7 +56,32 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" />
     </noscript>
 
-    <title>Ansh Patel — Full Stack Developer &amp; UI/UX Designer</title>
+    <!-- JSON-LD Structured Data (helps Google show rich results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ansh Patel",
+      "url": "https://ansh-patel-portfolio.vercel.app/",
+      "image": "https://ansh-patel-portfolio.vercel.app/ansh.png",
+      "jobTitle": "Full Stack Developer & AI Integrator",
+      "description": "Full Stack Developer, AI Integrator and UI/UX Designer from Gandhinagar, Gujarat. 3x Hackathon Winner. B.Tech CSE student at Swami Narayan University.",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Swami Narayan University"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gandhinagar",
+        "addressRegion": "Gujarat",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://github.com/anshp2931-gif"
+      ],
+      "knowsAbout": ["React", "Node.js", "Full Stack Development", "AI Integration", "UI/UX Design", "JavaScript"]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
